@@ -1,0 +1,19 @@
+.trello-main-logo {
+  display: block;
+  height: 43px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  //   vertical-align: middle;
+}
+.form-extra-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-evenly;
+  a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #0052cc;
+  }
+}
