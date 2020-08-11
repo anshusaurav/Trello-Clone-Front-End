@@ -20,23 +20,16 @@ class ForgotPasswordForm extends React.Component {
                                     <label>We'll send a recovery link to</label>
                                     <input placeholder='Enter email'></input>
                                 </Form.Field>
-
-
-
                                 <Button color='green' fluid size='large'>
                                     Send recovery link
-                            </Button>
-
+                                </Button>
                             </Form>
                             <Divider inverted />
                             <div className='form-extra-links-single'>
                                 <Link to='signin'>
-
                                     <Button className='remove-design-btn'>Return to log in</Button>
                                 </Link>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
