@@ -1,8 +1,9 @@
 import React from 'react'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import HeaderNav from './common/HeaderNav'
 class Home extends React.Component {
     render() {
-        return <></>
+        return <><HeaderNav /></>
     }
 }
 export default withRouter(Home)

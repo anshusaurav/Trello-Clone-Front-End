@@ -120,4 +120,67 @@
 
 //Home page authenticated starts
 
+.top-nav-left {
+  display: flex;
+  justify-content: flex-start;
+  flex-grow: 1;
+}
+.top-nav-right {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+  p {
+    align-items: center;
+    background-color: #dfe1e6;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 0;
+    border-radius: 100%;
+    box-sizing: border-box;
+    color: #172b4d;
+    display: inline-flex;
+    font-size: 12px;
+    font-weight: 700;
+    justify-content: center;
+    line-height: 28px;
+    opacity: 1;
+    height: 28px;
+    width: 28px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.home-link {
+  display: block;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  top: 5px;
+  .home-link-img {
+    background-image: url("./../images/header-logo-2x.01ef898811a879595cea.png");
+    background-position: 100% 0;
+    background-repeat: no-repeat;
+    background-size: 120px 42px;
+    cursor: pointer;
+    display: inline-block;
+    height: 42px;
+    width: 120px;
+  }
+  .home-link-gif {
+    background-image: url("./../images/header-loading-logo.d73159084f5122775d4d.gif");
+    background-size: 18px 18px;
+    display: inline-block;
+    opacity: 0;
+    height: 18px;
+    right: 59px;
+    position: absolute;
+    top: 6px;
+    width: 18px;
+  }
+  .home-link-div {
+  }
+}
+
 //Home page authenticated ends
