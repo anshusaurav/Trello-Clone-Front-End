@@ -1,8 +1,9 @@
 import React from 'react'
-import { Button, Form, Grid, Divider, Segment } from 'semantic-ui-react'
+import { Button, Form, Divider } from 'semantic-ui-react'
 import CustomFormHeader from './../components/common/CustomFormHeader'
 import leftBG from './../images/leftbg.svg'
 import rightBG from './../images/rightbg.svg'
+import { withRouter, Link } from 'react-router-dom'
 class SignUpForm extends React.Component {
     render() {
         return (
@@ -32,8 +33,10 @@ class SignUpForm extends React.Component {
                             </Form>
                             <Divider inverted />
                             <div className='form-extra-links-single'>
-                                <a href='#' className='form-link'>Already have an Atlassian account? Log in</a>
+                                <Link to='signin'>
 
+                                    <Button className='remove-design-btn'>Already have an Atlassian account? Log in</Button>
+                                </Link>
                             </div>
 
                         </div>
@@ -48,8 +51,8 @@ class SignUpForm extends React.Component {
                     </div>
 
                 </div>
-            </div>
+            </div >
         )
     }
 }
-export default SignUpForm;
+export default withRouter(SignUpForm);

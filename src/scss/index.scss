@@ -57,6 +57,29 @@
       color: #0052cc;
       text-align: center;
     }
+    a {
+      // align-self: center;
+      justify-self: center;
+    }
+    .remove-design-btn {
+      background-color: transparent;
+      font-size: 14px;
+      font-weight: 400;
+      // color: #2e394f;
+      &:active {
+        background-color: transparent;
+      }
+      &:hover {
+        background-color: transparent;
+        text-decoration: underline;
+      }
+      &:visited {
+        background-color: transparent;
+      }
+      &:focus {
+        background-color: transparent;
+      }
+    }
   }
   .form-extra-links-single {
     grid-template-columns: 1fr;
@@ -89,9 +112,6 @@
       right: 0;
       z-index: -999;
       max-width: 30%;
-    }
-    img {
-      width: 100%;
     }
   }
 }

@@ -3,6 +3,7 @@ import { Button, Form, Divider } from 'semantic-ui-react'
 import CustomFormHeader from './common/CustomFormHeader'
 import leftBG from './../images/leftbg.svg'
 import rightBG from './../images/rightbg.svg'
+import { withRouter, Link } from 'react-router-dom'
 class ForgotPasswordForm extends React.Component {
     render() {
         return (
@@ -29,7 +30,10 @@ class ForgotPasswordForm extends React.Component {
                             </Form>
                             <Divider inverted />
                             <div className='form-extra-links-single'>
-                                <a href='#' className='form-link'>Return to log in</a>
+                                <Link to='signin'>
+
+                                    <Button className='remove-design-btn'>Return to log in</Button>
+                                </Link>
 
                             </div>
 
@@ -49,4 +53,4 @@ class ForgotPasswordForm extends React.Component {
         )
     }
 }
-export default ForgotPasswordForm;
+export default withRouter(ForgotPasswordForm)
