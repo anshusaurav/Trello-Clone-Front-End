@@ -7,12 +7,13 @@ class SignInForm extends React.Component {
     render() {
         return (
             <div className='form-container'>
-                <div className='form-container-outer-div'>
-                    <CustomFormHeader />
-                    <div className='form-container-inner-div' >
-                        <h2>Log in to Trello</h2>
+                <div className='form-complete-div'>
+                    <div className='form-container-outer-div'>
+                        <CustomFormHeader />
+                        <div className='form-container-inner-div' >
+                            <h2>Log in to Trello</h2>
 
-                        <Segment style={{ padding: '1rem' }}>
+
                             <Form size='large'>
 
                                 <Form.Input fluid placeholder='Enter email' />
@@ -32,20 +33,20 @@ class SignInForm extends React.Component {
                                 <a href='#' className='form-link'>Can't log in?</a>
                                 <a href='#' className='form-link'>Sign up for an account</a>
                             </div>
-                        </Segment>
+
+                        </div>
                     </div>
                 </div>
                 <div className="background">
-                    <div className="background-inner">
-                        <div className='leftLarge'>
-                            <img alt="TrelloBG" src="https://cdn4.buysellads.net/uu/1/41334/1550855391-cc_dark.png"></img>
-                        </div>
-                        <div className='rightLarge'>
-                            <img alt="TrelloBG" src={rightBG}></img>
-                        </div>
+                    <div className='leftLarge'>
+                        <img alt="TrelloBG" src={leftBG}></img>
                     </div>
+                    <div className='rightLarge'>
+                        <img alt="TrelloBG" src={rightBG}></img>
+                    </div>
+
                 </div>
-            </div >
+            </div>
         )
     }
 }
