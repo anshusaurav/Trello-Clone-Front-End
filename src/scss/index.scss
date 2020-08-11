@@ -1,19 +1,74 @@
-.trello-main-logo {
-  display: block;
-  height: 43px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  //   vertical-align: middle;
-}
-.form-extra-links {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-content: space-evenly;
-  a {
-    font-size: 14px;
-    text-decoration: none;
-    color: #0052cc;
+.form-container {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  .form-container-outer-div {
+    max-width: 585px;
+    h2 {
+      text-align: center;
+      text-align: center;
+      color: #5e6c84;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      line-height: 28px;
+      margin-top: 10px;
+      margin-bottom: 25px;
+    }
+  }
+  .trello-main-logo {
+    display: block;
+    height: 43px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    //   vertical-align: middle;
+  }
+  form {
+    z-index: 100;
+  }
+  .form-extra-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-evenly;
+    .form-link {
+      font-size: 14px;
+      text-decoration: none;
+      color: #0052cc;
+    }
+  }
+  .background {
+    width: 100%;
+    height: 100%;
+    z-index: -100;
+    // background-color: rebeccapurple;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    .background-inner {
+      position: relative;
+    }
+    .leftLarge {
+      position: absolute;
+      width: 400px;
+      bottom: 0;
+      left: 0;
+      z-index: -999;
+      max-width: 30%;
+    }
+    .rightLarge {
+      position: absolute;
+      width: 400px;
+      bottom: 0;
+      right: 0;
+      z-index: -999;
+      max-width: 30%;
+    }
+    img {
+      width: 100%;
+    }
   }
 }
