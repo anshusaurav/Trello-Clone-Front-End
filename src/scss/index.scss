@@ -14,7 +14,7 @@
     background-color: #f9fafc;
   }
   .form-container-outer-div {
-    max-width: 585px;
+    width: 480px;
     .form-container-inner-div {
       // padding: 25px 40px;
       background-color: #ffffff;
@@ -45,14 +45,23 @@
   form {
     z-index: 100;
   }
-  .form-extra-links {
+  .form-extra-links,
+  .form-extra-links-single {
     display: grid;
+    // padding: 1rem;
     grid-template-columns: 1fr 1fr;
     justify-content: space-evenly;
     .form-link {
       font-size: 14px;
       text-decoration: none;
       color: #0052cc;
+      text-align: center;
+    }
+  }
+  .form-extra-links-single {
+    grid-template-columns: 1fr;
+    .form-link {
+      font-weight: 400;
     }
   }
   .background {

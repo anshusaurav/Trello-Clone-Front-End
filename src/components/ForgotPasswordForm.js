@@ -1,9 +1,9 @@
 import React from 'react'
-import { Button, Form, Grid, Divider, Segment } from 'semantic-ui-react'
-import CustomFormHeader from './../components/common/CustomFormHeader'
+import { Button, Form, Divider } from 'semantic-ui-react'
+import CustomFormHeader from './common/CustomFormHeader'
 import leftBG from './../images/leftbg.svg'
 import rightBG from './../images/rightbg.svg'
-class SignUpForm extends React.Component {
+class ForgotPasswordForm extends React.Component {
     render() {
         return (
             <div className='form-container'>
@@ -11,28 +11,25 @@ class SignUpForm extends React.Component {
                     <div className='form-container-outer-div'>
                         <CustomFormHeader />
                         <div className='form-container-inner-div' >
-                            <h2>Sign up for you account</h2>
+                            <h2>Can't log in?</h2>
 
 
                             <Form size='large'>
+                                <Form.Field>
+                                    <label>We'll send a recovery link to</label>
+                                    <input placeholder='Enter email'></input>
+                                </Form.Field>
 
-                                <Form.Input fluid placeholder='Enter email' />
-                                <Form.Input fluid placeholder='Enter name' />
-                                <Form.Input fluid placeholder='Enter handle' />
-                                <Form.Input
-                                    fluid
-                                    placeholder='Enter password'
-                                    type='password'
-                                />
+
 
                                 <Button color='green' fluid size='large'>
-                                    Login
-                                </Button>
+                                    Send recovery link
+                            </Button>
 
                             </Form>
                             <Divider inverted />
                             <div className='form-extra-links-single'>
-                                <a href='#' className='form-link'>Already have an Atlassian account? Log in</a>
+                                <a href='#' className='form-link'>Return to log in</a>
 
                             </div>
 
@@ -52,4 +49,4 @@ class SignUpForm extends React.Component {
         )
     }
 }
-export default SignUpForm;
+export default ForgotPasswordForm;
