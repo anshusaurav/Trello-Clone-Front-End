@@ -1,6 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-
+import BottomHomePageUnauthenticated from './common/BottomHomePageUnauthenticated'
 import HeaderHomePageUnauthenicated from './common/HeaderHomePageUnauthenticated'
 import HeroHomePageUnauthenicated from './common/HeroHomePageUnauthenicated'
 class HomePage extends React.Component {
@@ -9,6 +9,7 @@ class HomePage extends React.Component {
             <>
                 <HeaderHomePageUnauthenicated />
                 <HeroHomePageUnauthenicated />
+                <BottomHomePageUnauthenticated />
             </>
         )
     }

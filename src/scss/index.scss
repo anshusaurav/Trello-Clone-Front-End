@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700;800&display=swap");
 .form-container {
   background-color: transparent;
 
@@ -147,11 +148,184 @@
         width: 100%;
       }
     }
-    .d-md-block {
+    .mid-block {
       display: block !important;
     }
     .float-right {
       float: right !important;
+    }
+  }
+}
+
+.hero-home-page {
+  background: linear-gradient(135deg, #0079bf, #5067c5);
+  .hero-home-page-container {
+    color: #fff;
+    padding-top: 7rem;
+    padding-bottom: 5rem;
+    max-width: 1140px;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    .hero-home-inner-div {
+      text-align: left;
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: -15px;
+      margin-left: -15px;
+      .hero-home-inner-text {
+        flex: 0 0 41.66666667%;
+        max-width: 41.66666667%;
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+        h1 {
+          font-size: 3rem;
+          margin-bottom: 0.5rem;
+          font-family: "Fira Sans", sans-serif;
+          font-weight: 500;
+          line-height: 1.2;
+          color: inherit;
+        }
+        p {
+          font-size: 1.5625rem;
+          font-family: "Fira Sans", sans-serif;
+          font-weight: 300;
+
+          margin-top: 0;
+          margin-bottom: 1rem;
+        }
+      }
+      .hero-home-inner-img {
+        margin-left: 8.33333333%;
+        flex: 0 0 50%;
+        max-width: 50%;
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+      .hero-home-form {
+        display: flex;
+        min-width: 0;
+        justify-content: flex-start;
+        padding: 16px 15px;
+        margin-top: 0em;
+      }
+
+      .hero-home-form-btn {
+        cursor: pointer;
+        margin-left: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        color: #fff;
+        background-color: #61bd4f;
+        border-color: #61bd4f;
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: 0.375rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1.5;
+        border-radius: 6px;
+      }
+    }
+  }
+}
+
+.home-page-bottom {
+  background: linear-gradient(
+    to bottom,
+    #fff 0%,
+    #f7ecff 46%,
+    #d2ecff 74%,
+    #fff 100%
+  );
+  background-image: url("./../images/trellians-2x-2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  .home-page-get-started {
+    background-image: url(https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/97db768…/trellians-2x-2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 1332px 393px;
+    height: 393px;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+    align-items: center;
+    display: flex;
+    .home-page-bottom-container {
+      text-align: center;
+      padding-bottom: 5rem;
+      padding-top: 5rem;
+      max-width: 1140px;
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
+      .home-page-bottom-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+        text-align: center;
+        .home-bottom-inner-div {
+          margin-left: 25%;
+          flex: 0 0 50%;
+          max-width: 50%;
+          position: relative;
+          width: 100%;
+          min-height: 1px;
+          text-align: center;
+          h3 {
+            font-size: 2.1875rem;
+            margin-bottom: 0.5rem;
+            font-family: "Fira Sans", sans-serif;
+            font-weight: 500;
+            line-height: 1.2;
+            color: inherit;
+            margin-top: 0;
+          }
+          p {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 1.5;
+          }
+          a {
+            cursor: pointer;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            color: #fff;
+            background-color: #61bd4f;
+            border-color: #61bd4f;
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: 0.375rem 0.75rem;
+            font-size: 1.25rem;
+            line-height: 1.5;
+            border-radius: 6px;
+          }
+        }
+      }
     }
   }
 }

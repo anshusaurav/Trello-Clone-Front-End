@@ -1,23 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import logo from './../../trello-logo-blue.svg'
+import logo from './../../images/trello-logo-white.svg'
 import { Button } from 'semantic-ui-react'
 class HeaderHomePageUnauthenicated extends React.Component {
     render() {
         return (
-            <header class="fixed-top">
-                <nav class="navbar py-3" data-track-group="Global Header">
+            <header className="fixed-top">
+                <nav className="navbar">
                     <Link to="/" className='float-left'>
-                        <img alt="Trello" className='trello-main-logo' src={logo}></img>
+                        <img alt="Trello" className='trello-main-logo' src={logo} />
                     </Link>
-                    <div class="d-none d-md-block recommend">
+                    <div className="mid-block">
                     </div>
-                    <div class="float-right buttons">
+                    <div className="float-right">
                         <Link to="/signin">
-                            <Button>Log In</Button>
+                            <Button size='large'>Log In</Button>
                         </Link>
-                        <Link href="/signup">
-                            <Button>Sign Up</Button>
+                        <Link to="/signup">
+                            <Button basic size='large'>Sign Up</Button>
                         </Link>
                     </div>
                 </nav>
