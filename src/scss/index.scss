@@ -118,6 +118,45 @@
 
 //Login page signup page forgot password page ends here
 
+//Home page unauthenticated starts here
+.fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  .navbar {
+    transition: background 1s ease 0s;
+    background-color: rgba(0, 121, 191, 0);
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    position: relative;
+    display: flex;
+
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    .float-left {
+      float: left;
+      width: 130px;
+      height: 40px;
+      img {
+        width: 100%;
+      }
+    }
+    .d-md-block {
+      display: block !important;
+    }
+    .float-right {
+      float: right !important;
+    }
+  }
+}
+//home page unauthenticated ends here
+
 //Home page authenticated starts
 
 .top-nav-left {
@@ -140,13 +179,13 @@
     box-sizing: border-box;
     color: #172b4d;
     display: inline-flex;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 700;
     justify-content: center;
-    line-height: 28px;
+    line-height: 40px;
     opacity: 1;
-    height: 28px;
-    width: 28px;
+    height: 42px;
+    width: 42px;
     overflow: hidden;
     white-space: nowrap;
   }

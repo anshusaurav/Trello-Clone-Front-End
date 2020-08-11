@@ -4,6 +4,7 @@ import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
 import ForgotPasswordForm from './ForgotPasswordForm'
 import Home from './Home'
+import HomePage from './HomePage'
 // import ForgotPasswordForm from './components/ForgotPasswordForm'
 class Main extends React.Component {
     render() {
@@ -20,7 +21,7 @@ class Main extends React.Component {
                         <ForgotPasswordForm />
                     </Route>
                     <Route exact path='/'>
-                        <Home />
+                        <HomePage />
                     </Route>
                 </Switch>
             </Router>
