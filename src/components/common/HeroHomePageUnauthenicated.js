@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Input } from 'semantic-ui-react'
 class HeroHomePageUnauthenicated extends React.Component {
     render() {
@@ -13,12 +13,10 @@ class HeroHomePageUnauthenicated extends React.Component {
                     <div className="hero-home-inner-img">
                         <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/308998dcb3ed5ab3d01217a4d24ffa03/hero-a.svg" width="582" class="img-fluid" alt="" />
                     </div>
-                    <form className="hero-home-form" method="POST" action="/signup_redirect">
+                    <div className="hero-home-form">
                         <Input size='big' name="email" className="hero-home-form-input" type="email" placeholder="Email" />
-                        <button className="hero-home-form-btn">
-                            Sign Up – It’s Free!
-                        </button>
-                    </form>
+                        <Link to="/signup" className="hero-home-form-btn">Sign Up – It’s Free!</Link>
+                    </div>
                 </div>
             </div>
         </section >);
