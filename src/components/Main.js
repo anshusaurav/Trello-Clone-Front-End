@@ -26,6 +26,7 @@ class Main extends React.Component {
     }
     render() {
         const { jwttoken } = localStorage;
+
         return (
             <Router>
                 <Switch>
@@ -45,8 +46,8 @@ class Main extends React.Component {
                         }
                     </Route>
                     <Route exact path='/'>
-                        {!jwttoken ? <Home toggleLoggedIn={this.toggleLoggedIn} />
-                            : <HomePage />
+                        {!jwttoken ? <HomePage />
+                            : < Home toggleLoggedIn={this.toggleLoggedIn} />
                         }
                     </Route>
                 </Switch>

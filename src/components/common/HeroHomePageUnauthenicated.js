@@ -11,7 +11,7 @@ class HeroHomePageUnauthenicated extends React.Component {
                         <p className="lead">Trello’s boards, lists, and cards enable you to organize and prioritize your projects in a fun, flexible, and rewarding way.</p>
                     </div>
                     <div className="hero-home-inner-img">
-                        <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/308998dcb3ed5ab3d01217a4d24ffa03/hero-a.svg" width="582" class="img-fluid" alt="" />
+                        <img src="https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/308998dcb3ed5ab3d01217a4d24ffa03/hero-a.svg" width="582" className="img-fluid" alt="" />
                     </div>
                     <div className="hero-home-form">
                         <Input size='big' name="email" className="hero-home-form-input" type="email" placeholder="Email" />
