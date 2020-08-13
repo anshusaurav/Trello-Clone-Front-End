@@ -44,7 +44,7 @@ class HomeMainContentContainer extends React.Component {
                                             <span className="board-tile-options">
                                                 <span
                                                     title="Click to star this board. It will show up at the top of your boards list."
-                                                    class="board-tile-options-star-icon">
+                                                    className="board-tile-options-star-icon">
                                                     <Icon name="star outline" />
                                                 </span>
 
@@ -76,7 +76,7 @@ class HomeMainContentContainer extends React.Component {
                                             <span className="board-tile-options">
                                                 <span
                                                     title="Click to star this board. It will show up at the top of your boards list."
-                                                    class="board-tile-options-star-icon">
+                                                    className="board-tile-options-star-icon">
                                                     <Icon name="star outline" />
                                                 </span>
 
@@ -108,7 +108,7 @@ class HomeMainContentContainer extends React.Component {
                                             <span className="board-tile-options">
                                                 <span
                                                     title="Click to star this board. It will show up at the top of your boards list."
-                                                    class="board-tile-options-star-icon">
+                                                    className="board-tile-options-star-icon">
                                                     <Icon name="star outline" />
                                                 </span>
 
@@ -140,7 +140,7 @@ class HomeMainContentContainer extends React.Component {
                                             <span className="board-tile-options">
                                                 <span
                                                     title="Click to star this board. It will show up at the top of your boards list."
-                                                    class="board-tile-options-star-icon">
+                                                    className="board-tile-options-star-icon">
                                                     <Icon name="star outline" />
                                                 </span>
 
@@ -190,7 +190,7 @@ class HomeMainContentContainer extends React.Component {
                                             <span className="board-tile-options">
                                                 <span
                                                     title="Click to star this board. It will show up at the top of your boards list."
-                                                    class="board-tile-options-star-icon">
+                                                    className="board-tile-options-star-icon">
                                                     <Icon name="star outline" />
                                                 </span>
 
@@ -222,7 +222,7 @@ class HomeMainContentContainer extends React.Component {
                                             <span className="board-tile-options">
                                                 <span
                                                     title="Click to star this board. It will show up at the top of your boards list."
-                                                    class="board-tile-options-star-icon">
+                                                    className="board-tile-options-star-icon">
                                                     <Icon name="star outline" />
                                                 </span>
 
@@ -254,7 +254,7 @@ class HomeMainContentContainer extends React.Component {
                                             <span className="board-tile-options">
                                                 <span
                                                     title="Click to star this board. It will show up at the top of your boards list."
-                                                    class="board-tile-options-star-icon">
+                                                    className="board-tile-options-star-icon">
                                                     <Icon name="star outline" />
                                                 </span>
 
@@ -286,7 +286,7 @@ class HomeMainContentContainer extends React.Component {
                                             <span className="board-tile-options">
                                                 <span
                                                     title="Click to star this board. It will show up at the top of your boards list."
-                                                    class="board-tile-options-star-icon">
+                                                    className="board-tile-options-star-icon">
                                                     <Icon name="star outline" />
                                                 </span>
 
@@ -338,7 +338,7 @@ class HomeMainContentContainer extends React.Component {
                                             <span className="board-tile-options">
                                                 <span
                                                     title="Click to star this board. It will show up at the top of your boards list."
-                                                    class="board-tile-options-star-icon">
+                                                    className="board-tile-options-star-icon">
                                                     <Icon name="star outline" />
                                                 </span>
 
@@ -370,7 +370,7 @@ class HomeMainContentContainer extends React.Component {
                                             <span className="board-tile-options">
                                                 <span
                                                     title="Click to star this board. It will show up at the top of your boards list."
-                                                    class="board-tile-options-star-icon">
+                                                    className="board-tile-options-star-icon">
                                                     <Icon name="star outline" />
                                                 </span>
 
@@ -402,7 +402,7 @@ class HomeMainContentContainer extends React.Component {
                                             <span className="board-tile-options">
                                                 <span
                                                     title="Click to star this board. It will show up at the top of your boards list."
-                                                    class="board-tile-options-star-icon">
+                                                    className="board-tile-options-star-icon">
                                                     <Icon name="star outline" />
                                                 </span>
 
@@ -434,7 +434,7 @@ class HomeMainContentContainer extends React.Component {
                                             <span className="board-tile-options">
                                                 <span
                                                     title="Click to star this board. It will show up at the top of your boards list."
-                                                    class="board-tile-options-star-icon">
+                                                    className="board-tile-options-star-icon">
                                                     <Icon name="star outline" />
                                                 </span>
 

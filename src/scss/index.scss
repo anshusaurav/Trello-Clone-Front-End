@@ -620,6 +620,7 @@ table {
           align-items: center;
           .icon {
             color: rgb(128, 140, 158) !important;
+            margin-right: 1rem;
           }
           h2 {
             display: inline-block;
@@ -647,13 +648,22 @@ table {
             cursor: pointer;
             position: relative;
           }
+          .boards-page-board-section-list-item:hover .board-tile-fade {
+            opacity: 1;
+          }
+          .boards-page-board-section-list-item:hover
+            .board-tile-details-sub-container {
+            top: 50%;
+            left: 50%;
+            opacity: 1;
+          }
           .board-tile {
             border-radius: 3px;
             display: block;
             margin-right: 0;
           }
           .board-tile-fade {
-            background-color: rgba(0, 0, 0, 0.15);
+            background-color: rgba(0, 0, 0, 0.65);
             bottom: 0;
             left: 0;
             position: absolute;
@@ -661,6 +671,10 @@ table {
             top: 0;
             border-radius: 3px;
             display: block;
+            opacity: 0;
+            -webkit-transition: all 0.4s ease-in-out 0s;
+            -moz-transition: all 0.4s ease-in-out 0s;
+            transition: all 0.4s ease-in-out 0s;
           }
           .board-tile-details {
             display: flex;
@@ -681,6 +695,7 @@ table {
             word-wrap: break-word;
           }
           .board-tile-details-sub-container {
+            opacity: 0;
             flex: 0 0 auto;
             display: flex;
             align-items: baseline;
