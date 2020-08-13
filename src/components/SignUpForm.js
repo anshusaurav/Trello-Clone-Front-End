@@ -5,6 +5,7 @@ import leftBG from './../images/leftbg.svg'
 import rightBG from './../images/rightbg.svg'
 import { withRouter, Link } from 'react-router-dom'
 class SignUpForm extends React.Component {
+    state = {}
     render() {
         return (
             <div className='form-container'>
