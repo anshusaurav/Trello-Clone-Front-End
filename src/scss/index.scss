@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f9fafc;
+    background-color: transparent;
   }
   .form-container-outer-div {
     width: 480px;
@@ -32,6 +32,10 @@
       line-height: 28px;
       margin-top: 10px;
       margin-bottom: 25px;
+    }
+    input {
+      border: 2px solid #dfe1e6 !important;
+      background-color: #fafbfc !important;
     }
   }
   .trello-main-logo {
@@ -153,6 +157,41 @@
     }
     .float-right {
       float: right !important;
+      .login-btn {
+        color: #fff !important;
+        cursor: pointer;
+        padding: 0.25rem 0.5rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+        font-weight: 400;
+        background-color: transparent;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        border: 1px solid transparent;
+        font-size: 17.5px !important;
+        font-weight: 500 !important;
+        &:hover {
+          text-decoration: underline;
+          text-decoration-thickness: 3px !important;
+        }
+      }
+
+      .signup-btn {
+        color: #0079bf !important;
+        cursor: pointer;
+        font-weight: 500 !important;
+        background-color: #fff !important;
+        padding: 0.25rem 0.5rem;
+        font-size: 1.09375rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;
+      }
     }
   }
 }
@@ -255,7 +294,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   .home-page-get-started {
-    background-image: url(https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/97db768…/trellians-2x-2.png);
+    // background-image: url(https://d2k1ftgv7pobq7.cloudfront.net/meta/p/res/images/97db768…/trellians-2x-2.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 1332px 393px;
@@ -412,8 +451,6 @@
     position: absolute;
     top: 6px;
     width: 18px;
-  }
-  .home-link-div {
   }
 }
 
