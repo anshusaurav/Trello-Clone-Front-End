@@ -1,26 +1,26 @@
 import React from 'react';
 import { List, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-class HomeLeftSidebar extends React.Component {
+class BoardsLeftSidebar extends React.Component {
     render() {
 
         return (
             <>
                 <List link>
-                    <List.Item as={Link} to='/boards'>
+                    <List.Item active>
                         <List.Icon name='trello' />
                         <List.Content>
                             <List.Header>Board</List.Header>
                         </List.Content>
                     </List.Item>
-                    <List.Item as='a'>
+                    <List.Item as={Link} to='/'>
                         <List.Icon name='theme' />
                         <List.Content>
 
                             <List.Header>Templates</List.Header>
                         </List.Content>
                     </List.Item>
-                    <List.Item active>
+                    <List.Item as={Link} to='/'>
                         <List.Icon name='home' />
                         <List.Content>
                             <List.Header>Home</List.Header>
@@ -33,4 +33,4 @@ class HomeLeftSidebar extends React.Component {
         )
     }
 }
-export default HomeLeftSidebar;
+export default BoardsLeftSidebar;

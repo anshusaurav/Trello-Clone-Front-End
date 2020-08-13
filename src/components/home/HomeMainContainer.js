@@ -1,6 +1,7 @@
 import React from 'react';
 import HomeLeftSidebar from './HomeLeftSidebar';
 import HomeMainContentContainer from './HomeMainContentContainer';
+import HomeRightSidebar from './HomeRightSidebar';
 class HomeMainContainer extends React.Component {
     render() {
         return (
@@ -12,11 +13,8 @@ class HomeMainContainer extends React.Component {
                         </div>
 
                     </div>
-                    <div className="all-boards">
-                        <div className='all-boards-sticky'>
-                            <HomeMainContentContainer />
-                        </div>
-                    </div>
+                    <HomeMainContentContainer />
+                    <HomeRightSidebar />
                 </div>
             </div>
         )
