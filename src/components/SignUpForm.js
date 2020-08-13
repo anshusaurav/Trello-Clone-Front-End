@@ -37,7 +37,7 @@ class SignUpForm extends React.Component {
         // console.log(this.contextRef.current);
         const { email, password, username, fullname } = this.state
         const user = { user: { email, password, username, fullname } }
-        const url = 'http://localhost:4000/api/users/'
+        const url = 'http://localhost:4000/api/user/'
 
         try {
             const response = await fetch(url, {
@@ -47,7 +47,7 @@ class SignUpForm extends React.Component {
             })
             let data = await response.json();
             if (!data.errors) {
-                this.props.history.push('/login');
+                this.props.history.push('/signin');
             }
             else {
                 const errors = []
@@ -155,12 +155,14 @@ class SignUpForm extends React.Component {
 
                         </div>
                     </div>
-                    {errorMsgs &&
-                        errorMsgs.map((msg, index) => (
-                            <Message key={index} color='red'>
-                                {msg}
-                            </Message>
-                        ))}
+                    <div className='error-msgs'>
+                        {errorMsgs &&
+                            errorMsgs.map((msg, index) => (
+                                <Message attached='bottom' key={index} color='black'>
+                                    {msg}
+                                </Message>
+                            ))}
+                    </div>
                 </div>
                 <div className="background">
                     <div className='leftLarge'>

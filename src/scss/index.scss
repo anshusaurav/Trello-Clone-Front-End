@@ -10,9 +10,48 @@
     overflow: visible;
     margin-bottom: 30px;
     display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
     background-color: transparent;
+    .error-msgs {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    .message {
+      margin-top: 0px !important;
+      margin-bottom: 0px !important;
+      font-size: 16px !important;
+      font-weight: 400 !important;
+      text-align: center;
+
+      // -moz-animation: cssAnimation 0s ease-in 5s forwards;
+      // /* Firefox */
+      // -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+      // /* Safari and Chrome */
+      // -o-animation: cssAnimation 0s ease-in 5s forwards;
+      // /* Opera */
+      // animation: cssAnimation 0s ease-in 5s forwards;
+      // -webkit-animation-fill-mode: forwards;
+      // animation-fill-mode: forwards;
+    }
+    // @keyframes cssAnimation {
+    //   to {
+    //     width: 0;
+    //     height: 0;
+    //     overflow: hidden;
+    //   }
+    // }
+    // @-webkit-keyframes cssAnimation {
+    //   to {
+    //     width: 0;
+    //     height: 0;
+    //     visibility: hidden;
+    //   }
+    // }
   }
   .form-container-outer-div {
     width: 480px;
