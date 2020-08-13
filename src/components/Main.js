@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import React from 'react'
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
@@ -7,21 +7,47 @@ import Home from './Home'
 import HomePage from './HomePage'
 // import ForgotPasswordForm from './components/ForgotPasswordForm'
 class Main extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isLoggedIn: false
+        }
+        this.toggleLoggedIn = this.toggleLoggedIn.bind(this)
+    }
+    toggleLoggedIn() {
+        this.setState({ isLoggedIn: !this.state.isLoggedIn })
+    }
+    componentDidMount() {
+        if (
+            localStorage.getItem('jwttoken') &&
+            localStorage.getItem('loggedInUser')
+        )
+            this.setState({ isLoggedIn: true })
+    }
     render() {
+        const { jwttoken } = localStorage;
         return (
             <Router>
                 <Switch>
                     <Route exact path='/signin'>
-                        <SignInForm />
+                        {!jwttoken ? <SignInForm toggleLoggedIn={this.toggleLoggedIn} />
+                            : <Redirect to='/' />
+                        }
                     </Route>
                     <Route exact path='/signup'>
-                        <SignUpForm />
+                        {!jwttoken ? <SignUpForm toggleLoggedIn={this.toggleLoggedIn} />
+                            : <Redirect to='/' />
+                        }
                     </Route>
                     <Route exact path='/forgot'>
-                        <ForgotPasswordForm />
+                        {!jwttoken ? <ForgotPasswordForm toggleLoggedIn={this.toggleLoggedIn} />
+                            : <Redirect to='/' />
+                        }
                     </Route>
                     <Route exact path='/'>
-                        <HomePage />
+                        {!jwttoken ? <Home toggleLoggedIn={this.toggleLoggedIn} />
+                            : <HomePage />
+                        }
                     </Route>
                 </Switch>
             </Router>
