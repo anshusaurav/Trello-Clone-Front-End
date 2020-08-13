@@ -1,4 +1,65 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700;800&display=swap");
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, de
+
+//reset start here 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+//reset ends here
+
 .form-container {
   background-color: transparent;
 
@@ -553,9 +614,13 @@
       .boards-page-board-section {
         padding: 0 0 20px;
         .boards-page-board-section-header {
-          margin: 0 0 0 40px;
+          margin: 0 0 0 0;
           padding: 0 0 11px;
           display: flex;
+          align-items: center;
+          .icon {
+            color: rgb(128, 140, 158) !important;
+          }
           h2 {
             display: inline-block;
             line-height: 24px;
@@ -566,6 +631,91 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+          }
+        }
+        .boards-page-board-section-list {
+          display: flex;
+          flex-wrap: wrap;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          .boards-page-board-section-list-item {
+            width: 28%;
+            padding: 0;
+            margin: 0 2% 2% 0;
+            transform: translate(0);
+            cursor: pointer;
+            position: relative;
+          }
+          .board-tile {
+            border-radius: 3px;
+            display: block;
+            margin-right: 0;
+          }
+          .board-tile-fade {
+            background-color: rgba(0, 0, 0, 0.15);
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            border-radius: 3px;
+            display: block;
+          }
+          .board-tile-details {
+            display: flex;
+            height: 96px;
+            position: relative;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 4px;
+          }
+          .board-tile-details-name {
+            flex: 0 0 auto;
+            font-size: 16px;
+            font-weight: 700;
+            display: inline-block;
+            overflow: hidden;
+            max-height: 40px;
+            width: 100%;
+            word-wrap: break-word;
+          }
+          .board-tile-details-sub-container {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: baseline;
+            justify-content: flex-end;
+          }
+          .board-tile-options {
+            display: flex;
+            align-items: center;
+            flex: 0 0 auto;
+            margin-left: 4px;
+            overflow: hidden;
+            position: relative;
+            right: -4px;
+          }
+          .board-title-options-star-icon {
+            display: block;
+            line-height: 18px;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            color: #fff;
+            font-size: 14px;
+            width: 0;
+            height: 18px;
+            opacity: 0;
+            transition-duration: 0.15s;
+          }
+          .board-title-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #fff;
+            line-height: 20px;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
           }
         }
       }
