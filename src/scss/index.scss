@@ -498,4 +498,79 @@
   }
 }
 
+.home-container {
+  min-height: calc(100vh - 40px);
+  color: #172b4d;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  .home-sticky-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    .left-sidebar-sticky {
+      position: sticky;
+      top: 0px;
+    }
+    .left-sidebar-container {
+      margin: 40px 0 0;
+      padding: 0 16px;
+      width: 240px;
+      .active {
+        background: #e4f0f6;
+      }
+      .item {
+        font-size: 16px;
+        display: grid;
+        grid-template-columns: 32px auto;
+        align-content: center;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
+      }
+      .add-team-btn {
+        background: transparent;
+        text-align: left !important;
+        padding-left: 2px !important;
+        font-weight: 400 !important;
+        font-size: 16px;
+      }
+      p {
+        font-weight: 700;
+        color: #5e6c84;
+      }
+    }
+
+    .all-boards {
+      margin: 40px 16px 0;
+      width: 100%;
+      max-width: 825px;
+      min-width: 288px;
+      .all-boards-sticky {
+        position: sticky;
+        top: 0px;
+      }
+      .boards-page-board-section {
+        padding: 0 0 20px;
+        .boards-page-board-section-header {
+          margin: 0 0 0 40px;
+          padding: 0 0 11px;
+          display: flex;
+          h2 {
+            display: inline-block;
+            line-height: 24px;
+            margin: 4px 0 0;
+            font-size: 16px;
+            font-weight: 700;
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}
+
 //Home page authenticated ends
