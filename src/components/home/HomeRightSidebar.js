@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon } from 'semantic-ui-react'
+import { Icon, Button } from 'semantic-ui-react'
 class HomeRightSidebar extends React.Component {
     render() {
         return (
@@ -17,7 +17,8 @@ class HomeRightSidebar extends React.Component {
                         </div>
                     </div>
                     <div className='home-right-sidebar-second'>
-
+                        <p>LINKS</p>
+                        <Button icon='plus' content='Create a board' className='add-board-btn' />
                     </div>
                 </div>
             </div>

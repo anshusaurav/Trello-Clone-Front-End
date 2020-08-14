@@ -792,6 +792,17 @@ table {
       }
       .home-right-sidebar-second {
         padding-bottom: 24px;
+        p {
+          font-weight: 700;
+          color: #5e6c84;
+        }
+        .add-board-btn {
+          background: transparent;
+          text-align: left !important;
+          padding-left: 2px !important;
+          font-weight: 400 !important;
+          font-size: 16px;
+        }
       }
       .home-right-sidebar-viewed {
         align-items: baseline;

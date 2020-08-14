@@ -3,10 +3,10 @@ import { Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 class BoardsMainContentContainer extends React.Component {
     render() {
-        const recent = ["New SDEs", "Company Overview", "Balu"];
-        const personal = ["Balu", "Company Overview"];
-        const hiring = ["New Hiring"];
-        const marketing = [];
+        // const recent = ["New SDEs", "Company Overview", "Balu"];
+        // const personal = ["Balu", "Company Overview"];
+        // const hiring = ["New Hiring"];
+        // const marketing = [];
         const src = 'https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2048x1152/b636e51cb79969dcdba81217c5072172/photo-1596788571133-8d8b42ba200b.jpg';
         return (
             <div className="content-all-boards">
