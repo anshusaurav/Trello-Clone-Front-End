@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Card } from 'semantic-ui-react'
+import { Message } from 'semantic-ui-react'
 import imgSrc from './../../images/add-team-one.svg'
 class PopUpAddTeam extends React.Component {
     constructor(props) {
@@ -7,7 +7,7 @@ class PopUpAddTeam extends React.Component {
         this.state = {
             name: '',
             description: '',
-            // isSubmitable: false,
+            isSubmitable: false,
             errorMsgs: null
         }
         this.escFunction = this.escFunction.bind(this);
@@ -18,7 +18,13 @@ class PopUpAddTeam extends React.Component {
     handleChange(event) {
         console.log(event.target.name)
         if (event.target.name === 'name') {
-            this.setState({ name: event.target.value })
+            this.setState({ name: event.target.value }, function () {
+                if (this.checkValidTeam().result) {
+                    this.setState({ isSubmitable: true });
+                } else {
+                    this.setState({ isSubmitable: false });
+                }
+            });
         }
         else if (event.target.name === 'description') {
             this.setState({ description: event.target.value })
@@ -39,7 +45,10 @@ class PopUpAddTeam extends React.Component {
         try {
             const response = await fetch(url, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', Authorization: `Token ${jwttoken}` },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Token ${jwttoken}`
+                },
                 body: JSON.stringify(team)
             })
             let data = await response.json()
@@ -64,6 +73,18 @@ class PopUpAddTeam extends React.Component {
             this.setState({ errorMsgs: errors })
         }
     }
+    checkValidTeam() {
+        const { name } = this.state;
+        let res = true,
+            data = [];
+        if (name.trim().length === 0) {
+            res = false;
+            data.push("Name");
+        }
+        if (res) return { result: true, data };
+
+        return { result: false, data };
+    }
     escFunction(event) {
         if (event.keyCode === 27) {
             this.props.handleClose();
@@ -77,7 +98,7 @@ class PopUpAddTeam extends React.Component {
         document.removeEventListener("keydown", this.escFunction, false);
     }
     render() {
-        const { name, description } = this.state;
+        const { name, description, isSubmitable, errorMsgs } = this.state;
         return (
             <div className="popup-add-team-form-card" >
 
@@ -110,9 +131,10 @@ class PopUpAddTeam extends React.Component {
                                         <div className='form-add-team-btn-div'>
                                             <button
                                                 className='form-add-team-btn'
-                                                onClick={this.handleSubmit}>
+                                                onClick={this.handleSubmit}
+                                                disabled={!isSubmitable}>
                                                 Continue
-                                                </button>
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -129,6 +151,14 @@ class PopUpAddTeam extends React.Component {
                                     X
                                 </button>
                             </div>
+                        </div>
+                        <div className='error-msgs'>
+                            {errorMsgs &&
+                                errorMsgs.map((msg, index) => (
+                                    <Message attached='bottom' key={index} color='black'>
+                                        {msg}
+                                    </Message>
+                                ))}
                         </div>
                     </div>
                 </div>

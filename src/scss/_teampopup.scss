@@ -13,7 +13,6 @@
   top: 0;
   width: 100%;
   z-index: 20;
-  cursor: default;
   .popup-add-team-form-container {
     left: 0;
     position: absolute;
@@ -106,6 +105,7 @@
     transition-duration: 85ms;
     transition-timing-function: ease;
     font-weight: 400;
+    font-family: inherit;
     &:focus {
       background: #fff;
       border: none;
@@ -146,6 +146,7 @@
     transition-property: background-color, border-color, box-shadow;
     transition-duration: 85ms;
     transition-timing-function: ease;
+    font-family: inherit;
     &:focus {
       background: #fff;
       border: none;
@@ -167,25 +168,28 @@
     box-shadow: none;
     border: none;
     color: #a5adba;
-    background-color: #f4f5f7;
+    background-color: #49852e;
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
     outline: 0;
     padding: 6px 12px;
-    &:active {
+    &:active &:enabled {
       box-shadow: none;
       border: none;
-      color: #a5adba;
+      color: #6d737c;
       // cursor: not-allowed;
-      background-color: #f4f5f7;
+      // background-color: #f4f5f7;
     }
-    &:hover {
+    &:hover &:enabled {
       box-shadow: none;
       border: none;
-      color: #a5adba;
+      color: #4e525a;
       // cursor: not-allowed;
-      background-color: #d2d4d8;
+      // background-color: #d2d4d8;
+    }
+    &:disabled {
+      background-color: #f4f5f7;
     }
   }
   .popup-team-dec-outer {
@@ -210,10 +214,10 @@
   }
   .popup-add-team-close-btn {
     cursor: pointer;
-    margin-top: 16px;
+    margin-top: 8px;
     position: absolute;
-    right: 16px;
-    top: 16px;
+    right: 12px;
+    top: 12px;
     z-index: 2;
     background-color: transparent;
     border: none;
@@ -239,7 +243,7 @@
     }
     &:focus {
       box-shadow: none;
-      border: transparent;
+      border: none;
     }
     &:active {
       box-shadow: none;
