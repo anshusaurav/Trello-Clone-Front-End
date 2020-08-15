@@ -1,0 +1,253 @@
+//Add Team Form Pop Up
+
+.popup-add-team-form-card {
+  min-width: 100vw;
+  min-width: 100vw;
+  max-height: 100vh;
+  min-height: 100vh !important;
+  // background-color: yellowgreen !important;
+  border-radius: 1px;
+  position: relative;
+  padding: 20% auto;
+  // position: relative;
+  box-shadow: none !important;
+  .close-popup-span {
+    font-family: "Orbitron", sans-serif;
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    font-size: 24px;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+  }
+  .popup-add-team-form-container {
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 80;
+  }
+  .popup-add-team-form-outer {
+    align-items: flex-start;
+    background: rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    overflow: auto;
+    width: 100vw;
+  }
+  .popup-add-team-form-inner {
+    background: transparent;
+    position: relative;
+    top: 44px;
+    margin-bottom: 80px;
+  }
+  .popup-add-team-form-div {
+    width: 1200px;
+    align-items: stretch;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 8px 16px -4px rgba(9, 30, 66, 0.25),
+      0 0 0 1px rgba(9, 30, 66, 0.08);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    min-height: 500px;
+    margin-top: 16px;
+    outline: 0;
+    overflow: hidden;
+    // width: calc(100vw - 48px);
+    z-index: 1;
+  }
+  .popup-add-team-form-final {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 0 24px;
+    overflow: auto;
+    text-align: left;
+    z-index: 3;
+    margin: 64px auto 16px;
+  }
+  .popup-add-team-form {
+    width: 388px;
+  }
+  .form-add-team-header {
+    color: #091e42;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 28px;
+    display: block;
+    margin-bottom: 12px;
+  }
+  .form-add-team-label {
+    margin-top: 24px;
+    color: #091e42;
+    font-weight: 700;
+    color: #5e6c84;
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 12px;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .form-add-team-input {
+    width: 100%;
+    height: 48px;
+    margin-bottom: 6px;
+    background-color: #fafbfc;
+    border: none;
+    box-shadow: inset 0 0 0 2px #dfe1e6;
+    color: #172b4d;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    border-radius: 3px;
+    display: block;
+    line-height: 20px;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    transition-property: background-color, border-color, box-shadow;
+    transition-duration: 85ms;
+    transition-timing-function: ease;
+    font-weight: 400;
+    &:focus {
+      background: #fff;
+      border: none;
+      box-shadow: inset 0 0 0 2px #0079bf;
+      outline: 0;
+    }
+  }
+  .form-add-team-input-help {
+    color: #6b778c;
+    font-size: 12px;
+    margin-bottom: 12px;
+    text-align: left;
+    line-height: 20px;
+    font-weight: 400;
+  }
+  .form-add-team-span {
+    font-weight: 100;
+    color: #6b778c;
+    font-size: 12px;
+    margin-left: 4px;
+  }
+  .form-add-team-area {
+    width: 388px;
+    margin-bottom: 6px;
+    min-height: 144px;
+    resize: none;
+    background-color: #fafbfc;
+    border: none;
+    box-shadow: inset 0 0 0 2px #dfe1e6;
+    color: #172b4d;
+    box-sizing: border-box;
+    // -webkit-appearance: none;
+    border-radius: 3px;
+    display: block;
+    line-height: 20px;
+    // margin-bottom: 12px;
+    padding: 8px 12px;
+    transition-property: background-color, border-color, box-shadow;
+    transition-duration: 85ms;
+    transition-timing-function: ease;
+    &:focus {
+      background: #fff;
+      border: none;
+      box-shadow: inset 0 0 0 2px #0079bf;
+      outline: 0;
+    }
+  }
+  .form-add-team-btn-div {
+    width: 100%;
+    margin-top: 12px;
+  }
+  .form-add-team-btn {
+    font-family: inherit;
+    width: 388px;
+    height: 48px;
+    border-radius: 3px;
+    border: 0;
+    text-decoration: none;
+    box-shadow: none;
+    border: none;
+    color: #a5adba;
+    background-color: #f4f5f7;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    outline: 0;
+    padding: 6px 12px;
+    &:active {
+      box-shadow: none;
+      border: none;
+      color: #a5adba;
+      // cursor: not-allowed;
+      background-color: #f4f5f7;
+    }
+    &:hover {
+      box-shadow: none;
+      border: none;
+      color: #a5adba;
+      // cursor: not-allowed;
+      background-color: #d2d4d8;
+    }
+  }
+  .popup-team-dec-outer {
+    background-image: url("./../images/add-team-dec.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    .popup-team-dec-inner {
+      display: flex;
+      flex: 0 0 auto;
+      height: 256px;
+      width: 342px;
+      justify-content: center;
+      align-items: center;
+    }
+    .popup-team-dec-img {
+      width: 342px;
+      height: 256px;
+    }
+  }
+  .popup-add-team-close-btn {
+    margin-top: 16px;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    z-index: 2;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    color: #42526e;
+    padding: 0;
+    text-decoration: none;
+    border-radius: 3px;
+    line-height: 20px;
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+    width: 32px;
+    font-size: 24px;
+    font-family: "Orbitron", sans-serif;
+    &:active {
+      box-shadow: none;
+      border: transparent;
+    }
+    &:hover {
+      box-shadow: none;
+      border: transparent;
+    }
+    &:focus {
+      box-shadow: none;
+      border: transparent;
+    }
+  }
+}
+
+//Add Team form pop up ends here
