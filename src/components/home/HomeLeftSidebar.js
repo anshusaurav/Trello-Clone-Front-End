@@ -28,7 +28,7 @@ class HomeLeftSidebar extends React.Component {
                             <List.Header>Board</List.Header>
                         </List.Content>
                     </List.Item>
-                    <List.Item as={Link}>
+                    <List.Item as={Link} to='/templates'>
                         <List.Icon name='theme' />
                         <List.Content>
 

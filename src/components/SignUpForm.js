@@ -141,7 +141,7 @@ class SignUpForm extends React.Component {
                                     size='large'
                                     onClick={this.handleSubmit}
                                     disabled={!this.state.isSubmitable}>
-                                    Login
+                                    Sign up
                                 </Button>
 
                             </Form>

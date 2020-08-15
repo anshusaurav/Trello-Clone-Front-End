@@ -4,8 +4,65 @@ import imgSrc from './../../images/add-team-one.svg'
 class PopUpAddTeam extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            name: '',
+            description: '',
+            // isSubmitable: false,
+            errorMsgs: null
+        }
         this.escFunction = this.escFunction.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 
+    }
+    handleChange(event) {
+        console.log(event.target.name)
+        if (event.target.name === 'name') {
+            this.setState({ name: event.target.value })
+        }
+        else if (event.target.name === 'description') {
+            this.setState({ description: event.target.value })
+        }
+        // this.setState({ [name]: value })
+
+    }
+    handleSubmit(event) {
+        event.preventDefault()
+        this.submitTeam()
+    }
+    async submitTeam() {
+        const { name, description } = this.state;
+        // const { history, toggleLoggedIn } = this.props
+        const team = { team: { name, description } }
+        const url = 'http://localhost:4000/api/teams/'
+        const { jwttoken } = localStorage;
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Authorization: `Token ${jwttoken}` },
+                body: JSON.stringify(team)
+            })
+            let data = await response.json()
+            // console.log(data)
+            if (!data.errors) {
+                // localStorage.setItem('jwttoken', data.user.token)
+                // localStorage.setItem('loggedInUser', JSON.stringify(data.user))
+                // toggleLoggedIn()
+                // history.push('/')
+                this.props.handleClose();
+            } else {
+                const errors = []
+                for (const [key, value] of Object.entries(data.errors)) {
+                    errors.push(`${key} ${value}`)
+                }
+                this.setState({ errorMsgs: errors })
+            }
+        } catch (error) {
+            console.error('Error:', error)
+            const errors = []
+            errors.push(error.toString())
+            this.setState({ errorMsgs: errors })
+        }
     }
     escFunction(event) {
         if (event.keyCode === 27) {
@@ -20,7 +77,7 @@ class PopUpAddTeam extends React.Component {
         document.removeEventListener("keydown", this.escFunction, false);
     }
     render() {
-
+        const { name, description } = this.state;
         return (
             <div className="popup-add-team-form-card" >
 
@@ -34,19 +91,37 @@ class PopUpAddTeam extends React.Component {
                                             Let's Build a Team
                                         </span>
                                         <label className='form-add-team-label'>Team Name</label>
-                                        <input type="text" className='form-add-team-input'></input>
+                                        <input type="text"
+                                            name="name"
+                                            value={name}
+                                            onChange={this.handleChange}
+                                            className='form-add-team-input'
+                                        >
+
+                                        </input>
                                         <span className='form-add-team-input-help'>This is the name of your company, team or organization.</span>
                                         <label className='form-add-team-label'>Team Description<span className="form-add-team-span">Optional</span></label>
-                                        <textarea className='form-add-team-area'></textarea>
+                                        <textarea className='form-add-team-area'
+                                            name="description"
+                                            onChange={this.handleChange}
+                                            value={description}
+                                        ></textarea>
                                         <span className='form-add-team-input-help'>Get your members on board with a few words about your team.</span>
                                         <div className='form-add-team-btn-div'>
-                                            <button className='form-add-team-btn'>Continue</button>
+                                            <button
+                                                className='form-add-team-btn'
+                                                onClick={this.handleSubmit}>
+                                                Continue
+                                                </button>
                                         </div>
                                     </form>
                                 </div>
                                 <div className='popup-team-dec-outer'>
                                     <div className='popup-team-dec-inner'>
-                                        <img className='popup-team-dec-img' src={imgSrc} alt="decoration-img"></img>
+                                        <img
+                                            className='popup-team-dec-img'
+                                            src={imgSrc}
+                                            alt="decoration-img"></img>
                                     </div>
                                 </div>
                                 <button className='popup-add-team-close-btn'
