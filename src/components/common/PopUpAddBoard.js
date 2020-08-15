@@ -1,7 +1,23 @@
 import React from 'react'
 import { Dropdown, Icon } from 'semantic-ui-react'
 class PopUpAddBoard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.escFunction = this.escFunction.bind(this);
 
+    }
+    escFunction(event) {
+        if (event.keyCode === 27) {
+            this.props.handleClose();
+        }
+    }
+
+    componentDidMount() {
+        document.addEventListener("keydown", this.escFunction, false);
+    }
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.escFunction, false);
+    }
     render() {
         const teams = [
             {
@@ -54,7 +70,8 @@ class PopUpAddBoard extends React.Component {
                         <form className="create-board-form">
                             <div className="create-board-form-container">
                                 <div className="create-board-tile">
-                                    <button className="create-board-popup-close-btn">
+                                    <button className="create-board-popup-close-btn"
+                                        onClick={this.props.handleClose}>
                                         X
                                     </button>
                                     <div>

@@ -1,9 +1,24 @@
 import React from 'react';
-import { List, Button } from 'semantic-ui-react'
+import { List, Button, Popup } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import PopUpAddTeam from './../common/PopUpAddTeam'
 class BoardsLeftSidebar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen: false,
+        };
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+    }
+    handleOpen() {
+        this.setState({ isOpen: true });
+    }
+    handleClose() {
+        this.setState({ isOpen: false });
+    }
     render() {
-
+        const { isOpen } = this.state;
         return (
             <>
                 <List link>
@@ -28,7 +43,26 @@ class BoardsLeftSidebar extends React.Component {
                     </List.Item>
                 </List>
                 <p>TEAMS</p>
-                <Button icon='plus' content='Create a team' className='add-team-btn' />
+                <Popup
+                    on="click"
+                    open={isOpen}
+                    onOpen={this.handleOpen}
+                    style={{
+                        position: "fixed",
+                        minWidth: "100vw",
+                        minHeight: "100vh",
+                        top: "0vh",
+                        left: "0vw",
+                        transform: "none",
+                        marginTop: 0,
+                        backgroundColor: "rgba(0,0,0,0.5)",
+                    }}
+                    trigger={<Button icon='plus' content='Create a team' className='add-team-btn' />}
+                >
+                    <PopUpAddTeam
+                        handleClose={this.handleClose}
+                    />
+                </Popup>
             </>
         )
     }

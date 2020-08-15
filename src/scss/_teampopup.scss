@@ -1,26 +1,19 @@
 //Add Team Form Pop Up
 
 .popup-add-team-form-card {
-  min-width: 100vw;
-  min-width: 100vw;
-  max-height: 100vh;
-  min-height: 100vh !important;
-  // background-color: yellowgreen !important;
-  border-radius: 1px;
-  position: relative;
-  padding: 20% auto;
-  // position: relative;
-  box-shadow: none !important;
-  .close-popup-span {
-    font-family: "Orbitron", sans-serif;
-    position: absolute;
-    top: 3rem;
-    right: 3rem;
-    font-size: 24px;
-    font-weight: 500;
-    color: white;
-    cursor: pointer;
-  }
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  overflow-x: hidden;
+  align-items: flex-start;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 20;
+  cursor: default;
   .popup-add-team-form-container {
     left: 0;
     position: absolute;
@@ -40,7 +33,7 @@
   .popup-add-team-form-inner {
     background: transparent;
     position: relative;
-    top: 44px;
+    top: 54px;
     margin-bottom: 80px;
   }
   .popup-add-team-form-div {
@@ -54,7 +47,7 @@
     display: flex;
     flex-direction: row;
     min-height: 500px;
-    margin-top: 16px;
+    // margin-top: 16px;
     outline: 0;
     overflow: hidden;
     // width: calc(100vw - 48px);
@@ -216,6 +209,7 @@
     }
   }
   .popup-add-team-close-btn {
+    cursor: pointer;
     margin-top: 16px;
     position: absolute;
     right: 16px;
@@ -244,6 +238,10 @@
       border: transparent;
     }
     &:focus {
+      box-shadow: none;
+      border: transparent;
+    }
+    &:active {
       box-shadow: none;
       border: transparent;
     }

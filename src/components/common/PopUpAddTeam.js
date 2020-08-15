@@ -1,18 +1,29 @@
 import React from 'react'
-import { Card } from 'semantic-ui-react'
+// import { Card } from 'semantic-ui-react'
 import imgSrc from './../../images/add-team-one.svg'
 class PopUpAddTeam extends React.Component {
+    constructor(props) {
+        super(props);
+        this.escFunction = this.escFunction.bind(this);
 
+    }
+    escFunction(event) {
+        if (event.keyCode === 27) {
+            this.props.handleClose();
+        }
+    }
+
+    componentDidMount() {
+        document.addEventListener("keydown", this.escFunction, false);
+    }
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.escFunction, false);
+    }
     render() {
 
         return (
-            <Card className="popup-add-team-form-card">
-                <span
-                    className="close-popup-span"
-                    onClick={this.props.handleClose}
-                >
-                    X
-                </span>
+            <div className="popup-add-team-form-card" >
+
                 <div className="popup-add-team-form-container">
                     <div className='popup-add-team-form-outer'>
                         <div className='popup-add-team-form-inner'>
@@ -38,7 +49,8 @@ class PopUpAddTeam extends React.Component {
                                         <img className='popup-team-dec-img' src={imgSrc} alt="decoration-img"></img>
                                     </div>
                                 </div>
-                                <button className='popup-add-team-close-btn'>
+                                <button className='popup-add-team-close-btn'
+                                    onClick={this.props.handleClose}>
                                     X
                                 </button>
                             </div>
@@ -46,7 +58,7 @@ class PopUpAddTeam extends React.Component {
                     </div>
                 </div>
 
-            </Card>
+            </div>
         )
     }
 }
