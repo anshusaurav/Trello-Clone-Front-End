@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import { Icon } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 class BoardPlaygroundContainer extends Component {
     constructor(props) {
         super(props);
@@ -48,7 +48,7 @@ class BoardPlaygroundContainer extends Component {
                                                                         </div>
                                                                         <span className='list-card-title'>
                                                                             Progressive web app development
-                                                            </span>
+                                                                        </span>
                                                                         <div className='badges'>
                                                                             <span className='js-badges'>
                                                                                 <div className='due-date-badge'>
@@ -62,6 +62,9 @@ class BoardPlaygroundContainer extends Component {
                                                             ))
 
                                                             }
+                                                        </div>
+                                                        <div className='card-compose-wrapper'>
+                                                            <Button icon='plus' content='Add Card' />
                                                         </div>
                                                     </div>
                                                 </div>
