@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Popup } from 'semantic-ui-react'
+import AddIssueForm from './AddIssueForm'
 class BoardPlaygroundContainer extends Component {
     constructor(props) {
         super(props);
@@ -71,9 +72,10 @@ class BoardPlaygroundContainer extends Component {
                                                             <Popup
                                                                 on='click'
                                                                 trigger={<Button fluid labelPosition='left' icon='plus' content='Add card' ></Button>}
-                                                                content="The default theme's basic popup removes the pointing arrow."
+
                                                                 basic
-                                                            />
+                                                                hideOnScroll
+                                                            ><AddIssueForm /></Popup>
 
                                                         </div>
                                                     </div>
@@ -87,6 +89,7 @@ class BoardPlaygroundContainer extends Component {
                                                     trigger={<Button labelPosition='left' fluid icon='plus' content='Add list' className='open-add-list-btn' onClick={this.handleAddListClick} />}
                                                     content="The default theme's basic popup removes the pointing arrow."
                                                     basic
+                                                    hideOnScroll
                                                 />
 
                                             </form>
