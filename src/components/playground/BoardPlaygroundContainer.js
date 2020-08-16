@@ -64,12 +64,17 @@ class BoardPlaygroundContainer extends Component {
                                                             }
                                                         </div>
                                                         <div className='card-compose-wrapper'>
-                                                            <Button icon='plus' content='Add Card' />
+                                                            <Button fluid labelPosition='left' icon='plus' content='Add card' ></Button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             ))
                                         }
+                                        <div className='add-list-wrapper'>
+                                            <form>
+                                                <Button labelPosition='left' fluid icon='plus' content='Add list' className='open-add-list-btn' />
+                                            </form>
+                                        </div>
 
                                     </div>
                                 </div>

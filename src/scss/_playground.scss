@@ -1,6 +1,7 @@
 .playground-boundary {
   // position: relative;
-  overflow-y: auto;
+  overflow-y: hidden;
+  overflow-x: scroll;
   outline: none;
   display: flex;
   flex-direction: column;
@@ -9,11 +10,11 @@
   line-height: 20px;
   font-weight: 400;
   height: calc(100vh - 56px);
-  color: #172b4d;
+  background-color: #0079bf;
   .playground-content {
     flex-grow: 1;
     position: relative;
-    overflow-y: auto;
+    // overflow-y: auto;
     outline: none;
 
     .playground-wrapper {
@@ -22,7 +23,6 @@
       right: 0;
       top: 0;
       bottom: 0;
-      background-color: #0079bf;
     }
     .playground-main-content {
       display: flex;
@@ -34,7 +34,9 @@
     .playground-header {
       height: auto;
       padding: 8px 4px 4px 8px;
-      position: relative;
+      position: sticky;
+      top: 0;
+      left: 0;
       transition: padding 0.1s ease-in;
     }
     .header-board-name-div {
@@ -131,8 +133,9 @@
 .playground-list-cards {
   flex: 1 1 auto;
   margin-bottom: 0;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
+  max-height: 75vh;
   margin: 0 4px;
   padding: 0 4px;
   z-index: 1;
@@ -273,19 +276,62 @@
   min-height: 38px;
   max-height: 38px;
   display: flex;
-  justify-content: space-between;
+  // justify-content: center;
+  align-items: center;
+  // justify-content: space-between;
   .button {
-    border-radius: 3px;
-    color: #5e6c84;
-    display: block;
-    flex: 1 0 auto;
+    border-radius: 3px !important;
+    color: #5e6c84 !important;
+    // display: block;
+    // flex: 1 0 auto;
     margin: 2px 2px 8px 8px !important;
     padding: 4px 8px !important;
-    position: relative;
+
+    background-color: #ebecf0 !important;
+    i {
+      background-color: #ebecf0 !important;
+    }
+    &:hover {
+      background-color: #d4d4d4 !important;
+      i {
+        background-color: #d4d4d4 !important;
+      }
+    }
+  }
+}
+.add-list-wrapper {
+  background-color: hsla(0, 0%, 100%, 0.24);
+  cursor: pointer;
+  border-radius: 3px;
+  height: auto;
+  min-height: 32px;
+  padding: 4px;
+  transition: background 85ms ease-in, opacity 40ms ease-in,
+    border-color 85ms ease-in;
+  margin-right: 8px;
+  width: 272px;
+  margin: 0 4px;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  .open-add-list-btn {
+    background-color: transparent !important;
+    color: #fff !important;
+    display: none;
+    padding: 6px 8px;
+    transition: color 85ms ease-in;
+    color: #fff;
+    margin-right: 2px;
+    // height: 20px;
+    font-size: 16px !important;
+    line-height: 20px;
+    font-weight: 300 !important;
+    text-align: center;
     text-decoration: none;
-    -webkit-user-select: none;
-    user-select: none;
-    justify-content: center;
-    align-items: center;
+    opacity: 0.75;
+    &:hover {
+      opacity: 1;
+    }
   }
 }
