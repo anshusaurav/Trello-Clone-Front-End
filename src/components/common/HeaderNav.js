@@ -37,7 +37,7 @@ class HeaderNav extends React.Component {
     render() {
         return <div>
             {this.state.profile && this.state.profile.image &&
-                <Menu attached='top' inverted style={{
+                <Menu inverted style={{
                     padding: '0.5rem', backgroundColor: '#026AA7', display: 'flex',
                     overflow: 'hidden'
                 }}>

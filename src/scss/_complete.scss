@@ -565,6 +565,16 @@ table {
         font-weight: 700;
         color: #5e6c84;
       }
+      a {
+        padding-left: 0.4rem;
+      }
+      .left-sidebar-team-list {
+        a {
+          &:hover {
+            background-color: rgba(9, 30, 66, 0.08);
+          }
+        }
+      }
     }
 
     .all-boards {

@@ -22,7 +22,7 @@ class BoardsLeftSidebar extends React.Component {
         return (
             <>
                 <List link>
-                    <List.Item active>
+                    <List.Item as={Link} active>
                         <List.Icon name='trello' />
                         <List.Content>
                             <List.Header>Board</List.Header>
@@ -65,6 +65,27 @@ class BoardsLeftSidebar extends React.Component {
                         handleClose={this.handleClose}
                     />
                 </Popup>
+                <List link className='left-sidebar-team-list'>
+                    <List.Item as={Link} to='/teams/hiring'>
+                        <List.Icon name='users' />
+                        <List.Content>
+                            <List.Header>Hiring</List.Header>
+                        </List.Content>
+                    </List.Item>
+                    <List.Item as={Link} to='/teams/marketing'>
+                        <List.Icon name='users' />
+                        <List.Content>
+
+                            <List.Header>Marketing</List.Header>
+                        </List.Content>
+                    </List.Item>
+                    <List.Item as={Link} to='/teams/yolo'>
+                        <List.Icon name='users' />
+                        <List.Content>
+                            <List.Header>YOLO</List.Header>
+                        </List.Content>
+                    </List.Item>
+                </List>
             </>
         )
     }

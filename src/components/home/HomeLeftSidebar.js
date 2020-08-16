@@ -28,14 +28,8 @@ class HomeLeftSidebar extends React.Component {
                             <List.Header>Board</List.Header>
                         </List.Content>
                     </List.Item>
-                    <List.Item as={Link} to='/templates'>
-                        <List.Icon name='theme' />
-                        <List.Content>
 
-                            <List.Header>Templates</List.Header>
-                        </List.Content>
-                    </List.Item>
-                    <List.Item active>
+                    <List.Item as={Link} active>
                         <List.Icon name='home' />
                         <List.Content>
                             <List.Header>Home</List.Header>
@@ -65,6 +59,27 @@ class HomeLeftSidebar extends React.Component {
                         handleClose={this.handleClose}
                     />
                 </Popup>
+                <List link className='left-sidebar-team-list'>
+                    <List.Item as={Link} to='/teams/hiring'>
+                        <List.Icon name='users' />
+                        <List.Content>
+                            <List.Header>Hiring</List.Header>
+                        </List.Content>
+                    </List.Item>
+                    <List.Item as={Link} to='/teams/marketing'>
+                        <List.Icon name='users' />
+                        <List.Content>
+
+                            <List.Header>Marketing</List.Header>
+                        </List.Content>
+                    </List.Item>
+                    <List.Item as={Link} to='/teams/yolo'>
+                        <List.Icon name='users' />
+                        <List.Content>
+                            <List.Header>YOLO</List.Header>
+                        </List.Content>
+                    </List.Item>
+                </List>
             </>
         )
     }

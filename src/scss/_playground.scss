@@ -1,0 +1,271 @@
+.playground-boundary {
+  // position: relative;
+  overflow-y: auto;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  height: calc(100vh - 56px);
+  color: #172b4d;
+  .playground-content {
+    flex-grow: 1;
+    position: relative;
+    overflow-y: auto;
+    outline: none;
+
+    .playground-wrapper {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: #0079bf;
+    }
+    .playground-main-content {
+      display: flex;
+      flex-direction: column;
+      margin-right: 0;
+      position: relative;
+      transition: margin 0.1s ease-in;
+    }
+    .playground-header {
+      height: auto;
+      padding: 8px 4px 4px 8px;
+      position: relative;
+      transition: padding 0.1s ease-in;
+    }
+    .header-board-name-div {
+      //   background: transparent;
+      cursor: default;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 32px;
+      padding: 0;
+      text-decoration: none;
+      max-width: calc(100% - 24px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      border-radius: 3px;
+      color: #fff;
+      height: 32px;
+      float: left;
+      margin: 0 4px 4px 0;
+      span {
+        color: #fff;
+      }
+    }
+    .header-board-name-h {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 32px;
+      padding: 0 12px;
+    }
+  }
+}
+
+.playground-board-canvas {
+  color: #172b4d;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  position: relative;
+  .playground-board-wrapper {
+    user-select: none;
+    white-space: nowrap;
+    margin-bottom: 8px;
+    // overflow-x: auto;
+    // overflow-y: hidden;
+    padding-bottom: 8px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .playground-board-list-wrapper {
+    width: 272px;
+    margin: 0 4px;
+    height: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+    user-select: none;
+    &:first-child {
+      margin-left: 8px;
+    }
+  }
+  .playground-board-list-content {
+    background-color: #ebecf0;
+    border-radius: 3px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    // max-height: 100%;
+    position: relative;
+    white-space: normal;
+  }
+  .playground-board-list-header {
+    padding-right: 36px;
+    flex: 0 0 auto;
+    padding: 10px 8px;
+    position: relative;
+    min-height: 20px;
+    .playground-board-list-name {
+      font-size: 20px;
+      line-height: 24px;
+    }
+    .playground-board-list-header-extra {
+      position: absolute;
+      right: 4px;
+      top: 4px;
+      z-index: 1;
+    }
+  }
+}
+
+.playground-list-cards {
+  flex: 1 1 auto;
+  margin-bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0 4px;
+  padding: 0 4px;
+  z-index: 1;
+  min-height: 0;
+  .list-card {
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
+    cursor: pointer;
+    display: block;
+    margin-bottom: 8px;
+    max-width: 300px;
+    min-height: 20px;
+    position: relative;
+    text-decoration: none;
+    z-index: 0;
+    color: #172b4d;
+    .list-card-cover {
+      background-position: 50%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: pointer;
+    }
+    .list-card-edit-icon {
+      background-color: #f4f5f7;
+      background-clip: padding-box;
+      background-origin: padding-box;
+      border-radius: 3px;
+      opacity: 0.8;
+      padding: 4px;
+      position: absolute;
+      right: 2px;
+      top: 2px;
+      visibility: hidden;
+      z-index: 40;
+      height: 20px;
+      font-size: 16px;
+      line-height: 20px;
+      width: 20px;
+      color: #42526e;
+      display: inline-block;
+      font-style: normal;
+      font-weight: 400;
+      text-align: center;
+      text-decoration: none;
+      vertical-align: bottom;
+    }
+    .list-card-details {
+      overflow: hidden;
+      padding: 6px 8px 2px;
+      position: relative;
+      z-index: 10;
+      cursor: pointer;
+      .list-card-labels {
+        overflow: auto;
+        position: relative;
+        .card-label {
+          height: 16px;
+          line-height: 16px;
+          padding: 0 8px;
+          max-width: 198px;
+          float: left;
+          font-size: 12px;
+          font-weight: 700;
+          margin: 0 4px 4px 0;
+          min-width: 40px;
+          text-shadow: none;
+          width: auto;
+          background-color: #eb5a46;
+          border-radius: 4px;
+          color: #fff;
+          display: block;
+          overflow: hidden;
+          position: relative;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          -webkit-font-smoothing: antialiased;
+        }
+      }
+      .list-card-title {
+        clear: both;
+        display: block;
+        margin: 0 0 4px;
+        overflow: hidden;
+        text-decoration: none;
+        word-wrap: break-word;
+        color: #172b4d;
+      }
+      .badges {
+        float: left;
+        max-width: 100%;
+        margin-left: -2px;
+        .js-badges {
+          cursor: pointer;
+        }
+        .due-date-badge {
+          color: #5e6c84;
+          display: inline-block;
+          margin: 0 4px 4px 0;
+          max-width: 100%;
+          min-height: 20px;
+          overflow: hidden;
+          position: relative;
+          padding: 2px;
+          text-decoration: none;
+          text-overflow: ellipsis;
+          vertical-align: top;
+        }
+        .badge-icon {
+          color: #6b778c;
+          vertical-align: top;
+          height: 20px;
+          font-size: 16px;
+          line-height: 20px;
+          width: 20px;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          display: inline-block;
+          font-family: trellicons;
+          font-style: normal;
+          font-weight: 400;
+          text-align: center;
+          text-decoration: none;
+        }
+        .badge-text {
+          font-size: 12px;
+          padding: 0 4px 0 2px;
+          vertical-align: top;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}
