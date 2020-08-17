@@ -1,18 +1,28 @@
 import React, { Component } from 'react'
 import { Button, Popup } from 'semantic-ui-react'
 import AddIssueForm from './AddIssueForm'
+import AddListForm from './AddListForm'
 class BoardPlaygroundContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            list: [3, 4, 6, 7, 9, 8, 1, 5, 7]
+            list: [3, 4, 6, 7, 9, 8, 1, 5, 7],
+            // isOpen: false
         }
         this.handleAddListClick = this.handleAddListClick.bind(this);
+        // this.handleOpen = this.handleOpen.bind(this);
+        // this.handleClose = this.handleClose.bind(this);
 
     }
     handleAddListClick(e) {
         e.preventDefault();
     }
+    // handleOpen() {
+    //     this.setState({ isOpen: true });
+    // }
+    // handleClose() {
+    //     this.setState({ isOpen: false });
+    // }
     render() {
         const { list } = this.state;
         return (
@@ -70,12 +80,12 @@ class BoardPlaygroundContainer extends Component {
                                                         </div>
                                                         <div className='card-compose-wrapper'>
                                                             <Popup
-                                                                on='click'
+                                                                on="click"
                                                                 trigger={<Button fluid labelPosition='left' icon='plus' content='Add card' ></Button>}
-
+                                                                style={{ top: 40 }}
                                                                 basic
                                                                 hideOnScroll
-                                                            ><AddIssueForm /></Popup>
+                                                            ><AddIssueForm handleClose={this.handleClose} /></Popup>
 
                                                         </div>
                                                     </div>
@@ -83,16 +93,14 @@ class BoardPlaygroundContainer extends Component {
                                             ))
                                         }
                                         <div className='add-list-wrapper'>
-                                            <form>
-                                                <Popup
-                                                    on='click'
-                                                    trigger={<Button labelPosition='left' fluid icon='plus' content='Add list' className='open-add-list-btn' onClick={this.handleAddListClick} />}
-                                                    content="The default theme's basic popup removes the pointing arrow."
-                                                    basic
-                                                    hideOnScroll
-                                                />
-
-                                            </form>
+                                            <Popup
+                                                on='click'
+                                                trigger={<Button labelPosition='left' fluid icon='plus' content='Add list' className='open-add-list-btn' onClick={this.handleAddListClick} />}
+                                                content="The default theme's basic popup removes the pointing arrow."
+                                                style={{ top: -55 }}
+                                                basic
+                                                hideOnScroll
+                                            ><AddListForm /></Popup>
                                         </div>
 
                                     </div>
