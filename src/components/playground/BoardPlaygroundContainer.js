@@ -7,22 +7,14 @@ class BoardPlaygroundContainer extends Component {
         super(props);
         this.state = {
             list: [3, 4, 6, 7, 9, 8, 1, 5, 7],
-            // isOpen: false
         }
         this.handleAddListClick = this.handleAddListClick.bind(this);
-        // this.handleOpen = this.handleOpen.bind(this);
-        // this.handleClose = this.handleClose.bind(this);
 
     }
     handleAddListClick(e) {
         e.preventDefault();
     }
-    // handleOpen() {
-    //     this.setState({ isOpen: true });
-    // }
-    // handleClose() {
-    //     this.setState({ isOpen: false });
-    // }
+
     render() {
         const { list } = this.state;
         return (
