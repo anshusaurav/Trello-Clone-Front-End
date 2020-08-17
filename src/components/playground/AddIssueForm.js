@@ -7,14 +7,14 @@ class AddIssueForm extends Component {
                 <div className='card-compose-area-div'>
                     <textarea className='card-compose-area-input'
                         placeholder='Enter  a title for this card...'>
-
                     </textarea>
                 </div>
                 <div className='card-controllers'>
                     <div className='card-control-section'>
                         <input type='submit' className='card-add-input-btn' value='Add Card' />
                     </div>
-                    <span className='card-control-close-btn'>X</span>
+                    <Icon fluid name='x' className='card-control-close-btn'></Icon>
+                    {/* <span className='card-control-close-btn'>X</span> */}
                 </div>
             </form>
         )
