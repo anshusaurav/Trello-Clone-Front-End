@@ -61,3 +61,19 @@
     }
   }
 }
+
+.complete-div-team {
+  .tabular {
+    display: flex !important;
+    justify-content: center !important;
+    background-color: #f4f5f7 !important;
+    .item {
+      margin-left: 4px !important;
+      margin-right: 4px !important;
+      background-color: #dfe1e6 !important;
+    }
+    .active {
+      background-color: #fff !important;
+    }
+  }
+}
