@@ -32,11 +32,8 @@ class HomeLeftSidebar extends React.Component {
             })
             const data = await response.json()
             if (!data.errors) {
-                // console.log(data.teams);
-
-
                 const teams = data.teams.map(team => {
-                    return { key: team.slug, text: team.name, value: team.id };
+                    return { slug: team.slug, name: team.name, value: team.id };
                 })
                 this.setState({ teams })
             }
@@ -96,10 +93,10 @@ class HomeLeftSidebar extends React.Component {
                     {
                         teams && teams.map(team => {
                             return (
-                                <List.Item as={Link} to={`/teams/${team.key}`}>
+                                <List.Item as={Link} to={`/teams/${team.slug}`}>
                                     <List.Icon name='users' />
                                     <List.Content>
-                                        <List.Header>{team.text}</List.Header>
+                                        <List.Header>{team.name}</List.Header>
                                     </List.Content>
                                 </List.Item>
                             )

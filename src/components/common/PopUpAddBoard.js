@@ -89,7 +89,6 @@ class PopUpAddBoard extends React.Component {
             })
             const data = await response.json()
             if (!data.errors) {
-                // console.log(data.teams);
                 let teams = [{ key: "No Team", text: "No Team", value: "No Team" }]
 
                 teams = teams.concat(data.teams.map((team, index) => {

@@ -1,0 +1,63 @@
+.tabbed-pane-header {
+  background-color: #f4f5f7;
+  .tabbed-pane-header-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 650px;
+    padding: 32px;
+    position: relative;
+    color: #172b4d;
+    // font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    .tabbed-pane-header-content {
+      display: flex;
+    }
+    .org-profile-avatar {
+      //   height: 85px !important;
+      //   width: 85px !important;
+      .profile-icon {
+        color: #42526e !important;
+      }
+    }
+    .tabbed-pane-header-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 0 0 20px;
+    }
+    .team-name-div {
+      margin-bottom: 8px;
+    }
+    .team-name-header {
+      display: inline;
+      margin-right: 4px;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 28px;
+      margin: 0 0 12px;
+    }
+    .team-name-header-span {
+      font-size: 12px;
+      color: #5e6c84;
+      padding: 0 6px 0 2px;
+      vertical-align: bottom;
+    }
+    .visibility-icon {
+      margin-right: 4px !important;
+    }
+    .hiring-details-div {
+      word-break: break-word;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    .edit-team-btn {
+      margin-top: 8px;
+      color: rgb(23, 43, 77) !important;
+      font-weight: 300 !important;
+    }
+  }
+}

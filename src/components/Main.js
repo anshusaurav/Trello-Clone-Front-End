@@ -7,6 +7,7 @@ import Home from './Home'
 import HomePage from './HomePage'
 import BoardsPage from './BoardsPage'
 import SingleBoardPage from './SingleBoardPage'
+import SingleTeamPage from './SingleTeamPage';
 // import ForgotPasswordForm from './components/ForgotPasswordForm'
 class Main extends React.Component {
     constructor(props) {
@@ -60,6 +61,11 @@ class Main extends React.Component {
                     <Router exact path='/playground'>
                         {!jwttoken ? <Redirect to='/' />
                             : <SingleBoardPage toggleLoggedIn={this.toggleLoggedIn} />
+                        }
+                    </Router>
+                    <Router exact path='/teams'>
+                        {!jwttoken ? <Redirect to='/' />
+                            : <SingleTeamPage toggleLoggedIn={this.toggleLoggedIn} />
                         }
                     </Router>
                 </Switch>
