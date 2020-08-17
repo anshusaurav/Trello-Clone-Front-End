@@ -7,6 +7,7 @@ class HomeLeftSidebar extends React.Component {
         super(props);
         this.state = {
             isOpen: false,
+            teams: null
         };
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -17,8 +18,40 @@ class HomeLeftSidebar extends React.Component {
     handleClose() {
         this.setState({ isOpen: false });
     }
+    async saveTeams() {
+        const url = 'http://localhost:4000/api/teams'
+        const { jwttoken } = localStorage
+        console.log(jwttoken)
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/JSON',
+                    Authorization: `Token ${jwttoken}`
+                }
+            })
+            const data = await response.json()
+            if (!data.errors) {
+                // console.log(data.teams);
+
+
+                const teams = data.teams.map(team => {
+                    return { key: team.slug, text: team.name, value: team.id };
+                })
+                this.setState({ teams })
+            }
+        } catch (error) {
+            console.error('Error: ' + error)
+        }
+    }
+    componentDidMount() {
+        this.saveTeams();
+    }
+    componentDidUpdate() {
+
+    }
     render() {
-        const { isOpen } = this.state;
+        const { isOpen, teams } = this.state;
         return (
             <>
                 <List link>
@@ -29,7 +62,7 @@ class HomeLeftSidebar extends React.Component {
                         </List.Content>
                     </List.Item>
 
-                    <List.Item as={Link} active>
+                    <List.Item as={Link} active to='/'>
                         <List.Icon name='home' />
                         <List.Content>
                             <List.Header>Home</List.Header>
@@ -60,25 +93,18 @@ class HomeLeftSidebar extends React.Component {
                     />
                 </Popup>
                 <List link className='left-sidebar-team-list'>
-                    <List.Item as={Link} to='/teams/hiring'>
-                        <List.Icon name='users' />
-                        <List.Content>
-                            <List.Header>Hiring</List.Header>
-                        </List.Content>
-                    </List.Item>
-                    <List.Item as={Link} to='/teams/marketing'>
-                        <List.Icon name='users' />
-                        <List.Content>
-
-                            <List.Header>Marketing</List.Header>
-                        </List.Content>
-                    </List.Item>
-                    <List.Item as={Link} to='/teams/yolo'>
-                        <List.Icon name='users' />
-                        <List.Content>
-                            <List.Header>YOLO</List.Header>
-                        </List.Content>
-                    </List.Item>
+                    {
+                        teams && teams.map(team => {
+                            return (
+                                <List.Item as={Link} to={`/teams/${team.key}`}>
+                                    <List.Icon name='users' />
+                                    <List.Content>
+                                        <List.Header>{team.text}</List.Header>
+                                    </List.Content>
+                                </List.Item>
+                            )
+                        })
+                    }
                 </List>
             </>
         )

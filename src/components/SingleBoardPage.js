@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-
+import { withRouter } from 'react-router-dom'
 import HeaderNav from './common/HeaderNav'
 import BoardPlaygroundContainer from './playground/BoardPlaygroundContainer'
-class SingleBoard extends Component {
+class SingleBoardPage extends Component {
 
     render() {
         return (
@@ -13,4 +13,4 @@ class SingleBoard extends Component {
         )
     }
 }
-export default SingleBoard
+export default withRouter(SingleBoardPage)

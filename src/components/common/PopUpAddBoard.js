@@ -17,14 +17,15 @@ class PopUpAddBoard extends React.Component {
                 'https://images.unsplash.com/photo-1597226417297-6b99b273ded6?cs=tiny',
                 'https://images.unsplash.com/photo-1597462263121-d141a6fa0ca4?cs=tiny',
                 'https://images.unsplash.com/photo-1597441205491-f5c9bc18be6d?cs=tiny',
-                'https://images.unsplash.com/photo-1597432845483-c6ae82d95ac6?cs=tiny',]
-
+                'https://images.unsplash.com/photo-1597432845483-c6ae82d95ac6?cs=tiny',],
+            teams: null
         }
         this.escFunction = this.escFunction.bind(this);
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangeTeam = this.handleChangeTeam.bind(this);
         this.handleFormatButtons = this.handleFormatButtons.bind(this);
         this.handleBGClick = this.handleBGClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     escFunction(event) {
@@ -74,8 +75,73 @@ class PopUpAddBoard extends React.Component {
 
         return { result: false, data };
     }
+    async saveTeams() {
+        const url = 'http://localhost:4000/api/teams'
+        const { jwttoken } = localStorage
+        console.log(jwttoken)
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/JSON',
+                    Authorization: `Token ${jwttoken}`
+                }
+            })
+            const data = await response.json()
+            if (!data.errors) {
+                // console.log(data.teams);
+                let teams = [{ key: "No Team", text: "No Team", value: "No Team" }]
+
+                teams = teams.concat(data.teams.map((team, index) => {
+                    return { key: index, text: team.name, value: team.id };
+                }))
+                this.setState({ teams })
+            }
+        } catch (error) {
+            console.error('Error: ' + error)
+        }
+    }
+
+    async submitBoard() {
+        const { name, isPrivate, team, bgIndex, bgArr } = this.state
+        const board = { board: { name, isPrivate, team, image: bgArr[bgIndex] } };
+        const url = 'http://localhost:4000/api/boards/'
+        const { jwttoken } = localStorage
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Token ${jwttoken}`
+                },
+                body: JSON.stringify(board)
+            })
+            let data = await response.json();
+            if (!data.errors) {
+                console.log(data.board);
+                this.props.handleClose();
+            }
+            else {
+                const errors = []
+                for (const [key, value] of Object.entries(data.errors)) {
+                    errors.push(`${key} ${value}`)
+                }
+                this.setState({ errorMsgs: errors })
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            const errors = []
+            errors.push(error.toString());
+            this.setState({ errorMsgs: errors })
+        }
+    }
+    handleSubmit(event) {
+        event.preventDefault();
+        this.submitBoard();
+    }
     componentDidMount() {
         document.addEventListener("keydown", this.escFunction, false);
+        this.saveTeams();
     }
 
     componentWillUnmount() {
@@ -83,40 +149,9 @@ class PopUpAddBoard extends React.Component {
     }
 
     render() {
-        const { bgIndex, name, team, isPrivate, isSubmitable, bgArr } = this.state;
-        const teams = [
-            {
-                key: '0000',
-                text: 'No Team',
-                value: 'No Team',
-            },
-            {
-                key: '3213123',
-                text: 'Jenny Hess',
-                value: 'Jenny Hess',
-            },
-            {
-                key: '421312321',
-                text: 'Anshu',
-                value: 'Anshu',
-            },
-            {
-                key: '32131231',
-                text: 'Anshu',
-                value: 'Anshu',
-            },
-            {
-                key: '432432',
-                text: 'Ashish',
-                value: 'Ashish',
-            },
-            {
-                key: '3123123',
-                text: 'Elliot',
-                value: 'Elliot',
-            },
-        ];
-        console.log(bgArr[bgIndex])
+        const { bgIndex, name, team, isPrivate, isSubmitable, bgArr, teams } = this.state;
+        // if (teams)
+        //     console.log(bgArr[bgIndex])
         return (
             <div className="popup-add-board-form-card">
                 <div className="popup-add-board-outer">
@@ -145,8 +180,7 @@ class PopUpAddBoard extends React.Component {
                                         <Dropdown
                                             inline
                                             options={teams}
-                                            // selection
-                                            // defaultValue={teams[0].value}
+                                            placeholder='No Team'
                                             onChange={this.handleChangeTeam}
                                             value={team}
                                         />
@@ -174,8 +208,6 @@ class PopUpAddBoard extends React.Component {
                                                     </button>
                                                 )
                                         }
-
-
                                     </div>
                                 </div>
                                 <ul className="create-board-background">
@@ -189,8 +221,7 @@ class PopUpAddBoard extends React.Component {
                                                         style={{
                                                             backgroundImage: `url(${elem})`
                                                         }}
-                                                        onClick={this.handleBGClick}
-                                                    >
+                                                        onClick={this.handleBGClick}>
                                                     </button>
                                                 </li>)
                                         })
@@ -200,16 +231,15 @@ class PopUpAddBoard extends React.Component {
                             <div className="action-items">
                                 <button
                                     className='add-board-submit-btn'
-                                    disabled={!isSubmitable}>
+                                    disabled={!isSubmitable}
+                                    onClick={this.handleSubmit}>
                                     Create Board
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
-
-
-            </div >
+            </div>
         )
     }
 }
