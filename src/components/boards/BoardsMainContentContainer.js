@@ -68,7 +68,6 @@ class BoardsMainContentContainer extends Component {
     }
     render() {
         const { privateBoards, teams, isOpen } = this.state;
-        const src = 'https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2048x1152/b636e51cb79969dcdba81217c5072172/photo-1596788571133-8d8b42ba200b.jpg';
         return (
             <div className="content-all-boards">
 
@@ -76,7 +75,7 @@ class BoardsMainContentContainer extends Component {
                     privateBoards && (
                         <div className="boards-page-board-section">
                             <div className="boards-page-board-section-header">
-                                <Icon name='clock outline' size='large'>
+                                <Icon name='lock' size='large'>
 
                                 </Icon>
                                 <h2>
@@ -92,7 +91,7 @@ class BoardsMainContentContainer extends Component {
                                                 <Link
                                                     to='/b/slug'
                                                     style={{
-                                                        background: `url(${src})`,
+                                                        background: `url(${board.image})`,
                                                         backgroundPosition: 'center',
                                                         backgroundSize: 'cover',
                                                         backgroundRepeat: 'no-repeat'
@@ -176,7 +175,7 @@ class BoardsMainContentContainer extends Component {
                         return (
                             <div className="boards-page-board-section">
                                 <div className="boards-page-board-section-header">
-                                    <Icon name='clock outline' size='large'>
+                                    <Icon name='users' size='large'>
 
                                     </Icon>
                                     <h2>
@@ -192,7 +191,7 @@ class BoardsMainContentContainer extends Component {
                                                     <Link
                                                         to='/b/slug'
                                                         style={{
-                                                            background: `url(${src})`,
+                                                            background: `url(${board.image})`,
                                                             backgroundPosition: 'center',
                                                             backgroundSize: 'cover',
                                                             backgroundRepeat: 'no-repeat'
