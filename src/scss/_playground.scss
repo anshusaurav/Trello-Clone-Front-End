@@ -592,21 +592,21 @@
 
 .list-composer {
   padding-bottom: 8px;
-  width: 272px;
+  width: 300px;
+  background-color: #ebecf0;
   .list-compose-area-div {
     overflow: hidden;
-    padding: 2px;
     position: relative;
     z-index: 10;
     .list-compose-area-input {
+      border-radius: 3px;
+      box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25) !important;
       background: none;
       border: none;
       box-shadow: none;
-      // height: auto;
       margin-bottom: 4px;
       max-height: 162px;
       min-height: 54px;
-      // overflow-y: auto;
       padding: 0;
       overflow: hidden;
       overflow-wrap: break-word;
@@ -617,30 +617,19 @@
       color: #172b4d;
       box-shadow: inset 0 0 0 2px #dfe1e6;
       padding: 4px;
-      // &:-webkit-input-placeholder {
-      //   padding-top: 4px !important;
-      //   color: #172b4d;
-      // }
-
-      // &:-moz-input-placeholder {
-      //   padding-top: 4px;
-      // }
-
-      // &:-ms-input-placeholder {
-      //   padding-top: 4px;
-      // }
+      font-family: inherit;
     }
     .list-compose-area-input::-webkit-input-placeholder {
-      // padding: 4px;
       color: #172b4d;
+      font-family: inherit;
     }
     .list-compose-area-input::-moz-input-placeholder {
-      // padding: 4px;
       color: #172b4d;
+      font-family: inherit;
     }
     .list-compose-area-input::-ms-input-placeholder {
-      // padding: 4px;
       color: #172b4d;
+      font-family: inherit;
     }
   }
   .list-controllers {

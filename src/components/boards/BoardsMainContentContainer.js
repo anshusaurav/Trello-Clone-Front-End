@@ -248,7 +248,7 @@ class BoardsMainContentContainer extends Component {
                                                             marginTop: 0,
                                                             backgroundColor: "rgba(0,0,0,0.5)",
                                                         }}
-                                                        trigger={<div title="Create new private board"
+                                                        trigger={<div title="Create new team board"
                                                             className="board-new-tile-div">
                                                             <p className='board-new-tile' >
                                                                 Create New Board

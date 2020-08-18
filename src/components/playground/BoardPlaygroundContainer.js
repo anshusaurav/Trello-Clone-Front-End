@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, Popup, Icon } from 'semantic-ui-react'
 import AddIssueForm from './AddIssueForm'
 import AddListForm from './AddListForm'
+import stc from 'string-to-color'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 class BoardPlaygroundContainer extends Component {
     constructor(props) {
@@ -25,6 +26,8 @@ class BoardPlaygroundContainer extends Component {
     render() {
         const { list } = this.state;
         const arr = ['Anshu Saurabh', 'Tera Patrick', 'Jesse Jane', 'Stoya'];
+
+        const labels = ['Website', 'Android', 'iOS', 'Protoype']
         return (
             <>
                 <div className='playground-boundary'>
@@ -106,6 +109,14 @@ class BoardPlaygroundContainer extends Component {
                                                                                             <span className='list-card-edit-icon'>E</span>
                                                                                             <div className='list-card-details'>
                                                                                                 <div className='list-card-labels'>
+                                                                                                    {
+                                                                                                        Array(2).fill(null).map(elem => {
+                                                                                                            let x = labels[Math.floor(Math.random() * 4)];
+                                                                                                            return (
+                                                                                                                <span className='card-label' style={{ backgroundColor: stc(x.toLowerCase()) }}>{x}</span>
+                                                                                                            )
+                                                                                                        })
+                                                                                                    }
                                                                                                     <span className='card-label'>Android</span>
                                                                                                     <span className='card-label'>Website</span>
                                                                                                 </div>
@@ -150,8 +161,7 @@ class BoardPlaygroundContainer extends Component {
                                                 <Popup
                                                     on='click'
                                                     trigger={<Button labelPosition='left' fluid icon='plus' content='Add list' className='open-add-list-btn' onClick={this.handleAddListClick} />}
-                                                    content="The default theme's basic popup removes the pointing arrow."
-                                                    style={{ top: -55 }}
+                                                    style={{ top: -55, left: -4, padding: 0, }}
                                                     basic
                                                     hideOnScroll
                                                 ><AddListForm /></Popup>
