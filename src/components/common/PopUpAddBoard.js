@@ -87,12 +87,13 @@ class PopUpAddBoard extends React.Component {
                     Authorization: `Token ${jwttoken}`
                 }
             })
-            const data = await response.json()
+            const data = await response.json();
+            console.log(data.teams);
             if (!data.errors) {
                 let teams = [{ key: "No Team", text: "No Team", value: "No Team" }]
 
                 teams = teams.concat(data.teams.map((team, index) => {
-                    return { key: index, text: team.name, value: team.id };
+                    return { key: index, text: team.name, value: team._id };
                 }))
                 this.setState({ teams })
             }
@@ -149,6 +150,7 @@ class PopUpAddBoard extends React.Component {
 
     render() {
         const { bgIndex, name, team, isPrivate, isSubmitable, bgArr, teams } = this.state;
+        console.log(teams);
         // if (teams)
         //     console.log(bgArr[bgIndex])
         return (
@@ -194,7 +196,7 @@ class PopUpAddBoard extends React.Component {
                                                         className="add-board-i-btn">
 
                                                     </Icon>
-                                                    Private
+                                                    Personal
                                                 </button>
                                             ) : (
                                                     <button className='add-board-private-btn'
@@ -203,7 +205,7 @@ class PopUpAddBoard extends React.Component {
                                                             name="globe"
                                                             className="add-board-i-btn">
                                                         </Icon>
-                                                        Public
+                                                        Team
                                                     </button>
                                                 )
                                         }

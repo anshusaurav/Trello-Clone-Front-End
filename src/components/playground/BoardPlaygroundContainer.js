@@ -66,6 +66,7 @@ class BoardPlaygroundContainer extends Component {
                                     </div>
                                     <div className="board-header-right-grp">
                                         <span className="board-right-settings">
+                                            <Icon name='settings' className="board-right-icon"></Icon>
                                             <span className="board-right-btn">Settings</span>
                                         </span>
 

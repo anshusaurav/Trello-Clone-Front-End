@@ -180,7 +180,7 @@
       background-color: hsla(0, 0%, 100%, 0.24);
       border-radius: 3px;
       color: #fff;
-      cursor: default;
+      // cursor: default;
       float: left;
       font-size: 14px;
       height: 32px;
@@ -192,6 +192,7 @@
       position: relative;
       text-decoration: none;
       text-overflow: ellipsis;
+      cursor: pointer;
     }
     .board-right-btn {
       padding-right: 12px;
@@ -201,6 +202,15 @@
       font-size: 14px;
       // height: 32px;
       line-height: 32px;
+    }
+    .board-right-icon {
+      background-clip: content-box !important;
+      background-origin: content-box !important;
+      color: #fff !important;
+
+      position: absolute !important;
+      top: 0 !important;
+      left: 4px !important;
     }
   }
 }
