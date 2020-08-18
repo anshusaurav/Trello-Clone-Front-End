@@ -108,6 +108,100 @@
       height: 16px;
       margin: 8px 8px 12px 4px;
     }
+    .board-private-marker-div {
+      padding-left: 12px;
+      border-radius: 3px;
+      color: #fff;
+      cursor: default;
+      float: left;
+      font-size: 14px;
+      height: 32px;
+      margin: 0 4px 4px 0;
+      max-width: 400px;
+      overflow: hidden;
+      position: relative;
+      text-decoration: none;
+      text-overflow: ellipsis;
+    }
+    .board-private-marker-text {
+      padding-right: 12px;
+      color: #fff;
+      cursor: default;
+      line-height: 32px;
+      font-size: 16px;
+    }
+    .board-member-outer-div {
+      float: left;
+      position: relative;
+      display: block;
+    }
+    .board-member-inner-div {
+      cursor: default;
+      float: left;
+      margin-left: 4px;
+      overflow: hidden;
+      padding: 2px 0 0 2px;
+    }
+    .board-member-elem {
+      height: 28px;
+      width: 28px;
+      margin: 0 0 0 -2px;
+      float: left;
+      background-color: #dfe1e6;
+      border-radius: 25em;
+      color: #172b4d;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: visible;
+      position: relative;
+    }
+    .board-member-name {
+      height: 28px;
+      line-height: 28px;
+      width: 28px;
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      // left: 0;
+      overflow: hidden;
+      // position: absolute;
+      text-align: center;
+      // top: 0;
+    }
+    .board-header-right-grp {
+      float: right;
+      position: relative;
+      display: block;
+    }
+    .board-right-settings {
+      transition: 0.1s ease;
+      background-color: hsla(0, 0%, 100%, 0.24);
+      border-radius: 3px;
+      color: #fff;
+      cursor: default;
+      float: left;
+      font-size: 14px;
+      height: 32px;
+      line-height: 32px;
+      margin: 0 4px 4px 0;
+      max-width: 400px;
+      overflow: hidden;
+      padding-left: 32px;
+      position: relative;
+      text-decoration: none;
+      text-overflow: ellipsis;
+    }
+    .board-right-btn {
+      padding-right: 12px;
+      color: #fff;
+      cursor: default;
+      float: left;
+      font-size: 14px;
+      // height: 32px;
+      line-height: 32px;
+    }
   }
 }
 
