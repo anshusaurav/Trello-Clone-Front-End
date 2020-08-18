@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Popup } from 'semantic-ui-react'
+import { Button, Popup, Icon } from 'semantic-ui-react'
 import AddIssueForm from './AddIssueForm'
 import AddListForm from './AddListForm'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -18,6 +18,7 @@ class BoardPlaygroundContainer extends Component {
     }
 
     onDragEnd(result) {
+        console.log('HERE');
         const { source, destination } = result;
         console.log(source, destination)
     }
@@ -33,7 +34,12 @@ class BoardPlaygroundContainer extends Component {
                                     <div className='header-board-name-div'>
                                         <h1 className='header-board-name-h'>Balu</h1>
 
-
+                                    </div>
+                                    <span className="playground-header-star-ic-div">
+                                        <Icon name='star outline' size='large' className="playground-header-star-icon" />
+                                    </span>
+                                    <div className="board-header-btn-org-wrapper">
+                                        <span className="board-header-btn-divider"></span>
                                     </div>
                                 </div>
                                 <div className='playground-board-canvas'>
@@ -41,7 +47,7 @@ class BoardPlaygroundContainer extends Component {
                                         <div className='playground-board-wrapper'>
                                             {
                                                 list.map(elem => (
-                                                    <Droppable droppableId="droppable">
+                                                    <Droppable droppableId={elem + ''}>
                                                         {(provided, snapshot) => (
                                                             <div className='playground-board-list-wrapper'>
                                                                 <div className='playground-board-list-content'>

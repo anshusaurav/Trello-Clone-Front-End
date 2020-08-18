@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon } from 'semantic-ui-react';
+// import { Icon } from 'semantic-ui-react';
 class AddListForm extends Component {
     render() {
         return (
@@ -13,9 +13,9 @@ class AddListForm extends Component {
                     <div className='list-control-section'>
                         <input type='submit' className='list-add-input-btn' value='Add Card' />
                     </div>
-                    <div className='list-control-close-div'>
+                    {/* <div className='list-control-close-div'>
                         <Icon fluid size='big' fitted name='x' className='list-control-close-btn'></Icon>
-                    </div>
+                    </div> */}
                     {/* <span className='card-control-close-btn'>X</span> */}
                 </div>
             </form>
