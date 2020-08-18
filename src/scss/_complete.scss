@@ -707,6 +707,17 @@ table {
             display: -webkit-box;
             -webkit-line-clamp: 2;
           }
+          .board-new-tile-div {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+          }
+          .board-new-tile {
+            font-weight: 300;
+            text-align: center;
+          }
         }
       }
     }
