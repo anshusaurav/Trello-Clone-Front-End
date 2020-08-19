@@ -89,7 +89,7 @@ class BoardsMainContentContainer extends Component {
                                         return (
                                             <li className="boards-page-board-section-list-item">
                                                 <Link
-                                                    to='/b/slug'
+                                                    to={'/b/' + board.slug}
                                                     style={{
                                                         background: `url(${board.image})`,
                                                         backgroundPosition: 'center',
@@ -113,12 +113,9 @@ class BoardsMainContentContainer extends Component {
                                                                     className="board-tile-options-star-icon">
                                                                     <Icon name="star outline" />
                                                                 </span>
-
                                                             </span>
-
                                                         </div>
                                                     </div>
-
                                                 </Link>
                                             </li>
                                         )
@@ -189,7 +186,7 @@ class BoardsMainContentContainer extends Component {
                                             return (
                                                 <li className="boards-page-board-section-list-item">
                                                     <Link
-                                                        to='/b/slug'
+                                                        to={'/b/' + board.slug}
                                                         style={{
                                                             background: `url(${board.image})`,
                                                             backgroundPosition: 'center',
@@ -272,7 +269,7 @@ class BoardsMainContentContainer extends Component {
                     })
                 }
 
-            </div>)
+            </div >)
     }
 }
 
