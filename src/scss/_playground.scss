@@ -256,7 +256,8 @@
     // max-height: 100%;
     position: relative;
     white-space: normal;
-    min-width: 308px;
+    min-width: 316px;
+    max-width: 316px;
   }
   .playground-board-list-header {
     padding-right: 36px;
@@ -489,14 +490,14 @@
     position: relative;
     z-index: 10;
     .card-compose-area-input {
+      border-radius: 3px;
+      box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25) !important;
       background: none;
       border: none;
       box-shadow: none;
-      // height: auto;
       margin-bottom: 4px;
       max-height: 162px;
       min-height: 54px;
-      // overflow-y: auto;
       padding: 0;
       overflow: hidden;
       overflow-wrap: break-word;
@@ -507,35 +508,25 @@
       color: #172b4d;
       box-shadow: inset 0 0 0 2px #dfe1e6;
       padding: 4px;
-      // &:-webkit-input-placeholder {
-      //   padding-top: 4px !important;
-      //   color: #172b4d;
-      // }
-
-      // &:-moz-input-placeholder {
-      //   padding-top: 4px;
-      // }
-
-      // &:-ms-input-placeholder {
-      //   padding-top: 4px;
-      // }
+      font-family: inherit;
     }
-    .card-compose-area-input::-webkit-input-placeholder {
-      // padding: 4px;
+    .list-compose-area-input::-webkit-input-placeholder {
       color: #172b4d;
+      font-family: inherit;
     }
-    .card-compose-area-input::-moz-input-placeholder {
-      // padding: 4px;
+    .list-compose-area-input::-moz-input-placeholder {
       color: #172b4d;
+      font-family: inherit;
     }
-    .card-compose-area-input::-ms-input-placeholder {
-      // padding: 4px;
+    .list-compose-area-input::-ms-input-placeholder {
       color: #172b4d;
+      font-family: inherit;
     }
   }
   .card-controllers {
     display: flex;
     align-items: center;
+    justify-content: center;
     .card-control-section {
       float: left;
       .card-add-input-btn {
@@ -562,6 +553,27 @@
         }
         &:focus {
           outline: none;
+        }
+        &:active &:enabled {
+          background-color: #61bd4f;
+          box-shadow: none;
+          border: none;
+          color: #fff;
+          // cursor: not-allowed;
+          // background-color: #f4f5f7;
+        }
+        &:hover &:enabled {
+          background-color: #61bd4f;
+          box-shadow: none;
+          border: none;
+          color: #fff;
+          outline: none;
+          // cursor: not-allowed;
+          // background-color: #d2d4d8;
+        }
+        &:disabled {
+          background-color: #f4f5f7;
+          color: rgb(161, 157, 157);
         }
       }
     }

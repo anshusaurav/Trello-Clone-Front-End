@@ -11,7 +11,7 @@ class PlayGroundMain extends Component {
         this.state = { lists: null, isUpdated: false }
         this.handleAddListClick = this.handleAddListClick.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
-
+        this.toggleUpdate = this.toggleUpdate.bind(this);
     }
     handleAddListClick(e) {
         e.preventDefault();
@@ -70,11 +70,12 @@ class PlayGroundMain extends Component {
     componentDidMount() {
         this.saveLists();
     }
-    componentDidUpdate(_prevProps, prevState) {
+    componentDidUpdate(prevProps, prevState) {
         if (prevState.isUpdated !== this.state.isUpdated) {
             this.saveLists();
         }
     }
+
     render() {
         const { lists } = this.state;
         const { boardSlug } = this.props;
