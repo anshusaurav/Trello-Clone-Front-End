@@ -8,7 +8,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 class PlayGroundMain extends Component {
     constructor(props) {
         super(props);
-        this.state = { lists: null, isUpdated: false }
+        this.state = { lists: null, isUpdated: false, board: null }
         this.handleAddListClick = this.handleAddListClick.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
         this.toggleUpdate = this.toggleUpdate.bind(this);
@@ -22,10 +22,12 @@ class PlayGroundMain extends Component {
     onDragEnd(result) {
         const { source, destination } = result;
         console.log(source, destination);
-        this.saveSwap(source.droppableId, destination.droppableId, source.index, destination.index)
+        this.saveSwap(source.droppableId,
+            destination.droppableId,
+            source.index,
+            destination.index)
     }
     async saveSwap(srcListId, destListId, srcPos, destPos) {
-        console.log("fetching list of this board")
         const url = `http://localhost:4000/api/swaps?srcListId=${srcListId}&destListId=${destListId}&srcPos=${srcPos}&destPos=${destPos}`;
         const { jwttoken } = localStorage;
         try {
@@ -37,7 +39,6 @@ class PlayGroundMain extends Component {
                 },
             });
             const data = await response.json();
-            console.log(data);
             if (!data.errors) {
                 this.setState({ isUpdated: !this.state.isUpdated });
             }
@@ -67,8 +68,31 @@ class PlayGroundMain extends Component {
             console.error("Error: " + error);
         }
     }
+    async saveBoard() {
+        console.log("fetching board")
+        const { boardSlug } = this.props;
+        const url = `http://localhost:4000/api/boards/${boardSlug}`;
+        const { jwttoken } = localStorage;
+        try {
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/JSON",
+                    Authorization: `Token ${jwttoken}`,
+                },
+            });
+            const data = await response.json();
+            console.log(data);
+            if (!data.errors) {
+                this.setState({ board: data.board });
+            }
+        } catch (error) {
+            console.error("Error: " + error);
+        }
+    }
     componentDidMount() {
         this.saveLists();
+        this.saveBoard();
     }
     componentDidUpdate(prevProps, prevState) {
         if (prevState.isUpdated !== this.state.isUpdated) {
@@ -77,13 +101,14 @@ class PlayGroundMain extends Component {
     }
 
     render() {
-        const { lists } = this.state;
+        const { lists, board } = this.state;
         const { boardSlug } = this.props;
         const labels = ['Website', 'Android', 'iOS', 'Protoype']
         return (
-            <div className='playground-board-canvas'>
+            <div className='playground-board-canvas'
+                style={{ backgroundImage: board ? `url(${board.image})` : '' }}>
                 <DragDropContext onDragEnd={this.onDragEnd}>
-                    <div className='playground-board-wrapper'>
+                    <div className='playground-board-wrapper' >
                         {
                             lists && lists.map((list, ind) => (
                                 <Droppable droppableId={list._id + ''}>
@@ -91,12 +116,16 @@ class PlayGroundMain extends Component {
                                         <div className='playground-board-list-wrapper'>
                                             <div className='playground-board-list-content'>
                                                 <div className='playground-board-list-header'>
-                                                    <h2 className='playground-board-list-name'>{list.name}</h2>
+                                                    <h2 className='playground-board-list-name'>
+                                                        {list.name}
+                                                    </h2>
                                                     <span className='playground-board-list-header-extra'>
-                                                        <Icon name="ellipsis horizontal" className="more-list-icon" />
+                                                        <Icon name="ellipsis horizontal"
+                                                            className="more-list-icon" />
                                                     </span>
                                                 </div>
-                                                <div className='playground-list-cards' ref={provided.innerRef}>
+                                                <div className='playground-list-cards'
+                                                    ref={provided.innerRef}>
 
                                                     {list.issues.map((issue, index) => (
                                                         <Draggable
@@ -121,7 +150,11 @@ class PlayGroundMain extends Component {
                                                                                 {
                                                                                     labels.map((elem, i) => {
                                                                                         return (
-                                                                                            <span className='card-label' key={i} style={{ backgroundColor: stc(labels[i].toLowerCase()) }}>{labels[i]}</span>
+                                                                                            <span className='card-label'
+                                                                                                key={i}
+                                                                                                style={{ backgroundColor: stc(labels[i].toLowerCase()) }}>
+                                                                                                {labels[i]}
+                                                                                            </span>
                                                                                         )
                                                                                     })
                                                                                 }

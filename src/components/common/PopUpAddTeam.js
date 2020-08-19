@@ -29,7 +29,7 @@ class PopUpAddTeam extends React.Component {
         else if (event.target.name === 'description') {
             this.setState({ description: event.target.value })
         }
-        // this.setState({ [name]: value })
+
 
     }
     handleSubmit(event) {
@@ -52,6 +52,7 @@ class PopUpAddTeam extends React.Component {
             })
             let data = await response.json()
             if (!data.errors) {
+                this.props.toggleUpdate();
                 this.props.handleClose();
             } else {
                 const errors = []

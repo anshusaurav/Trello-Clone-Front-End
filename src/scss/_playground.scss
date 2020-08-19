@@ -221,6 +221,10 @@
   line-height: 20px;
   font-weight: 400;
   position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+
   .playground-board-wrapper {
     user-select: none;
     white-space: nowrap;

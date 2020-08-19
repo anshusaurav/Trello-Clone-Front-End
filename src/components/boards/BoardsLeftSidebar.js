@@ -7,10 +7,15 @@ class BoardsLeftSidebar extends React.Component {
         super(props);
         this.state = {
             isOpen: false,
-            teams: null
+            teams: null,
+            isUpdated: false,
         };
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.toggleUpdate = this.toggleUpdate.bind(this);
+    }
+    toggleUpdate() {
+        this.setState({ isUpdated: !this.state.isUpdated })
     }
     handleOpen() {
         this.setState({ isOpen: true });
@@ -18,6 +23,7 @@ class BoardsLeftSidebar extends React.Component {
     handleClose() {
         this.setState({ isOpen: false });
     }
+
     async saveTeams() {
         const url = 'http://localhost:4000/api/teams'
         const { jwttoken } = localStorage
@@ -44,8 +50,10 @@ class BoardsLeftSidebar extends React.Component {
     componentDidMount() {
         this.saveTeams();
     }
-    componentDidUpdate() {
-
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.isUpdated !== this.state.isUpdated) {
+            this.saveTeams();
+        }
     }
     render() {
         const { isOpen, teams } = this.state;
@@ -93,6 +101,7 @@ class BoardsLeftSidebar extends React.Component {
                 >
                     <PopUpAddTeam
                         handleClose={this.handleClose}
+                        toggleUpdate={this.toggleUpdate}
                     />
                 </Popup>
                 <List link className='left-sidebar-team-list'>

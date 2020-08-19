@@ -14,7 +14,6 @@ class BoardPlaygroundContainer extends Component {
     }
     render() {
         const boardSlug = this.props.match.params.slug;
-        console.log(boardSlug)
         return (
             <>
                 <div className='playground-boundary'>

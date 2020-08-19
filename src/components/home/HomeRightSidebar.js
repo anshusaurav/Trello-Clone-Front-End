@@ -23,13 +23,12 @@ class HomeRightSidebar extends React.Component {
                 <div className='home-right-sidebar-inner'>
                     <div className='home-right-sidebar-first'>
                         <div className='home-right-sidebar-viewed'>
-                            <Icon name='clock outline' size='large'>
-
+                            <Icon name='clock outline'
+                                size='large'>
                             </Icon>
                             <h2>
                                 Recenty Viewed
                             </h2>
-
                         </div>
                     </div>
                     <div className='home-right-sidebar-second'>
@@ -50,7 +49,11 @@ class HomeRightSidebar extends React.Component {
                                 marginTop: 0,
                                 backgroundColor: "rgba(0,0,0,0.5)",
                             }}
-                            trigger={<Button icon='plus' content='Create a board' className='add-board-btn' />}
+                            trigger={<Button
+                                icon='plus'
+                                content='Create a board'
+                                className='add-board-btn' />
+                            }
                         >
                             <PopUpAddBoard
                                 handleClose={this.handleClose}
