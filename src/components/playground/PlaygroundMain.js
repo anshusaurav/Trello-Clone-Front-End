@@ -8,7 +8,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 class PlayGroundMain extends Component {
     constructor(props) {
         super(props);
-
+        this.state = { lists: null }
         this.handleAddListClick = this.handleAddListClick.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
 
@@ -21,9 +21,33 @@ class PlayGroundMain extends Component {
         const { source, destination } = result;
         console.log(source, destination)
     }
+    async saveLists() {
+        console.log("fetching list of this board")
+        const { boardSlug } = this.props;
+        const url = `http://localhost:4000/api/lists/${boardSlug}`;
+        const { jwttoken } = localStorage;
+        try {
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/JSON",
+                    Authorization: `Token ${jwttoken}`,
+                },
+            });
+            const data = await response.json();
+            console.log(data);
+            if (!data.errors) {
+                this.setState({ lists: data.lists });
+            }
+        } catch (error) {
+            console.error("Error: " + error);
+        }
+    }
+    componentDidMount() {
+        this.saveLists();
+    }
     render() {
-        const list = [5, 3, 4, 2, 1, 1]
-        // const arr = ['Anshu Saurabh', 'Tera Patrick', 'Jesse Jane', 'Stoya'];
+        const { lists } = this.state;
         const { boardSlug } = this.props;
         const labels = ['Website', 'Android', 'iOS', 'Protoype']
         return (
@@ -31,21 +55,21 @@ class PlayGroundMain extends Component {
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <div className='playground-board-wrapper'>
                         {
-                            list.map(elem => (
-                                <Droppable droppableId={elem + ''}>
+                            lists && lists.map((list, ind) => (
+                                <Droppable droppableId={list._id + ''}>
                                     {(provided, snapshot) => (
                                         <div className='playground-board-list-wrapper'>
                                             <div className='playground-board-list-content'>
                                                 <div className='playground-board-list-header'>
-                                                    <h2 className='playground-board-list-name'>Ideas</h2>
+                                                    <h2 className='playground-board-list-name'>{list.name}</h2>
                                                     <span className='playground-board-list-header-extra'> ...</span>
                                                 </div>
                                                 <div className='playground-list-cards' ref={provided.innerRef}>
 
-                                                    {Array(elem).fill(null).map((elem, index) => (
+                                                    {list.issues.map((issue, index) => (
                                                         <Draggable
-                                                            key={Math.floor(Math.random() * 4551) + index + 9}
-                                                            draggableId={'' + Math.floor(Math.random() * 4551) + index + 9}
+                                                            key={issue._id}
+                                                            draggableId={issue._id}
                                                             index={index}>
 
                                                             {(provided, snapshot) => (
