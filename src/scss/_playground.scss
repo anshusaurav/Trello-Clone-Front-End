@@ -274,6 +274,12 @@
       right: 4px;
       top: 4px;
       z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 24px;
+      width: 24px;
+      cursor: pointer;
     }
   }
 }
@@ -302,6 +308,9 @@
     text-decoration: none;
     z-index: 0;
     color: #172b4d;
+    &:hover .list-card-edit-icon {
+      visibility: visible;
+    }
     .list-card-cover {
       background-position: 50%;
       background-repeat: no-repeat;
@@ -318,7 +327,7 @@
       opacity: 0.8;
       padding: 4px;
       position: absolute;
-      right: 2px;
+      right: 10px;
       top: 2px;
       visibility: hidden;
       z-index: 40;

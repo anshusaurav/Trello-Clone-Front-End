@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Popup } from 'semantic-ui-react'
+import { Button, Popup, Icon } from 'semantic-ui-react'
 import AddIssueForm from './AddIssueForm'
 import AddListForm from './AddListForm'
 import stc from 'string-to-color'
@@ -92,7 +92,9 @@ class PlayGroundMain extends Component {
                                             <div className='playground-board-list-content'>
                                                 <div className='playground-board-list-header'>
                                                     <h2 className='playground-board-list-name'>{list.name}</h2>
-                                                    <span className='playground-board-list-header-extra'> ...</span>
+                                                    <span className='playground-board-list-header-extra'>
+                                                        <Icon name="ellipsis horizontal" className="more-list-icon" />
+                                                    </span>
                                                 </div>
                                                 <div className='playground-list-cards' ref={provided.innerRef}>
 
@@ -113,7 +115,7 @@ class PlayGroundMain extends Component {
                                                                         <div className='list-card-cover'>
 
                                                                         </div>
-                                                                        <span className='list-card-edit-icon'>E</span>
+                                                                        <span className='list-card-edit-icon'><Icon name="edit outline" /></span>
                                                                         <div className='list-card-details'>
                                                                             <div className='list-card-labels'>
                                                                                 {
