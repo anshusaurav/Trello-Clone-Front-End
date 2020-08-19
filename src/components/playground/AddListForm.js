@@ -46,6 +46,7 @@ class AddListForm extends Component {
             })
             let data = await response.json()
             if (!data.errors) {
+                this.setState({ isSubmitable: false })
                 this.props.handleClose();
             } else {
                 const errors = []
@@ -75,10 +76,10 @@ class AddListForm extends Component {
     render() {
         const { name, isSubmitable } = this.state;
         return (
-            <form className='list-composer'>
+            <form className='list-composer' onSubmit={this.handleSubmit}>
                 <div className='list-compose-area-div'>
                     <textarea className='list-compose-area-input'
-                        placeholder='Enter a title for this card...'
+                        placeholder='Enter a title for this List...'
                         name="name"
                         onChange={this.handleChange}
                         value={name}>
@@ -87,7 +88,7 @@ class AddListForm extends Component {
                 </div>
                 <div className='list-controllers'>
                     <div className='list-control-section'>
-                        <input type='submit' className='list-add-input-btn' value='Add Card' disabled={!isSubmitable} onClick={this.handleSubmit} />
+                        <input type='submit' className='list-add-input-btn' value='Add List' disabled={!isSubmitable} onClick={this.handleSubmit} />
                     </div>
 
                 </div>

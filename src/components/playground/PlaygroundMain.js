@@ -8,7 +8,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 class PlayGroundMain extends Component {
     constructor(props) {
         super(props);
-        this.state = { lists: null }
+        this.state = { lists: null, isUpdated: false }
         this.handleAddListClick = this.handleAddListClick.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
 
@@ -19,7 +19,29 @@ class PlayGroundMain extends Component {
 
     onDragEnd(result) {
         const { source, destination } = result;
-        console.log(source, destination)
+        console.log(source, destination);
+        this.saveSwap(source.droppableId, destination.droppableId, source.index, destination.index)
+    }
+    async saveSwap(srcListId, destListId, srcPos, destPos) {
+        console.log("fetching list of this board")
+        const url = `http://localhost:4000/api/swaps?srcListId=${srcListId}&destListId=${destListId}&srcPos=${srcPos}&destPos=${destPos}`;
+        const { jwttoken } = localStorage;
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/JSON",
+                    Authorization: `Token ${jwttoken}`,
+                },
+            });
+            const data = await response.json();
+            console.log(data);
+            if (!data.errors) {
+                this.setState({ isUpdated: !this.state.isUpdated });
+            }
+        } catch (error) {
+            console.error("Error: " + error);
+        }
     }
     async saveLists() {
         console.log("fetching list of this board")
@@ -45,6 +67,11 @@ class PlayGroundMain extends Component {
     }
     componentDidMount() {
         this.saveLists();
+    }
+    componentDidUpdate(_prevProps, prevState) {
+        if (prevState.isUpdated !== this.state.isUpdated) {
+            this.saveLists();
+        }
     }
     render() {
         const { lists } = this.state;
@@ -86,19 +113,16 @@ class PlayGroundMain extends Component {
                                                                         <div className='list-card-details'>
                                                                             <div className='list-card-labels'>
                                                                                 {
-                                                                                    Array(2).fill(null).map(elem => {
-                                                                                        let x = labels[Math.floor(Math.random() * 4)];
+                                                                                    labels.map((elem, i) => {
                                                                                         return (
-                                                                                            <span className='card-label' style={{ backgroundColor: stc(x.toLowerCase()) }}>{x}</span>
+                                                                                            <span className='card-label' key={i} style={{ backgroundColor: stc(labels[i].toLowerCase()) }}>{labels[i]}</span>
                                                                                         )
                                                                                     })
                                                                                 }
-                                                                                <span className='card-label'>Android</span>
-                                                                                <span className='card-label'>Website</span>
                                                                             </div>
                                                                             <span className='list-card-title'>
-                                                                                Progressive web app development
-                                                                                                </span>
+                                                                                {issue.title}
+                                                                            </span>
                                                                             <div className='badges'>
                                                                                 <span className='js-badges'>
                                                                                     <div className='due-date-badge'>
@@ -124,7 +148,7 @@ class PlayGroundMain extends Component {
                                                         style={{ top: 40 }}
                                                         basic
                                                         hideOnScroll
-                                                    ><AddIssueForm handleClose={this.handleClose} /></Popup>
+                                                    ><AddIssueForm listId={list._id} /></Popup>
 
                                                 </div>
                                             </div>
