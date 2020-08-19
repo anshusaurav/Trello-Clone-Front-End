@@ -46,8 +46,10 @@ class AddIssueForm extends Component {
             })
             let data = await response.json()
             if (!data.errors) {
-                this.setState({ isSubmitable: false })
-                this.props.handleClose();
+                this.props.toggleUpdate();
+                this.setState({ isSubmitable: false }, () => {
+                    this.setState({ title: '' })
+                })
             } else {
                 const errors = []
                 for (const [key, value] of Object.entries(data.errors)) {

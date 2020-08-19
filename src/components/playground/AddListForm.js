@@ -46,8 +46,8 @@ class AddListForm extends Component {
             })
             let data = await response.json()
             if (!data.errors) {
-                this.setState({ isSubmitable: false })
-                this.props.handleClose();
+                this.setState({ isSubmitable: false, name: '' })
+                this.props.toggleUpdate();
             } else {
                 const errors = []
                 for (const [key, value] of Object.entries(data.errors)) {

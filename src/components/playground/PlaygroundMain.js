@@ -16,7 +16,9 @@ class PlayGroundMain extends Component {
     handleAddListClick(e) {
         e.preventDefault();
     }
-
+    toggleUpdate() {
+        this.setState({ isUpdated: !this.state.isUpdated })
+    }
     onDragEnd(result) {
         const { source, destination } = result;
         console.log(source, destination);
@@ -104,6 +106,7 @@ class PlayGroundMain extends Component {
                                                                     ref={provided.innerRef}
                                                                     {...provided.draggableProps}
                                                                     {...provided.dragHandleProps}
+
                                                                 >
                                                                     {<div className='list-card'>
                                                                         <div className='list-card-cover'>
@@ -148,7 +151,7 @@ class PlayGroundMain extends Component {
                                                         style={{ top: 40 }}
                                                         basic
                                                         hideOnScroll
-                                                    ><AddIssueForm listId={list._id} /></Popup>
+                                                    ><AddIssueForm listId={list._id} toggleUpdate={this.toggleUpdate} /></Popup>
 
                                                 </div>
                                             </div>
@@ -164,7 +167,7 @@ class PlayGroundMain extends Component {
                                 style={{ top: -55, left: -4, padding: 0, }}
                                 basic
                                 hideOnScroll
-                            ><AddListForm boardSlug={boardSlug} /></Popup>
+                            ><AddListForm boardSlug={boardSlug} toggleUpdate={this.toggleUpdate} /></Popup>
                         </div>
 
                     </div>

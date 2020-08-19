@@ -256,7 +256,7 @@
     // max-height: 100%;
     position: relative;
     white-space: normal;
-    min-width: 290px;
+    min-width: 308px;
   }
   .playground-board-list-header {
     padding-right: 36px;
@@ -286,7 +286,7 @@
   margin: 0 4px;
   padding: 0 4px;
   z-index: 1;
-  min-height: 0;
+  min-height: 24px;
   .list-card {
     background-color: #fff;
     border-radius: 3px;
