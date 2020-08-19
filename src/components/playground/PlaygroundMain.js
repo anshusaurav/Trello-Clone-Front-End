@@ -24,7 +24,7 @@ class PlayGroundMain extends Component {
     render() {
         const list = [5, 3, 4, 2, 1, 1]
         // const arr = ['Anshu Saurabh', 'Tera Patrick', 'Jesse Jane', 'Stoya'];
-
+        const { boardSlug } = this.props;
         const labels = ['Website', 'Android', 'iOS', 'Protoype']
         return (
             <div className='playground-board-canvas'>
@@ -116,7 +116,7 @@ class PlayGroundMain extends Component {
                                 style={{ top: -55, left: -4, padding: 0, }}
                                 basic
                                 hideOnScroll
-                            ><AddListForm /></Popup>
+                            ><AddListForm boardSlug={boardSlug} /></Popup>
                         </div>
 
                     </div>

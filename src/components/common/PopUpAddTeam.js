@@ -38,7 +38,6 @@ class PopUpAddTeam extends React.Component {
     }
     async submitTeam() {
         const { name, description } = this.state;
-        // const { history, toggleLoggedIn } = this.props
         const team = { team: { name, description } }
         const url = 'http://localhost:4000/api/teams/'
         const { jwttoken } = localStorage;
@@ -52,12 +51,7 @@ class PopUpAddTeam extends React.Component {
                 body: JSON.stringify(team)
             })
             let data = await response.json()
-            // console.log(data)
             if (!data.errors) {
-                // localStorage.setItem('jwttoken', data.user.token)
-                // localStorage.setItem('loggedInUser', JSON.stringify(data.user))
-                // toggleLoggedIn()
-                // history.push('/')
                 this.props.handleClose();
             } else {
                 const errors = []
@@ -67,7 +61,6 @@ class PopUpAddTeam extends React.Component {
                 this.setState({ errorMsgs: errors })
             }
         } catch (error) {
-            console.error('Error:', error)
             const errors = []
             errors.push(error.toString())
             this.setState({ errorMsgs: errors })

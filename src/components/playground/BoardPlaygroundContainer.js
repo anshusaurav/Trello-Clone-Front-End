@@ -22,7 +22,7 @@ class BoardPlaygroundContainer extends Component {
                         <div className='playground-wrapper'>
                             <div className='playground-main-content'>
                                 <PlayGroundHero boardSlug={boardSlug} />
-                                <PlayGroundMain />
+                                <PlayGroundMain boardSlug={boardSlug} />
 
                             </div>
                         </div>
