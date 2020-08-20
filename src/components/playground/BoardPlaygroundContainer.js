@@ -4,14 +4,6 @@ import PlayGroundMain from './PlaygroundMain'
 import { withRouter } from 'react-router-dom'
 class BoardPlaygroundContainer extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = { isUpdate: false }
-        this.handleUpdate = this.handleUpdate.bind(this);
-    }
-    handleUpdate() {
-        this.state({ isUpdate: !this.state.isUpdate })
-    }
     render() {
         const boardSlug = this.props.match.params.slug;
         return (

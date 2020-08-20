@@ -1,6 +1,6 @@
 import React from 'react';
 import { List, Button, Popup } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import PopUpAddTeam from './../common/PopUpAddTeam'
 class HomeLeftSidebar extends React.Component {
     constructor(props) {
@@ -116,4 +116,4 @@ class HomeLeftSidebar extends React.Component {
         )
     }
 }
-export default HomeLeftSidebar;
+export default withRouter(HomeLeftSidebar);

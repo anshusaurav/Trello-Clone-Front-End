@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu, Icon, Input } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 class HeaderNav extends React.Component {
     constructor(props) {
         super(props)
@@ -48,7 +48,7 @@ class HeaderNav extends React.Component {
                             icon={{ name: 'search', circular: true, link: true, inverted: true, color: 'blue' }}
                         />
                     </div>
-                    <Link to={''} className='home-link'>
+                    <Link to={'/'} className='home-link'>
                         <div className='home-link-div'>
                             <span className='home-link-gif'></span>
                             <span className='home-link-img'></span>
@@ -67,4 +67,4 @@ class HeaderNav extends React.Component {
         </div>
     }
 }
-export default HeaderNav
+export default withRouter(HeaderNav)

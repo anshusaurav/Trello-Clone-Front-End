@@ -58,12 +58,8 @@ class Main extends React.Component {
                             : <BoardsPage toggleLoggedIn={this.toggleLoggedIn} />
                         }
                     </Route>
-                    <Router exact path='/playground'>
-                        {!jwttoken ? <Redirect to='/' />
-                            : <SingleBoardPage toggleLoggedIn={this.toggleLoggedIn} />
-                        }
-                    </Router>
-                    <Router exact path='/teams/:slug'>
+
+                    <Router path='/teams/:slug'>
                         {!jwttoken ? <Redirect to='/' />
                             : <SingleTeamPage toggleLoggedIn={this.toggleLoggedIn} />
                         }
