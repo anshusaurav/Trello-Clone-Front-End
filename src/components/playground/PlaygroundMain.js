@@ -72,7 +72,7 @@ class PlayGroundMain extends Component {
                 },
             });
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             if (!data.errors) {
                 const lists = data.lists;
                 this.setState({ lists }, () => {
@@ -101,7 +101,7 @@ class PlayGroundMain extends Component {
                 },
             });
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             if (!data.errors) {
                 this.setState({ board: data.board });
             }
@@ -151,7 +151,7 @@ class PlayGroundMain extends Component {
                     <div className='playground-board-wrapper' >
                         {
                             lists && isOpenList && lists.map((list, ind) => (
-                                <Droppable droppableId={list._id + ''}>
+                                <Droppable droppableId={list._id + ''} key={list._id}>
                                     {(provided, snapshot) => (
                                         <div className='playground-board-list-wrapper'>
                                             <div className='playground-board-list-content'>

@@ -20,7 +20,7 @@ class PlayGroundHero extends Component {
                 },
             });
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             if (!data.errors) {
                 this.setState({ board: data.board });
             }
@@ -59,6 +59,7 @@ class PlayGroundHero extends Component {
                                 arr.map((name, index) => {
                                     return (
                                         <span
+                                            key={index}
                                             className="board-member-elem"
                                             style={{ zIndex: '' + arr.length - index }} >
                                             <span className="board-member-name">

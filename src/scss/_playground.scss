@@ -1,7 +1,6 @@
 .playground-boundary {
   // position: relative;
-  overflow-y: hidden;
-  overflow-x: scroll;
+
   outline: none;
   display: flex;
   flex-direction: column;
@@ -14,7 +13,8 @@
   .playground-content {
     flex-grow: 1;
     position: relative;
-    // overflow-y: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
     outline: none;
 
     .playground-wrapper {
@@ -218,8 +218,13 @@
 .playground-board-canvas {
   color: #172b4d;
   font-size: 14px;
+  height: calc(100vh - 100px);
+  max-height: calc(100vh - 100px);
+  overflow-y: hidden;
+  overflow-x: auto;
   line-height: 20px;
   font-weight: 400;
+  padding-top: 1rem;
   position: relative;
   background-repeat: no-repeat;
   background-size: cover;
@@ -232,6 +237,7 @@
     // overflow-x: auto;
     // overflow-y: hidden;
     padding-bottom: 8px;
+    padding-top: 1rem;
     position: absolute;
     top: 0;
     right: 0;
@@ -729,4 +735,8 @@
       }
     }
   }
+}
+
+.blurring.dimmed.dimmable > :not(.dimmer).popup {
+  filter: none !important;
 }

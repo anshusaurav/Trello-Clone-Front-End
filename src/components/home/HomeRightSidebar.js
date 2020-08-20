@@ -6,9 +6,14 @@ class HomeRightSidebar extends React.Component {
         super(props);
         this.state = {
             isOpen: false,
+            updated: false
         };
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.toggleUpdate = this.toggleUpdate.bind(this);
+    }
+    toggleUpdate() {
+        this.setState({ updated: !this.state.updated })
     }
     handleOpen() {
         this.setState({ isOpen: true });
@@ -57,6 +62,7 @@ class HomeRightSidebar extends React.Component {
                         >
                             <PopUpAddBoard
                                 handleClose={this.handleClose}
+                                toggleUpdate={this.toggleUpdate}
                             />
                         </Popup>
                     </div>
