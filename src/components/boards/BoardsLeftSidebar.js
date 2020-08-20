@@ -27,7 +27,6 @@ class BoardsLeftSidebar extends React.Component {
     async saveTeams() {
         const url = 'http://localhost:4000/api/teams'
         const { jwttoken } = localStorage
-        console.log(jwttoken)
         try {
             const response = await fetch(url, {
                 method: 'GET',

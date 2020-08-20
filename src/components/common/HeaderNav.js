@@ -22,7 +22,6 @@ class HeaderNav extends React.Component {
             })
             const data = await response.json()
             if (!data.errors) {
-                console.log(data.user);
                 this.setState({ profile: data.user })
             }
         } catch (error) {

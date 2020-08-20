@@ -8,7 +8,19 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 class PlayGroundMain extends Component {
     constructor(props) {
         super(props);
-        this.state = { lists: null, isUpdated: false, board: null }
+        this.state = {
+            lists: null,
+            isUpdated: false,
+            board: null,
+            isOpen: false,
+            isOpenList: null
+        }
+        this.handleOpenAddList = this.handleOpenAddList.bind(this);
+        this.handleCloseAddList = this.handleCloseAddList.bind(this);
+
+        this.handleOpenAddCard = this.handleOpenAddCard.bind(this);
+        this.handleCloseAddCard = this.handleCloseAddCard.bind(this);
+
         this.handleAddListClick = this.handleAddListClick.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
         this.toggleUpdate = this.toggleUpdate.bind(this);
@@ -62,7 +74,14 @@ class PlayGroundMain extends Component {
             const data = await response.json();
             console.log(data);
             if (!data.errors) {
-                this.setState({ lists: data.lists });
+                const lists = data.lists;
+                this.setState({ lists }, () => {
+                    const map = new Map();
+                    lists.forEach(list => {
+                        map.set(list._id, false);
+                    })
+                    this.setState({ isOpenList: map })
+                });
             }
         } catch (error) {
             console.error("Error: " + error);
@@ -90,6 +109,27 @@ class PlayGroundMain extends Component {
             console.error("Error: " + error);
         }
     }
+    handleOpenAddList() {
+        this.setState({ isOpen: true });
+    }
+    handleCloseAddList() {
+        this.setState({ isOpen: false });
+    }
+
+    handleOpenAddCard(event) {
+
+        const id = event.target.closest('div').dataset.listId;
+        const newMap = new Map(this.state.isOpenList);
+        newMap.set(id, true);
+        this.setState({ isOpenList: newMap });
+    }
+    handleCloseAddCard() {
+        const newMap = new Map(this.state.isOpenList);
+        let arr = Array.from(newMap.keys());
+        arr = arr.map(elem => [elem, false]);
+        const isOpenList = new Map(arr);
+        this.setState({ isOpenList });
+    }
     componentDidMount() {
         this.saveLists();
         this.saveBoard();
@@ -101,7 +141,7 @@ class PlayGroundMain extends Component {
     }
 
     render() {
-        const { lists, board } = this.state;
+        const { lists, board, isOpen, isOpenList } = this.state;
         const { boardSlug } = this.props;
         const labels = ['Website', 'Android', 'iOS', 'Protoype']
         return (
@@ -110,7 +150,7 @@ class PlayGroundMain extends Component {
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     <div className='playground-board-wrapper' >
                         {
-                            lists && lists.map((list, ind) => (
+                            lists && isOpenList && lists.map((list, ind) => (
                                 <Droppable droppableId={list._id + ''}>
                                     {(provided, snapshot) => (
                                         <div className='playground-board-list-wrapper'>
@@ -185,11 +225,25 @@ class PlayGroundMain extends Component {
                                                 <div className='card-compose-wrapper'>
                                                     <Popup
                                                         on="click"
-                                                        trigger={<Button fluid labelPosition='left' icon='plus' content='Add card' ></Button>}
+                                                        open={isOpenList.get(list._id)}
+                                                        onOpen={this.handleOpenAddCard}
+                                                        trigger={
+                                                            <Button
+                                                                fluid
+                                                                labelPosition='left'
+                                                                icon='plus'
+                                                                content='Add card'
+                                                                data-list-id={list._id}>
+                                                            </Button>
+                                                        }
                                                         style={{ top: 40 }}
                                                         basic
                                                         hideOnScroll
-                                                    ><AddIssueForm listId={list._id} toggleUpdate={this.toggleUpdate} /></Popup>
+                                                    ><AddIssueForm
+                                                            listId={list._id}
+                                                            toggleUpdate={this.toggleUpdate}
+                                                            handleClose={this.handleCloseAddCard}
+                                                        /></Popup>
 
                                                 </div>
                                             </div>
@@ -201,11 +255,25 @@ class PlayGroundMain extends Component {
                         <div className='add-list-wrapper'>
                             <Popup
                                 on='click'
-                                trigger={<Button labelPosition='left' fluid icon='plus' content='Add list' className='open-add-list-btn' onClick={this.handleAddListClick} />}
+                                open={isOpen}
+                                onOpen={this.handleOpenAddList}
+                                trigger={
+                                    <Button
+                                        labelPosition='left'
+                                        fluid
+                                        icon='plus'
+                                        content='Add list'
+                                        className='open-add-list-btn'
+                                        onClick={this.handleAddListClick} />
+                                }
                                 style={{ top: -55, left: -4, padding: 0, }}
                                 basic
                                 hideOnScroll
-                            ><AddListForm boardSlug={boardSlug} toggleUpdate={this.toggleUpdate} /></Popup>
+                            ><AddListForm
+                                    boardSlug={boardSlug}
+                                    toggleUpdate={this.toggleUpdate}
+                                    handleClose={this.handleCloseAddList}
+                                /></Popup>
                         </div>
 
                     </div>

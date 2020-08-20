@@ -48,6 +48,7 @@ class AddListForm extends Component {
             if (!data.errors) {
                 this.setState({ isSubmitable: false, name: '' })
                 this.props.toggleUpdate();
+                this.props.handleClose();
             } else {
                 const errors = []
                 for (const [key, value] of Object.entries(data.errors)) {

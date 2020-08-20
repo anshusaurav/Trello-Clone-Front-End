@@ -267,7 +267,6 @@ class BoardsMainContentContainer extends Component {
                                                     <Popup
                                                         basic
                                                         on="click"
-                                                        data-team-id={team._id}
                                                         open={isOpenTeam.get(team._id)}
                                                         onOpen={this.handleOpenTeam}
                                                         style={{
