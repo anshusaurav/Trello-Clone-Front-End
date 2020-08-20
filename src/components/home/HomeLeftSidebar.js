@@ -62,7 +62,7 @@ class HomeLeftSidebar extends React.Component {
                     <List.Item as={Link} to='/boards'>
                         <List.Icon name='trello' />
                         <List.Content>
-                            <List.Header>Board</List.Header>
+                            <List.Header>Boards</List.Header>
                         </List.Content>
                     </List.Item>
 
@@ -75,6 +75,7 @@ class HomeLeftSidebar extends React.Component {
                 </List>
                 <p>TEAMS</p>
                 <Popup
+                    basic
                     on="click"
                     open={isOpen}
                     onOpen={this.handleOpen}
@@ -82,10 +83,10 @@ class HomeLeftSidebar extends React.Component {
                         position: "fixed",
                         minWidth: "100vw",
                         minHeight: "100vh",
-                        top: -2,
-                        left: -2,
-                        bottom: -2,
-                        right: -2,
+                        top: -1,
+                        left: -1,
+                        bottom: 0,
+                        right: 0,
                         transform: "none",
                         marginTop: 0,
                         backgroundColor: "rgba(0,0,0,0.5)",
@@ -101,7 +102,7 @@ class HomeLeftSidebar extends React.Component {
                     {
                         teams && teams.map(team => {
                             return (
-                                <List.Item as={Link} to={`/teams/${team.slug}`}>
+                                <List.Item as={Link} to={`/teams/${team.slug}`} key={team.slug}>
                                     <List.Icon name='users' />
                                     <List.Content>
                                         <List.Header>{team.name}</List.Header>

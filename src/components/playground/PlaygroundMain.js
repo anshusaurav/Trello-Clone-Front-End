@@ -144,7 +144,9 @@ class PlayGroundMain extends Component {
                                                                         <div className='list-card-cover'>
 
                                                                         </div>
-                                                                        <span className='list-card-edit-icon'><Icon name="edit outline" /></span>
+                                                                        <span className='list-card-edit-icon'>
+                                                                            <Icon name="edit outline" />
+                                                                        </span>
                                                                         <div className='list-card-details'>
                                                                             <div className='list-card-labels'>
                                                                                 {
@@ -165,7 +167,7 @@ class PlayGroundMain extends Component {
                                                                             <div className='badges'>
                                                                                 <span className='js-badges'>
                                                                                     <div className='due-date-badge'>
-                                                                                        <span className='badge-icon'>^</span>
+                                                                                        <span className='badge-icon'><Icon name="clock outline" /></span>
                                                                                         <span className='badge-text'>Aug 28</span>
                                                                                     </div>
                                                                                 </span>

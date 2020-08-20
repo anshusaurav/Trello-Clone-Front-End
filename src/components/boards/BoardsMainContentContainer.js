@@ -9,9 +9,14 @@ class BoardsMainContentContainer extends Component {
             privateBoards: [],
             teams: null,
             isOpen: false,
+            isUpdated: false,
         }
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.toggleUpdate = this.toggleUpdate.bind(this);
+    }
+    toggleUpdate() {
+        this.setState({ isUpdated: !this.state.isUpdated })
     }
     async saveTeams() {
         const url = 'http://localhost:4000/api/teams'
@@ -66,6 +71,12 @@ class BoardsMainContentContainer extends Component {
         this.savePrivateBoards();
         this.saveTeams();
     }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.isUpdated !== this.state.isUpdated) {
+            this.savePrivateBoards();
+            this.saveTeams();
+        }
+    }
     render() {
         const { privateBoards, teams, isOpen } = this.state;
         return (
@@ -99,7 +110,7 @@ class BoardsMainContentContainer extends Component {
                                                     className='board-tile'>
                                                     <span className='board-tile-fade'></span>
                                                     <div className='board-tile-details'>
-                                                        <div title="New SDEs" dir="auto"
+                                                        <div title={board.name} dir="auto"
                                                             className="board-tile-details-name">
                                                             <p className='board-title-name' >
                                                                 {board.name}
@@ -130,6 +141,7 @@ class BoardsMainContentContainer extends Component {
                                             <div className='board-tile-details'>
 
                                                 <Popup
+                                                    basic
                                                     on="click"
                                                     open={isOpen}
                                                     onOpen={this.handleOpen}
@@ -154,6 +166,8 @@ class BoardsMainContentContainer extends Component {
                                                     </div>}>
                                                     <PopUpAddBoard
                                                         handleClose={this.handleClose}
+                                                        toggleUpdate={this.toggleUpdate}
+
                                                     />
                                                 </Popup>
                                             </div>
@@ -230,6 +244,7 @@ class BoardsMainContentContainer extends Component {
                                                 <div className='board-tile-details'>
 
                                                     <Popup
+                                                        basic
                                                         on="click"
                                                         open={isOpen}
                                                         onOpen={this.handleOpen}
@@ -253,7 +268,10 @@ class BoardsMainContentContainer extends Component {
 
                                                         </div>}>
                                                         <PopUpAddBoard
+
                                                             handleClose={this.handleClose}
+                                                            toggleUpdate={this.toggleUpdate}
+                                                            teamId={team._id}
                                                         />
                                                     </Popup>
                                                 </div>

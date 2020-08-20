@@ -3,11 +3,12 @@ import { Dropdown, Icon } from 'semantic-ui-react'
 class PopUpAddBoard extends React.Component {
     constructor(props) {
         super(props);
+        console.log('Constructor: ', this.props.teamId);
         this.state = {
             bgIndex: 0,
             name: '',
-            team: 'No Team',
-            isPrivate: true,
+            team: this.props.teamId ? `${this.props.teamId}` : 'No Team',
+            isPrivate: this.props.teamId ? false : true,
             isSubmitable: false,
             bgArr: ['https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg',
                 'https://images.pexels.com/photos/870711/pexels-photo-870711.jpeg',
@@ -119,6 +120,7 @@ class PopUpAddBoard extends React.Component {
             let data = await response.json();
             if (!data.errors) {
                 console.log(data.board);
+                this.props.toggleUpdate();
                 this.props.handleClose();
             }
             else {
@@ -150,9 +152,6 @@ class PopUpAddBoard extends React.Component {
 
     render() {
         const { bgIndex, name, team, isPrivate, isSubmitable, bgArr, teams } = this.state;
-        console.log(teams);
-        // if (teams)
-        //     console.log(bgArr[bgIndex])
         return (
             <div className="popup-add-board-form-card">
                 <div className="popup-add-board-outer">

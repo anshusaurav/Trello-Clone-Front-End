@@ -63,7 +63,7 @@ class BoardsLeftSidebar extends React.Component {
                     <List.Item as={Link} active>
                         <List.Icon name='trello' />
                         <List.Content>
-                            <List.Header>Board</List.Header>
+                            <List.Header>Boards</List.Header>
                         </List.Content>
                     </List.Item>
                     <List.Item as={Link} to='/'>
@@ -82,6 +82,7 @@ class BoardsLeftSidebar extends React.Component {
                 </List>
                 <p>TEAMS</p>
                 <Popup
+                    basic
                     on="click"
                     open={isOpen}
                     onOpen={this.handleOpen}
@@ -108,7 +109,7 @@ class BoardsLeftSidebar extends React.Component {
                     {
                         teams && teams.map(team => {
                             return (
-                                <List.Item as={Link} to={`/teams/${team.slug}`}>
+                                <List.Item as={Link} to={`/teams/${team.slug}`} key={team.slug}>
                                     <List.Icon name='users' />
                                     <List.Content>
                                         <List.Header>{team.name}</List.Header>

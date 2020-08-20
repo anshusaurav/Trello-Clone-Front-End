@@ -13,7 +13,15 @@ class PopUpAddTeam extends React.Component {
         this.escFunction = this.escFunction.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
+        this.handlePopUpClick = this.handlePopUpClick.bind(this);
+        this.handleOutsidePopUpClick = this.handleOutsidePopUpClick.bind(this);
+    }
+    handlePopUpClick(event) {
+        event.stopPropagation();
+    }
+    handleOutsidePopUpClick(event) {
+        event.preventDefault();
+        this.props.handleClose();
     }
     handleChange(event) {
         console.log(event.target.name)
@@ -94,11 +102,11 @@ class PopUpAddTeam extends React.Component {
     render() {
         const { name, description, isSubmitable, errorMsgs } = this.state;
         return (
-            <div className="popup-add-team-form-card" >
+            <div className="popup-add-team-form-card" onClick={this.handleOutsidePopUpClick}>
 
                 <div className="popup-add-team-form-container">
                     <div className='popup-add-team-form-outer'>
-                        <div className='popup-add-team-form-inner'>
+                        <div className='popup-add-team-form-inner' onClick={this.handlePopUpClick}>
                             <div className='popup-add-team-form-div'>
                                 <div className='popup-add-team-form-final'>
                                     <form className='popup-add-team-form'>
