@@ -63,7 +63,8 @@
 }
 
 .complete-div-team {
-  .tabular {
+  min-height: calc(100vh - 54px);
+  .menu {
     display: flex !important;
     justify-content: center !important;
     background-color: #f4f5f7 !important;

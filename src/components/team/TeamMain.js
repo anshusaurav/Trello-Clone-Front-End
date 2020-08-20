@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import { Icon, Button, Tab } from 'semantic-ui-react'
+import { Icon, Button, Menu } from 'semantic-ui-react'
+import TeamMembers from './TeamMembers';
+import TeamBoards from './TeamBoards';
+import TeamSettings from './TeamSettings'
 class TeamMain extends Component {
 
 
     constructor(props) {
         super(props);
-        console.log(this.props);
-        this.state = { team: null, isUpdated: false }
+        this.state = { team: null, isUpdated: false, activeItem: 'Boards' }
     }
+    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
     async saveTeam() {
         console.log("fetching team")
         const { teamSlug } = this.props;
@@ -35,56 +38,91 @@ class TeamMain extends Component {
     componentDidMount() {
         this.saveTeam();
     }
+
     render() {
+        const { team, activeItem } = this.state;
         return (
-            <div className='complete-div-team'>
-                <div className="tabbed-pane-header" >
-                    <div className="tabbed-pane-header-wrapper">
-                        <div className="tabbed-pane-header-content">
-                            <div className="org-profile-avatar">
-                                <Icon fluid size="massive" name="users" className="profile-icon" />
-                            </div>
-                            <div className="tabbed-pane-header-details">
-                                <div className="js-current-details">
-                                    <div className="team-name-div">
-                                        <h1 className="team-name-header">
-                                            Hiring
-                                </h1>
-                                        <span className="team-name-header-span">
-                                            <Icon fitted name="lock" className="visibility-icon" />
-                                    Private
-                                </span>
-                                        <span className="team-name-header-span">
-                                            <Icon fitted name="globe" className="visibility-icon" />
-                                    Public
-                                </span>
+            <>
+                {
+                    team && <div className='complete-div-team' >
+                        <div className="tabbed-pane-header" >
+                            <div className="tabbed-pane-header-wrapper">
+                                <div className="tabbed-pane-header-content">
+                                    <div className="org-profile-avatar">
+                                        <Icon
+                                            fluid
+                                            size="massive"
+                                            name="users"
+                                            className="profile-icon" />
                                     </div>
-                                    <div className="team-details-div">
-                                        <p>Hiring and HR</p>
+                                    <div className="tabbed-pane-header-details">
+                                        <div className="js-current-details">
+                                            <div className="team-name-div">
+                                                <h1 className="team-name-header">
+                                                    {team.name}
+                                                </h1>
+                                                {/* 
+                                                    <span className="team-name-header-span">
+                                                        <Icon fitted name="lock" className="visibility-icon" />
+                                                        Private
+                                                    </span>
+                                                    <span className="team-name-header-span">
+                                                        <Icon fitted name="globe" className="visibility-icon" />
+                                                        Public
+                                                    </span> 
+                                                */}
+                                            </div>
+                                            <div className="team-details-div">
+                                                <p>{team.description ? team.description : ''}</p>
+                                            </div>
+                                            <Button
+                                                icon='edit'
+                                                content='Edit Team Profile'
+                                                className="edit-team-btn" />
+                                        </div>
                                     </div>
-                                    <Button icon='edit' content='Edit Team Profile' className="edit-team-btn" />
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <Menu pointing secondary>
+                                <Menu.Item
+                                    icon='users'
+                                    name='Members'
+                                    active={activeItem === 'Members'}
+                                    onClick={this.handleItemClick}
+                                ></Menu.Item>
+                                <Menu.Item
+                                    icon='trello'
+                                    name='Boards'
+                                    active={activeItem === 'Boards'}
+                                    onClick={this.handleItemClick}
+                                />
+                                <Menu.Item
+                                    icon='settings'
+                                    name='Settings'
+                                    active={activeItem === 'Settings'}
+                                    onClick={this.handleItemClick}
+                                />
+
+                            </Menu>
+
+                        </div>
+                        <div
+                            className='settings-main-section'
+                        >
+                            {activeItem === 'Members' ? (
+                                <TeamMembers teamSlug={team.slug} />
+                            ) : activeItem === 'Boards' ? (
+                                <TeamBoards teamSlug={team.slug} />
+                            ) : activeItem === 'Settings' ? (
+                                <TeamSettings teamSlug={team.slug} />
+                            ) : null}
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <Tab panes={[
-                        {
-                            menuItem: { key: 'users', icon: 'trello', content: 'Users' },
-                            render: () => <Tab.Pane>Tab 1 Content</Tab.Pane>,
-                        },
-                        {
-                            menuItem: { key: 'users', icon: 'users', content: 'Members' },
-                            render: () => <Tab.Pane>Tab 1 Content</Tab.Pane>,
-                        },
-                        {
-                            menuItem: { key: 'users', icon: 'settings', content: 'Settings' },
-                            render: () => <Tab.Pane>Tab 1 Content</Tab.Pane>,
-                        },
-                    ]} />
-                </div>
-            </div>
+                }
+            </>
+
         )
     }
 }
