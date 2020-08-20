@@ -24,7 +24,6 @@ class PopUpAddTeam extends React.Component {
         this.props.handleClose();
     }
     handleChange(event) {
-        console.log(event.target.name)
         if (event.target.name === 'name') {
             this.setState({ name: event.target.value }, function () {
                 if (this.checkValidTeam().result) {

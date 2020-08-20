@@ -25,10 +25,17 @@ class PopUpAddBoard extends React.Component {
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangeTeam = this.handleChangeTeam.bind(this);
         this.handleFormatButtons = this.handleFormatButtons.bind(this);
-        this.handleBGClick = this.handleBGClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handlePopUpClick = this.handlePopUpClick.bind(this);
+        this.handleOutsidePopUpClick = this.handleOutsidePopUpClick.bind(this);
     }
-
+    handlePopUpClick(event) {
+        event.stopPropagation();
+    }
+    handleOutsidePopUpClick(event) {
+        event.preventDefault();
+        this.props.handleClose();
+    }
     escFunction(event) {
         if (event.keyCode === 27) {
             this.props.handleClose();
@@ -153,9 +160,9 @@ class PopUpAddBoard extends React.Component {
     render() {
         const { bgIndex, name, team, isPrivate, isSubmitable, bgArr, teams } = this.state;
         return (
-            <div className="popup-add-board-form-card">
+            <div className="popup-add-board-form-card" onClick={this.handleOutsidePopUpClick}>
                 <div className="popup-add-board-outer">
-                    <div className="popup-add-board-inner">
+                    <div className="popup-add-board-inner" onClick={this.handlePopUpClick}>
                         <form className="create-board-form">
                             <div className="create-board-form-container">
                                 <div className="create-board-tile" style={{
