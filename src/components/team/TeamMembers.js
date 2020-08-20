@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import { Button } from 'semantic-ui-react'
 class TeamMembers extends Component {
 
     constructor(props) {
@@ -43,9 +43,54 @@ class TeamMembers extends Component {
             //     }
 
             // </>
-            <div>
+            <div className="org-member-wrapper">
                 <div className="org-members-page-layout">
+                    <div className="org-members-page-layout-list">
 
+                        <div className="org-members-section">
+                            <div className="org-members-actions-header">
+                                <h1 className="org-members-header">
+                                    <span>
+                                        Team Members
+                                    </span>
+                                    <span>
+                                        &nbsp;
+                                    </span>
+                                    <span>
+                                        (2)
+                                    </span>
+                                </h1>
+                                <p className="org-members-description">
+                                    <span>
+                                        Team members can view and join all Team Visible boards and create new boards in the team.
+                                    </span>
+                                </p>
+                            </div>
+                            <div className="org-members-actions">
+                                <div className="org-members-actions-search">
+                                    <Button icon='add user' content='Invite Team Members' color='green' />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className="org-members-list">
+                            <div className="member-list-item-detail">
+                                <div className="member-no-menu">
+                                    <span className="member-initials">AS</span>
+                                </div>
+                                <div className="details">
+                                    <p className="name-line"><span>Anshu Saurabh</span></p>
+                                    <p className="user-line"><span>anshusaurav</span></p>
+                                </div>
+                                <div className="options">
+                                    <Button icon='remove user' content='Remove' />
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
 
