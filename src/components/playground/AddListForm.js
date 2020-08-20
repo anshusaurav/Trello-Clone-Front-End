@@ -11,7 +11,7 @@ class AddListForm extends Component {
         // this.escFunction = this.escFunction.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
+        this.handleCloseThis = this.handleCloseThis.bind(this);
     }
     handleChange(event) {
         if (event.target.name === 'name') {
@@ -24,7 +24,10 @@ class AddListForm extends Component {
             });
         }
     }
-
+    handleCloseThis(event) {
+        event.preventDefault();
+        this.props.handleClose();
+    }
     handleSubmit(event) {
         event.preventDefault()
         this.submitList()
@@ -80,7 +83,7 @@ class AddListForm extends Component {
             <form className='list-composer' onSubmit={this.handleSubmit}>
                 <div className='list-compose-area-div'>
                     <textarea className='list-compose-area-input'
-                        placeholder='Enter a title for this List...'
+                        placeholder='Enter a name for this List...'
                         name="name"
                         onChange={this.handleChange}
                         value={name}>
@@ -90,8 +93,9 @@ class AddListForm extends Component {
                 <div className='list-controllers'>
                     <div className='list-control-section'>
                         <input type='submit' className='list-add-input-btn' value='Add List' disabled={!isSubmitable} onClick={this.handleSubmit} />
-                    </div>
 
+                    </div>
+                    <span className='list-control-close-btn' onClick={this.handleCloseThis}>X</span>
                 </div>
             </form>
         )

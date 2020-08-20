@@ -118,7 +118,7 @@ class PlayGroundMain extends Component {
 
     handleOpenAddCard(event) {
 
-        const id = event.target.closest('div').dataset.listId;
+        const id = event.target.dataset.listId;
         const newMap = new Map(this.state.isOpenList);
         newMap.set(id, true);
         this.setState({ isOpenList: newMap });
@@ -236,7 +236,7 @@ class PlayGroundMain extends Component {
                                                                 data-list-id={list._id}>
                                                             </Button>
                                                         }
-                                                        style={{ top: 40 }}
+                                                        style={{ top: 40, backgroundColor: '#EBECF0' }}
                                                         basic
                                                         hideOnScroll
                                                     ><AddIssueForm
@@ -266,7 +266,7 @@ class PlayGroundMain extends Component {
                                         className='open-add-list-btn'
                                         onClick={this.handleAddListClick} />
                                 }
-                                style={{ top: -55, left: -4, padding: 0, }}
+                                style={{ top: -55, left: -4, padding: 14, backgroundColor: '#EBECF0' }}
                                 basic
                                 hideOnScroll
                             ><AddListForm

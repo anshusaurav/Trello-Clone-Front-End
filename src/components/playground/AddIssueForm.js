@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 // import { Icon } from 'semantic-ui-react';
 class AddIssueForm extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class AddIssueForm extends Component {
         // this.escFunction = this.escFunction.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
+        this.handleCloseThis = this.handleCloseThis.bind(this);
     }
     handleChange(event) {
         if (event.target.name === 'title') {
@@ -25,6 +26,10 @@ class AddIssueForm extends Component {
         }
     }
 
+    handleCloseThis(event) {
+        event.preventDefault();
+        this.props.handleClose();
+    }
     handleSubmit(event) {
         event.preventDefault()
         this.submitIssue()
@@ -94,10 +99,8 @@ class AddIssueForm extends Component {
                     <div className='card-control-section'>
                         <input type='submit' className='card-add-input-btn' value='Add Card' disabled={!isSubmitable} onClick={this.handleSubmit} />
                     </div>
-                    {/* <div className='card-control-close-div'>
-                        <Icon fluid size='big' fitted name='x' className='card-control-close-btn'></Icon>
-                    </div> */}
-                    {/* <span className='card-control-close-btn'>X</span> */}
+
+                    <span className='card-control-close-btn' onClick={this.handleCloseThis}>X</span>
                 </div>
             </form>
         )

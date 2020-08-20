@@ -291,7 +291,7 @@
 .playground-list-cards {
   flex: 1 1 auto;
   margin-bottom: 0;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   max-height: 75vh;
   margin: 0 4px;
@@ -505,7 +505,7 @@
     .card-compose-area-input {
       border-radius: 3px;
       box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25) !important;
-      background: none;
+      background: white;
       border: none;
       box-shadow: none;
       margin-bottom: 4px;
@@ -539,7 +539,7 @@
   .card-controllers {
     display: flex;
     align-items: center;
-    justify-content: center;
+    // justify-content: center;
     .card-control-section {
       float: left;
       .card-add-input-btn {
@@ -601,6 +601,7 @@
     }
     .card-control-close-btn {
       cursor: pointer;
+      font-family: "Orbitron", sans-serif;
       margin-left: 1rem;
       color: #6b778c !important;
       margin-top: 8px !important;
@@ -627,7 +628,7 @@
     .list-compose-area-input {
       border-radius: 3px;
       box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25) !important;
-      background: none;
+      background: white;
       border: none;
       box-shadow: none;
       margin-bottom: 4px;
@@ -659,9 +660,10 @@
     }
   }
   .list-controllers {
+    display: flex;
+    align-items: center;
     .list-control-section {
-      display: flex;
-      justify-content: center;
+      float: left;
       .list-add-input-btn {
         background-color: #5aac44;
         box-shadow: none;
@@ -710,17 +712,10 @@
         }
       }
     }
-    .list-control-close-div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-left: 0.5rem;
-      height: 32px;
-      line-height: 32px;
-      width: 32px;
-    }
+
     .list-control-close-btn {
       cursor: pointer;
+      font-family: "Orbitron", sans-serif;
       margin-left: 1rem;
       color: #6b778c !important;
       margin-top: 8px !important;
