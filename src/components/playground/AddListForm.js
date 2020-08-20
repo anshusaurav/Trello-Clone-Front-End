@@ -12,6 +12,7 @@ class AddListForm extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCloseThis = this.handleCloseThis.bind(this);
+        this.escFunction = this.escFunction.bind(this);
     }
     handleChange(event) {
         if (event.target.name === 'name') {
@@ -76,6 +77,18 @@ class AddListForm extends Component {
         if (res) return { result: true, data };
 
         return { result: false, data };
+    }
+    escFunction(event) {
+        if (event.keyCode === 27) {
+            this.props.handleClose();
+        }
+    }
+    componentDidMount() {
+        document.addEventListener("keydown", this.escFunction, false);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.escFunction, false);
     }
     render() {
         const { name, isSubmitable } = this.state;

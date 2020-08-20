@@ -9,10 +9,10 @@ class AddIssueForm extends Component {
             isSubmitable: false,
             errorMsgs: null
         }
-        // this.escFunction = this.escFunction.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCloseThis = this.handleCloseThis.bind(this);
+        this.escFunction = this.escFunction.bind(this);
     }
     handleChange(event) {
         if (event.target.name === 'title') {
@@ -34,6 +34,7 @@ class AddIssueForm extends Component {
         event.preventDefault()
         this.submitIssue()
     }
+
     async submitIssue() {
         const { title } = this.state;
         const { listId } = this.props;
@@ -81,6 +82,18 @@ class AddIssueForm extends Component {
         if (res) return { result: true, data };
 
         return { result: false, data };
+    }
+    escFunction(event) {
+        if (event.keyCode === 27) {
+            this.props.handleClose();
+        }
+    }
+    componentDidMount() {
+        document.addEventListener("keydown", this.escFunction, false);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.escFunction, false);
     }
     render() {
         const { title, isSubmitable } = this.state;

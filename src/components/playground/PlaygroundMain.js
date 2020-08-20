@@ -232,14 +232,14 @@ class PlayGroundMain extends Component {
                                                                 fluid
                                                                 labelPosition='left'
                                                                 icon='plus'
-                                                                content='Add card'
+                                                                content={!list.issues.length ? 'Add card' : 'Add another card'}
                                                                 data-list-id={list._id}>
                                                             </Button>
                                                         }
-                                                        style={{ top: 40, backgroundColor: '#EBECF0' }}
+                                                        style={{ left: -4, backgroundColor: '#EBECF0' }}
                                                         basic
-                                                        hideOnScroll
-                                                    ><AddIssueForm
+                                                        hideOnScroll>
+                                                        <AddIssueForm
                                                             listId={list._id}
                                                             toggleUpdate={this.toggleUpdate}
                                                             handleClose={this.handleCloseAddCard}
