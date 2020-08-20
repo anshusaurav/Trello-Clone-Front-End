@@ -24,7 +24,6 @@ class BoardsMainContentContainer extends Component {
     async saveTeams() {
         const url = 'http://localhost:4000/api/teams'
         const { jwttoken } = localStorage
-        console.log(jwttoken)
         try {
             const response = await fetch(url, {
                 method: 'GET',
@@ -39,7 +38,7 @@ class BoardsMainContentContainer extends Component {
                 this.setState({ teams }, () => {
                     const map = new Map();
                     teams.forEach(team => {
-                        map.set(teams._id, false);
+                        map.set(team._id, false);
                     })
                     this.setState({ isOpenTeam: map })
                 })
@@ -51,7 +50,6 @@ class BoardsMainContentContainer extends Component {
     async savePrivateBoards() {
         const url = 'http://localhost:4000/api/boards/private'
         const { jwttoken } = localStorage
-        console.log(jwttoken)
         try {
             const response = await fetch(url, {
                 method: 'GET',
@@ -77,15 +75,19 @@ class BoardsMainContentContainer extends Component {
         this.setState({ isOpenPrivate: false });
     }
 
-    handleOpenTeam(id) {
+    handleOpenTeam(event) {
+
+        const id = event.target.closest('div').dataset.teamId;
         const newMap = new Map(this.state.isOpenTeam);
         newMap.set(id, true);
         this.setState({ isOpenTeam: newMap });
     }
-    handleCloseTeam(id) {
+    handleCloseTeam() {
         const newMap = new Map(this.state.isOpenTeam);
-        newMap.set(id, false);
-        this.setState({ isOpenTeam: newMap });
+        let arr = Array.from(newMap.keys());
+        arr = arr.map(elem => [elem, false]);
+        const isOpenTeam = new Map(arr);
+        this.setState({ isOpenTeam });
     }
     componentDidMount() {
         this.savePrivateBoards();
@@ -118,7 +120,7 @@ class BoardsMainContentContainer extends Component {
                                 <ul className="boards-page-board-section-list">
                                     {privateBoards && privateBoards.map(board => {
                                         return (
-                                            <li className="boards-page-board-section-list-item">
+                                            <li className="boards-page-board-section-list-item" key={board.slug}>
                                                 <Link
                                                     to={'/b/' + board.slug}
                                                     style={{
@@ -202,9 +204,9 @@ class BoardsMainContentContainer extends Component {
                     )
                 }
                 {
-                    teams && teams.map(team => {
+                    teams && isOpenTeam && teams.map(team => {
                         return (
-                            <div className="boards-page-board-section">
+                            <div className="boards-page-board-section" key={team.slug}>
                                 <div className="boards-page-board-section-header">
                                     <Icon name='users' size='large'>
 
@@ -218,7 +220,7 @@ class BoardsMainContentContainer extends Component {
                                     <ul className="boards-page-board-section-list">
                                         {team.boards && team.boards.map(board => {
                                             return (
-                                                <li className="boards-page-board-section-list-item">
+                                                <li className="boards-page-board-section-list-item" key={board.slug}>
                                                     <Link
                                                         to={'/b/' + board.slug}
                                                         style={{
@@ -249,7 +251,6 @@ class BoardsMainContentContainer extends Component {
 
                                                             </div>
                                                         </div>
-
                                                     </Link>
                                                 </li>
                                             )
@@ -267,7 +268,7 @@ class BoardsMainContentContainer extends Component {
                                                         basic
                                                         on="click"
                                                         data-team-id={team._id}
-                                                        // open={isOpenTeam.get(team._id)}
+                                                        open={isOpenTeam.get(team._id)}
                                                         onOpen={this.handleOpenTeam}
                                                         style={{
                                                             position: "fixed",
@@ -283,7 +284,7 @@ class BoardsMainContentContainer extends Component {
                                                         }}
                                                         trigger={
                                                             <div title="Create new team board"
-                                                                className="board-new-tile-div">
+                                                                className="board-new-tile-div" data-team-id={team._id}>
                                                                 <p className='board-new-tile' >
                                                                     Create New Board
                                                                 </p>
@@ -291,7 +292,7 @@ class BoardsMainContentContainer extends Component {
                                                             </div>
                                                         }>
                                                         <PopUpAddBoard
-                                                            data-team-id={team._id}
+
                                                             handleClose={this.handleCloseTeam}
                                                             toggleUpdate={this.toggleUpdate}
                                                             teamId={team._id}

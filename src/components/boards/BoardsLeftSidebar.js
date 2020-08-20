@@ -60,7 +60,7 @@ class BoardsLeftSidebar extends React.Component {
         return (
             <>
                 <List link>
-                    <List.Item as={Link} active>
+                    <List.Item as={Link} active to='/boards'>
                         <List.Icon name='trello' />
                         <List.Content>
                             <List.Header>Boards</List.Header>

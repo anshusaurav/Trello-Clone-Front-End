@@ -3,7 +3,7 @@ import { Dropdown, Icon } from 'semantic-ui-react'
 class PopUpAddBoard extends React.Component {
     constructor(props) {
         super(props);
-        console.log('Constructor: ', this.props.teamId);
+        // console.log('Constructor: ', this.props.teamId);
         this.state = {
             bgIndex: 0,
             name: '',
@@ -26,8 +26,14 @@ class PopUpAddBoard extends React.Component {
         this.handleChangeTeam = this.handleChangeTeam.bind(this);
         this.handleFormatButtons = this.handleFormatButtons.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleBGClick = this.handleBGClick.bind(this);
         this.handlePopUpClick = this.handlePopUpClick.bind(this);
         this.handleOutsidePopUpClick = this.handleOutsidePopUpClick.bind(this);
+        this.handleCloseClick = this.handleCloseClick.bind(this);
+    }
+    handleCloseClick(event) {
+        event.preventDefault();
+        this.props.handleClose();
     }
     handlePopUpClick(event) {
         event.stopPropagation();
@@ -46,6 +52,7 @@ class PopUpAddBoard extends React.Component {
         event.preventDefault();
         const bgIndex = event.target.dataset.index;
         this.setState({ bgIndex });
+        event.stopPropagation();
     }
     handleChangeName(event) {
         if (event.target.name === 'name') {
@@ -86,7 +93,6 @@ class PopUpAddBoard extends React.Component {
     async saveTeams() {
         const url = 'http://localhost:4000/api/teams'
         const { jwttoken } = localStorage
-        console.log(jwttoken)
         try {
             const response = await fetch(url, {
                 method: 'GET',
@@ -170,7 +176,7 @@ class PopUpAddBoard extends React.Component {
                                 }}>
                                     <button
                                         className="create-board-popup-close-btn"
-                                        onClick={this.props.handleClose}>
+                                        onClick={this.handleCloseClick}>
                                         X
                                     </button>
                                     <div>
