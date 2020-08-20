@@ -8,12 +8,15 @@ class BoardsMainContentContainer extends Component {
         this.state = {
             privateBoards: [],
             teams: null,
-            isOpen: false,
+            isOpenPrivate: false,
+            isOpenTeam: null,
             isUpdated: false,
         }
-        this.handleOpen = this.handleOpen.bind(this);
-        this.handleClose = this.handleClose.bind(this);
+        this.handleOpenPrivate = this.handleOpenPrivate.bind(this);
+        this.handleClosePrivate = this.handleClosePrivate.bind(this);
         this.toggleUpdate = this.toggleUpdate.bind(this);
+        this.handleOpenTeam = this.handleOpenTeam.bind(this);
+        this.handleCloseTeam = this.handleCloseTeam.bind(this);
     }
     toggleUpdate() {
         this.setState({ isUpdated: !this.state.isUpdated })
@@ -33,7 +36,13 @@ class BoardsMainContentContainer extends Component {
             const data = await response.json()
             if (!data.errors) {
                 const teams = data.teams;
-                this.setState({ teams })
+                this.setState({ teams }, () => {
+                    const map = new Map();
+                    teams.forEach(team => {
+                        map.set(teams._id, false);
+                    })
+                    this.setState({ isOpenTeam: map })
+                })
             }
         } catch (error) {
             console.error('Error: ' + error)
@@ -61,11 +70,22 @@ class BoardsMainContentContainer extends Component {
         }
     }
 
-    handleOpen() {
-        this.setState({ isOpen: true });
+    handleOpenPrivate() {
+        this.setState({ isOpenPrivate: true });
     }
-    handleClose() {
-        this.setState({ isOpen: false });
+    handleClosePrivate() {
+        this.setState({ isOpenPrivate: false });
+    }
+
+    handleOpenTeam(id) {
+        const newMap = new Map(this.state.isOpenTeam);
+        newMap.set(id, true);
+        this.setState({ isOpenTeam: newMap });
+    }
+    handleCloseTeam(id) {
+        const newMap = new Map(this.state.isOpenTeam);
+        newMap.set(id, false);
+        this.setState({ isOpenTeam: newMap });
     }
     componentDidMount() {
         this.savePrivateBoards();
@@ -78,7 +98,7 @@ class BoardsMainContentContainer extends Component {
         }
     }
     render() {
-        const { privateBoards, teams, isOpen } = this.state;
+        const { privateBoards, teams, isOpenPrivate, isOpenTeam } = this.state;
         return (
             <div className="content-all-boards">
 
@@ -143,8 +163,8 @@ class BoardsMainContentContainer extends Component {
                                                 <Popup
                                                     basic
                                                     on="click"
-                                                    open={isOpen}
-                                                    onOpen={this.handleOpen}
+                                                    open={isOpenPrivate}
+                                                    onOpen={this.handleOpenPrivate}
                                                     style={{
                                                         position: "fixed",
                                                         minWidth: "100vw",
@@ -165,7 +185,7 @@ class BoardsMainContentContainer extends Component {
 
                                                     </div>}>
                                                     <PopUpAddBoard
-                                                        handleClose={this.handleClose}
+                                                        handleClose={this.handleClosePrivate}
                                                         toggleUpdate={this.toggleUpdate}
 
                                                     />
@@ -246,8 +266,9 @@ class BoardsMainContentContainer extends Component {
                                                     <Popup
                                                         basic
                                                         on="click"
-                                                        open={isOpen}
-                                                        onOpen={this.handleOpen}
+                                                        data-team-id={team._id}
+                                                        // open={isOpenTeam.get(team._id)}
+                                                        onOpen={this.handleOpenTeam}
                                                         style={{
                                                             position: "fixed",
                                                             minWidth: "100vw",
@@ -260,16 +281,18 @@ class BoardsMainContentContainer extends Component {
                                                             marginTop: 0,
                                                             backgroundColor: "rgba(0,0,0,0.5)",
                                                         }}
-                                                        trigger={<div title="Create new team board"
-                                                            className="board-new-tile-div">
-                                                            <p className='board-new-tile' >
-                                                                Create New Board
-                                                    </p>
+                                                        trigger={
+                                                            <div title="Create new team board"
+                                                                className="board-new-tile-div">
+                                                                <p className='board-new-tile' >
+                                                                    Create New Board
+                                                                </p>
 
-                                                        </div>}>
+                                                            </div>
+                                                        }>
                                                         <PopUpAddBoard
-
-                                                            handleClose={this.handleClose}
+                                                            data-team-id={team._id}
+                                                            handleClose={this.handleCloseTeam}
                                                             toggleUpdate={this.toggleUpdate}
                                                             teamId={team._id}
                                                         />
