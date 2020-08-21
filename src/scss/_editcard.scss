@@ -28,3 +28,90 @@
     vertical-align: bottom;
   }
 }
+.quick-card-editor-card {
+  width: 256px;
+  .list-card-quick-edit {
+    z-index: 1;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
+    // cursor: pointer;
+    display: block;
+    margin-bottom: 8px;
+    max-width: 300px;
+    min-height: 20px;
+    position: relative;
+    text-decoration: none;
+  }
+  .list-card-details {
+    overflow: hidden;
+    padding: 6px 8px 2px;
+    position: relative;
+    z-index: 10;
+    color: #fff;
+  }
+  .list-card-labels {
+    z-index: 0;
+    overflow: auto;
+    position: relative;
+  }
+  .mod-card-front {
+    float: left;
+    font-size: 12px;
+    font-weight: 700;
+    height: 8px;
+    line-height: 100px;
+    margin: 0 4px 4px 0;
+    max-width: 40px;
+    min-width: 40px;
+    padding: 0;
+    text-shadow: none;
+    width: auto;
+    background-color: #61bd4f;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .list-card-edit-title {
+    overflow: hidden;
+    overflow-wrap: break-word;
+    resize: none;
+    height: 90px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    box-shadow: none;
+    width: 100%;
+    padding: 0;
+    margin: -1px;
+    color: #172b4d;
+    border-radius: 3px;
+    display: block;
+    line-height: 20px;
+    transition-property: background-color, border-color, box-shadow;
+    transition-duration: 85ms;
+    transition-timing-function: ease;
+  }
+  .badges {
+    float: left;
+    max-width: 100%;
+    margin-left: -2px;
+  }
+  .js-badges {
+  }
+  .due-date-badge {
+    color: #5e6c84;
+    display: inline-block;
+    margin: 0 4px 4px 0;
+    max-width: 100%;
+    min-height: 20px;
+    overflow: hidden;
+    position: relative;
+    padding: 2px;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    vertical-align: top;
+  }
+}

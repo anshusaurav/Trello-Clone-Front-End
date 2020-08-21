@@ -35,6 +35,8 @@ class PlayGroundMain extends Component {
     }
     onDragEnd(result) {
         const { source, destination } = result;
+        if (!source || !destination)
+            return;
         console.log(source, destination);
         this.saveSwap(source.droppableId,
             destination.droppableId,
@@ -149,11 +151,11 @@ class PlayGroundMain extends Component {
         return (
             <div className='playground-board-canvas'
                 style={{ backgroundImage: board ? `url(${board.image})` : '' }}>
-                <DragDropContext onDragEnd={this.onDragEnd}>
+                <DragDropContext onDragEnd={this.onDragEnd} >
                     <div className='playground-board-wrapper' >
                         {
                             lists && isOpenList && lists.map((list, ind) => (
-                                <Droppable droppableId={list._id + ''} key={list._id}>
+                                <Droppable droppableId={list._id + ''} key={list._id} style={{ overflowY: 'scroll' }}>
                                     {(provided, snapshot) => (
                                         <div className='playground-board-list-wrapper'>
                                             <div className='playground-board-list-content'>
@@ -190,6 +192,7 @@ class PlayGroundMain extends Component {
 
                                                                             <Popup
                                                                                 on="click"
+                                                                                basic
                                                                                 trigger={<Icon name="edit outline" />}>
                                                                                 <IssueEditorPopUp />
                                                                             </Popup>

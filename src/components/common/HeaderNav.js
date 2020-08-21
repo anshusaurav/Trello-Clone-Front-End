@@ -56,7 +56,8 @@ class HeaderNav extends React.Component {
                 <Menu inverted style={{
                     padding: '0.5rem', backgroundColor: '#026AA7', display: 'flex',
                     height: 54,
-                    zIndex: 1000
+                    zIndex: 1000,
+                    borderRadius: 0,
                 }}>
                     <div className='top-nav-left'>
                         <Link to='/'>

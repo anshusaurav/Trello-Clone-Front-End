@@ -238,7 +238,6 @@
     // overflow-y: hidden;
     padding-bottom: 8px;
     padding-top: 1rem;
-    overflow-x: scroll;
     position: absolute;
     top: 0;
     right: 0;
@@ -247,6 +246,7 @@
   }
   .playground-board-list-wrapper {
     // width: 300px;
+    // overflow-anchor: none;
     margin: 0 4px;
     height: 100%;
     box-sizing: border-box;
@@ -254,7 +254,6 @@
     vertical-align: top;
     white-space: nowrap;
     user-select: none;
-    overflow-y: scroll;
     padding-bottom: 1rem;
     &:first-child {
       margin-left: 8px;
@@ -532,6 +531,10 @@
       padding: 4px;
       font-family: inherit;
     }
+    .list-compose-area-input:focus {
+      outline: transparent;
+      border: none;
+    }
     .list-compose-area-input::-webkit-input-placeholder {
       color: #172b4d;
       font-family: inherit;
@@ -740,6 +743,6 @@
   }
 }
 
-// .blurring.dimmed.dimmable > :not(.dimmer).popup {
-//   filter: none !important;
-// }
+.blurring.dimmed.dimmable > :not(.dimmer).popup {
+  filter: none !important;
+}

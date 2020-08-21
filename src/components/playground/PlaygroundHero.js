@@ -34,6 +34,7 @@ class PlayGroundHero extends Component {
     render() {
         const arr = ['Anshu Saurabh', 'Tera Patrick', 'Jesse Jane', 'Stoya'];
         const { board } = this.state;
+        console.log(board);
         return (
             <div className='playground-header'>
                 <div className='header-board-name-div'>
@@ -56,18 +57,35 @@ class PlayGroundHero extends Component {
                     <div className="board-member-outer-div">
                         <div className="board-member-inner-div">
                             {
-                                arr.map((name, index) => {
+
+                                board && board.team &&
+                                board.team.owner &&
+                                board.team.members &&
+                                <span
+                                    key={board.team.owner.email}
+                                    className="board-member-elem"
+                                    style={{ zIndex: '' + board.team.members.length }}>
+                                    <span className="board-member-name">
+                                        {board.team.owner.fullname.split(' ').map(elem => elem[0]).join('').slice(0, 2)}
+                                    </span>
+                                </span>
+                            }
+                            {
+                                board && board.team &&
+                                board.team.members &&
+                                board.team.members.map((member, index) => {
                                     return (
                                         <span
-                                            key={index}
+                                            key={member.email}
                                             className="board-member-elem"
                                             style={{ zIndex: '' + arr.length - index }} >
                                             <span className="board-member-name">
-                                                {name.split(' ').map(elem => elem[0]).join('').slice(0, 2)}
+                                                {member.fullname.split(' ').map(elem => elem[0]).join('').slice(0, 2)}
                                             </span>
                                         </span>
                                     )
                                 })
+
                             }
                         </div>
                     </div>
@@ -82,7 +100,7 @@ class PlayGroundHero extends Component {
                     </span>
 
                 </div>
-            </div>
+            </div >
         )
     }
 }
