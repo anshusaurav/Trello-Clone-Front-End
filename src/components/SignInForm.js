@@ -61,7 +61,13 @@ class SignInForm extends React.Component {
             console.error('Error:', error)
             const errors = []
             errors.push(error.toString())
-            this.setState({ errorMsgs: errors })
+            this.setState({ errorMsgs: errors }, () => {
+                setTimeout(() => {
+                    this.setState({
+                        errorMsgs: null
+                    });
+                }, 5000)
+            })
         }
     }
     checkValidUser() {
@@ -77,7 +83,7 @@ class SignInForm extends React.Component {
         return { result: false, data }
     }
     componentDidMount() {
-        this.usernameRef.current.focus()
+        this.usernameRef.current.focus();
     }
     render() {
         const { email, password, errorMsgs } = this.state;
@@ -140,7 +146,7 @@ class SignInForm extends React.Component {
                     <div className='error-msgs'>
                         {errorMsgs &&
                             errorMsgs.map((msg, index) => (
-                                <Message attached='bottom' key={index} color='black'>
+                                <Message key={index} color='black'>
                                     {msg}
                                 </Message>
                             ))}

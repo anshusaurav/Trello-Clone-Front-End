@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form, Message } from 'semantic-ui-react'
+import { Button, Form, Message, Transition } from 'semantic-ui-react'
 class TeamMembers extends Component {
 
     constructor(props) {
@@ -210,40 +210,43 @@ class TeamMembers extends Component {
 
                                 </div>
                                 <div className="org-members-list">
-
-                                    <div className="member-list-item-detail">
-                                        <div className="member-no-menu">
-                                            <span className="member-initials">{team.owner.fullname.split(' ').map(elem => elem[0]).join('').slice(0, 2)}</span>
+                                    <Transition.Group
+                                        duration={200}
+                                    >
+                                        <div className="member-list-item-detail" key={team.owner._id}>
+                                            <div className="member-no-menu">
+                                                <span className="member-initials">{team.owner.fullname.split(' ').map(elem => elem[0]).join('').slice(0, 2)}</span>
+                                            </div>
+                                            <div className="details">
+                                                <p className="name-line"><span>{team.owner.fullname}</span></p>
+                                                <p className="user-line"><span>{team.owner.username}</span></p>
+                                            </div>
+                                            <div className="options">
+                                                <Button icon='chess king' content='Admin' color="facebook" disabled />
+                                            </div>
                                         </div>
-                                        <div className="details">
-                                            <p className="name-line"><span>{team.owner.fullname}</span></p>
-                                            <p className="user-line"><span>{team.owner.username}</span></p>
-                                        </div>
-                                        <div className="options">
-                                            <Button icon='chess king' content='Admin' color="facebook" disabled />
-                                        </div>
-                                    </div>
-                                    {
-                                        team.members && team.members.map(member => {
-                                            return (
-                                                <div className="member-list-item-detail" key={member._id}>
-                                                    <div className="member-no-menu">
-                                                        <span className="member-initials">{member.fullname.split(' ').map(elem => elem[0]).join('').slice(0, 2)}</span>
+                                        {
+                                            team.members && team.members.map(member => {
+                                                return (
+                                                    <div className="member-list-item-detail" key={member._id}>
+                                                        <div className="member-no-menu">
+                                                            <span className="member-initials">{member.fullname.split(' ').map(elem => elem[0]).join('').slice(0, 2)}</span>
+                                                        </div>
+                                                        <div className="details">
+                                                            <p className="name-line"><span>{member.fullname}</span></p>
+                                                            <p className="user-line"><span>{member.username}</span></p>
+                                                        </div>
+                                                        <div className="options">
+                                                            <Button icon='remove user'
+                                                                content='Remove'
+                                                                data-email={member.email + ''}
+                                                                onClick={this.handleDelete} />
+                                                        </div>
                                                     </div>
-                                                    <div className="details">
-                                                        <p className="name-line"><span>{member.fullname}</span></p>
-                                                        <p className="user-line"><span>{member.username}</span></p>
-                                                    </div>
-                                                    <div className="options">
-                                                        <Button icon='remove user'
-                                                            content='Remove'
-                                                            data-email={member.email + ''}
-                                                            onClick={this.handleDelete} />
-                                                    </div>
-                                                </div>
-                                            )
-                                        })
-                                    }
+                                                )
+                                            })
+                                        }
+                                    </Transition.Group>
                                 </div>
 
 

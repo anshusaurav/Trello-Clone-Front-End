@@ -8,7 +8,7 @@ class TeamMain extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { team: null, isUpdated: false, activeItem: 'Boards' }
+        this.state = { team: null, isUpdated: false, activeItem: 'Members' }
     }
     toggleUpdate = () => this.setState({ isUpdated: !this.state.isUpdated })
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })

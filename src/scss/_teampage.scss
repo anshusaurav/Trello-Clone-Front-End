@@ -121,7 +121,7 @@
       border-top: 1px solid #dfe1e6;
     }
     .member-list-item-detail {
-      display: flex;
+      display: flex !important;
       border-bottom: 1px solid rgba(9, 30, 66, 0.13);
       min-height: 40px;
       padding: 12px 0;
