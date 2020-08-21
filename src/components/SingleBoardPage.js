@@ -7,7 +7,7 @@ class SingleBoardPage extends Component {
     render() {
         return (
             <>
-                <HeaderNav />
+                <HeaderNav toggleLoggedIn={this.props.toggleLoggedIn} />
                 <BoardPlaygroundContainer />
             </>
         )

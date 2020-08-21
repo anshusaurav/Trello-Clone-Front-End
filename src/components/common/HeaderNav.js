@@ -1,12 +1,15 @@
 import React from 'react'
-import { Menu, Icon, Input } from 'semantic-ui-react'
+import { Menu, Icon, Input, Dropdown } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom'
+
 class HeaderNav extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            profile: null
+            profile: null,
+            default: ""
         }
+        this.handleChange = this.handleChange.bind(this);
     }
 
     async saveProfile() {
@@ -32,18 +35,39 @@ class HeaderNav extends React.Component {
         this.saveProfile()
     }
 
-
+    handleChange(e, { value }) {
+        this.setState({ default: value }, () => {
+            if (this.state.default === 'sign-out') {
+                this.props.toggleLoggedIn();
+                localStorage.removeItem('jwttoken');
+                localStorage.removeItem('loggedInUser');
+                this.props.history.push('/signin');
+            }
+        })
+    }
     render() {
+        const options = [
+            { key: 'user', text: 'Account', icon: 'user', value: 'user' },
+            { key: 'settings', text: 'Settings', icon: 'settings', value: 'settings' },
+            { key: 'sign-out', text: 'Sign Out', icon: 'sign out', value: 'sign-out' },
+        ]
         return <div>
             {this.state.profile && this.state.profile.image &&
                 <Menu inverted style={{
                     padding: '0.5rem', backgroundColor: '#026AA7', display: 'flex',
-                    overflow: 'hidden'
+                    height: 54,
+                    zIndex: 1000
                 }}>
                     <div className='top-nav-left'>
-                        <Icon bordered size='large' name='th' inverted color='blue' style={{ borderRadius: 2, padding: 2, }} />
-                        <Icon bordered size='large' name='home' inverted color='blue' style={{ borderRadius: 2, padding: 2 }} />
-                        <Icon bordered size='large' name='trello' content='Boards' inverted color='blue' />
+                        <Link to='/'>
+                            <Icon bordered size='large' name='th' inverted color='blue' style={{ borderRadius: 2, padding: 2, }} />
+                        </Link>
+                        <Link to='/'>
+                            <Icon bordered size='large' name='home' inverted color='blue' style={{ borderRadius: 2, padding: 2 }} />
+                        </Link>
+                        <Link to='/boards'>
+                            <Icon bordered size='large' name='trello' content='Boards' inverted color='blue' />
+                        </Link>
                         <Input inverted color='blue' size='large'
                             icon={{ name: 'search', circular: true, link: true, inverted: true, color: 'blue' }}
                         />
@@ -58,9 +82,25 @@ class HeaderNav extends React.Component {
                         <Icon bordered size='large' name='plus' inverted color='blue' style={{ borderRadius: 2, padding: 2, }} />
                         <Icon bordered size='large' name='info' inverted color='blue' style={{ borderRadius: 2, padding: 2 }} />
                         <Icon bordered size='large' name='bell outline' content='Boards' inverted color='blue' />
-                        <p style={{ borderRadius: '50%', height: 42, width: 42 }}>
-                            {this.state.profile.fullname.split(' ').map(elem => elem[0]).join('').slice(0, 2)}
-                        </p>
+                        <Dropdown trigger=
+                            {
+                                <p style={{
+                                    borderRadius: '50%',
+                                    height: 42,
+                                    width: 42,
+                                    userSelect: 'none'
+                                }}>
+                                    {this.state.profile.fullname.split(' ').map(elem => elem[0]).join('').slice(0, 2)}
+                                </p>
+
+                            }
+                            onChange={this.handleChange}
+                            options={options}
+                            pointing='top right'
+                            icon={null}
+                        >
+
+                        </Dropdown>
                     </div>
                 </Menu>
             }

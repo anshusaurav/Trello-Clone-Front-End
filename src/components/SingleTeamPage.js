@@ -8,7 +8,7 @@ class SingleTeamPage extends Component {
 
         return (
             <>
-                <HeaderNav />
+                <HeaderNav toggleLoggedIn={this.props.toggleLoggedIn} />
                 <TeamMainContainer />
             </>
         )

@@ -467,11 +467,15 @@ table {
   display: flex;
   justify-content: flex-start;
   flex-grow: 1;
+  .input {
+    height: 42px;
+  }
 }
 .top-nav-right {
   display: flex;
   justify-content: flex-end;
   flex-grow: 1;
+  overflow: visible;
   p {
     align-items: center;
     background-color: #dfe1e6;

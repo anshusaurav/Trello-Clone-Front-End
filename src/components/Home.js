@@ -5,7 +5,7 @@ import HomeMainContainer from './home/HomeMainContainer'
 class Home extends React.Component {
     render() {
         return (<>
-            <HeaderNav />
+            <HeaderNav toggleLoggedIn={this.props.toggleLoggedIn} />
             <HomeMainContainer />
         </>)
     }

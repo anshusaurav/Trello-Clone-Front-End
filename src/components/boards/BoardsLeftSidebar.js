@@ -65,13 +65,7 @@ class BoardsLeftSidebar extends React.Component {
                             <List.Header>Boards</List.Header>
                         </List.Content>
                     </List.Item>
-                    <List.Item as={Link} to='/'>
-                        <List.Icon name='theme' />
-                        <List.Content>
 
-                            <List.Header>Templates</List.Header>
-                        </List.Content>
-                    </List.Item>
                     <List.Item as={Link} to='/'>
                         <List.Icon name='home' />
                         <List.Content>
