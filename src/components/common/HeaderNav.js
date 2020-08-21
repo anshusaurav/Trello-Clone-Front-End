@@ -41,7 +41,7 @@ class HeaderNav extends React.Component {
                 this.props.toggleLoggedIn();
                 localStorage.removeItem('jwttoken');
                 localStorage.removeItem('loggedInUser');
-                this.props.history.push('/signin');
+                this.props.history.push('/');
             }
         })
     }

@@ -1,0 +1,30 @@
+.quick-card-editor {
+  background: rgba(0, 0, 0, 0.6);
+  bottom: 0;
+  color: #fff;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  .icon-close {
+    color: hsla(0, 0%, 100%, 0.6);
+    padding: 9px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition-property: transform, color;
+    transition-duration: 0.15s;
+    height: 32px;
+    line-height: 32px;
+    width: 32px;
+    font-size: 24px;
+    display: inline-block;
+    font-family: trellicons;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: bottom;
+  }
+}

@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { Button, Popup, Icon } from 'semantic-ui-react'
 import AddIssueForm from './AddIssueForm'
 import AddListForm from './AddListForm'
+import IssueEditorPopUp from './IssueEditorPopup'
 import stc from 'string-to-color'
+
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 class PlayGroundMain extends Component {
@@ -185,7 +187,12 @@ class PlayGroundMain extends Component {
 
                                                                         </div>
                                                                         <span className='list-card-edit-icon'>
-                                                                            <Icon name="edit outline" />
+
+                                                                            <Popup
+                                                                                on="click"
+                                                                                trigger={<Icon name="edit outline" />}>
+                                                                                <IssueEditorPopUp />
+                                                                            </Popup>
                                                                         </span>
                                                                         <div className='list-card-details'>
                                                                             <div className='list-card-labels'>

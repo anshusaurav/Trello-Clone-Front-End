@@ -238,6 +238,7 @@
     // overflow-y: hidden;
     padding-bottom: 8px;
     padding-top: 1rem;
+    overflow-x: scroll;
     position: absolute;
     top: 0;
     right: 0;
@@ -253,6 +254,8 @@
     vertical-align: top;
     white-space: nowrap;
     user-select: none;
+    overflow-y: scroll;
+    padding-bottom: 1rem;
     &:first-child {
       margin-left: 8px;
     }
@@ -737,6 +740,6 @@
   }
 }
 
-.blurring.dimmed.dimmable > :not(.dimmer).popup {
-  filter: none !important;
-}
+// .blurring.dimmed.dimmable > :not(.dimmer).popup {
+//   filter: none !important;
+// }
