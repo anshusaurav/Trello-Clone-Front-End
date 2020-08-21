@@ -244,4 +244,41 @@
       }
     }
   }
+  .due-date-form {
+    padding-top: 16px;
+    overflow: visible;
+    .due-date-input-div {
+      display: flex;
+      justify-content: center;
+    }
+    .due-date-input-controls {
+      padding-top: 16px;
+      .submit-btn,
+      .remove-btn {
+        box-shadow: none !important;
+        border: none !important;
+        color: #fff !important;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+        cursor: pointer !important;
+        display: inline-block !important;
+        font-weight: 400 !important;
+        line-height: 20px !important;
+        margin: 8px 4px 0 0 !important;
+        padding: 6px 12px !important;
+        text-align: center !important;
+        border-radius: 3px !important;
+      }
+      .submit-btn {
+        background-color: #5aac44 !important;
+      }
+      .remove-btn {
+        background-color: #cf513d !important;
+        float: right !important;
+        margin-right: 0 !important;
+        margin-top: 8px !important;
+        margin-bottom: 8px !important;
+      }
+    }
+  }
 }

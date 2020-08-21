@@ -1,6 +1,22 @@
 import React, { Component } from 'react'
-import { Button, Form, Input } from 'semantic-ui-react'
+import DatePicker from "react-datepicker";
+import { Button } from 'semantic-ui-react'
+import 'react-datepicker/dist/react-datepicker.css'
 class EditDueDateForCard extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            startDate: new Date()
+        };
+
+    }
+
+
+    handleChange = date => {
+        this.setState({
+            startDate: date
+        });
+    };
     render() {
         return (
             <div class="pop-over-label">
@@ -16,16 +32,22 @@ class EditDueDateForCard extends Component {
                         <div className="pop-over-content">
 
                             <div>
-                                <div>
-                                    <Form className="label-form">
-                                        <Input placeholder='Add labels' />
-                                        <Button icon="plus" />
-                                    </Form>
-                                    <div className="pop-over-section">
-
+                                <form className="due-date-form">
+                                    <div className="due-date-input-div">
+                                        <DatePicker
+                                            selected={this.state.startDate}
+                                            onChange={this.handleChange}
+                                            autoFocus
+                                        />
 
                                     </div>
-                                </div>
+                                    <div className="due-date-input-controls">
+                                        <Button positive className='submit-btn'>Save</Button>
+                                        <Button negative className='remove-btn'>Remove</Button>
+                                    </div>
+                                </form>
+
+
                             </div>
                         </div>
                     </div>
