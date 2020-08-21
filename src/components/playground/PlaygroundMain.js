@@ -217,8 +217,12 @@ class PlayGroundMain extends Component {
                                                                             <div className='badges'>
                                                                                 <span className='js-badges'>
                                                                                     <div className='due-date-badge'>
-                                                                                        <span className='badge-icon'><Icon name="clock outline" /></span>
-                                                                                        <span className='badge-text'>Aug 28</span>
+                                                                                        <span className='badge-icon'>
+                                                                                            <Icon name="clock outline" />
+                                                                                        </span>
+                                                                                        <span className='badge-text'>
+                                                                                            Aug 28
+                                                                                        </span>
                                                                                     </div>
                                                                                 </span>
                                                                             </div>
@@ -237,6 +241,7 @@ class PlayGroundMain extends Component {
                                                         on="click"
                                                         open={isOpenList.get(list._id)}
                                                         onOpen={this.handleOpenAddCard}
+                                                        closeOnTriggerBlur
                                                         trigger={
                                                             <Button
                                                                 fluid
