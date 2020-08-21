@@ -12,6 +12,8 @@ class TeamMain extends Component {
     }
     toggleUpdate = () => this.setState({ isUpdated: !this.state.isUpdated })
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+    handleSettingsclick = () => this.setState({ activeItem: 'Settings' });
+
     async saveTeam() {
         console.log("fetching team")
         const { teamSlug } = this.props;
@@ -39,7 +41,10 @@ class TeamMain extends Component {
     componentDidMount() {
         this.saveTeam();
     }
-
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.isUpdated !== prevState.isUpdated)
+            this.saveTeam();
+    }
     render() {
         const { team, activeItem } = this.state;
         return (
@@ -62,24 +67,24 @@ class TeamMain extends Component {
                                                 <h1 className="team-name-header">
                                                     {team.name}
                                                 </h1>
-                                                {/* 
-                                                    <span className="team-name-header-span">
-                                                        <Icon fitted name="lock" className="visibility-icon" />
-                                                        Private
-                                                    </span>
-                                                    <span className="team-name-header-span">
-                                                        <Icon fitted name="globe" className="visibility-icon" />
-                                                        Public
-                                                    </span> 
-                                                */}
+
+
                                             </div>
                                             <div className="team-details-div">
                                                 <p>{team.description ? team.description : ''}</p>
                                             </div>
+                                            <div className="team-details-div">
+                                                <span className="team-name-header-span">
+                                                    <Icon fitted name="chess king" className="visibility-icon" />
+                                                        Created by {team.owner.fullname}
+                                                </span>
+                                            </div>
                                             <Button
                                                 icon='edit'
                                                 content='Edit Team Profile'
-                                                className="edit-team-btn" />
+                                                className="edit-team-btn"
+                                                onClick={this.handleSettingsclick}
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -113,9 +118,9 @@ class TeamMain extends Component {
                             className='settings-main-section'
                         >
                             {activeItem === 'Members' ? (
-                                <TeamMembers teamSlug={team.slug} toggleUpdate={this.toggleUpdate} />
+                                <TeamMembers teamSlug={team.slug} />
                             ) : activeItem === 'Boards' ? (
-                                <TeamBoards teamSlug={team.slug} toggleUpdate={this.toggleUpdate} />
+                                <TeamBoards teamSlug={team.slug} />
                             ) : activeItem === 'Settings' ? (
                                 <TeamSettings teamSlug={team.slug} toggleUpdate={this.toggleUpdate} />
                             ) : null}

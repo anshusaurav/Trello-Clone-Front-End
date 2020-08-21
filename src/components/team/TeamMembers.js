@@ -120,11 +120,9 @@ class TeamMembers extends Component {
             let data = await response.json();
             if (!data.errors) {
                 this.toggleUpdate();
-
-
             } else {
                 const errors = []
-                for (const [value] of Object.values(data.errors)) {
+                for (const value of Object.values(data.errors)) {
                     errors.push(`${value}`)
                 }
                 this.setState({ errorMsgs: errors })
