@@ -10,6 +10,7 @@ class TeamMain extends Component {
         super(props);
         this.state = { team: null, isUpdated: false, activeItem: 'Boards' }
     }
+    toggleUpdate = () => this.setState({ isUpdated: !this.state.isUpdated })
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
     async saveTeam() {
         console.log("fetching team")
@@ -112,11 +113,11 @@ class TeamMain extends Component {
                             className='settings-main-section'
                         >
                             {activeItem === 'Members' ? (
-                                <TeamMembers teamSlug={team.slug} />
+                                <TeamMembers teamSlug={team.slug} toggleUpdate={this.toggleUpdate} />
                             ) : activeItem === 'Boards' ? (
-                                <TeamBoards teamSlug={team.slug} />
+                                <TeamBoards teamSlug={team.slug} toggleUpdate={this.toggleUpdate} />
                             ) : activeItem === 'Settings' ? (
-                                <TeamSettings teamSlug={team.slug} />
+                                <TeamSettings teamSlug={team.slug} toggleUpdate={this.toggleUpdate} />
                             ) : null}
                         </div>
                     </div>

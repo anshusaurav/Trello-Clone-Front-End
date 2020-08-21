@@ -192,3 +192,116 @@
     }
   }
 }
+.team-page-board-layout-list {
+  width: 100%;
+  .boards-page-board-section-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    .boards-page-board-section-list-item {
+      width: 28%;
+      padding: 0;
+      margin: 0 2% 2% 0;
+      transform: translate(0);
+      cursor: pointer;
+      position: relative;
+    }
+    .boards-page-board-section-list-item:hover .board-tile-fade {
+      opacity: 1;
+    }
+    .boards-page-board-section-list-item:hover
+      .board-tile-details-sub-container {
+      top: 50%;
+      left: 50%;
+      opacity: 1;
+    }
+    .board-tile {
+      border-radius: 3px;
+      display: block;
+      margin-right: 0;
+    }
+    .board-tile-fade {
+      background-color: rgba(0, 0, 0, 0.65);
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      border-radius: 3px;
+      display: block;
+      opacity: 0;
+      -webkit-transition: all 0.4s ease-in-out 0s;
+      -moz-transition: all 0.4s ease-in-out 0s;
+      transition: all 0.4s ease-in-out 0s;
+    }
+    .board-tile-details {
+      display: flex;
+      height: 144px;
+      position: relative;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 4px;
+    }
+    .board-tile-details-name {
+      flex: 0 0 auto;
+      font-size: 16px;
+      font-weight: 700;
+      display: inline-block;
+      overflow: hidden;
+      max-height: 40px;
+      width: 100%;
+      word-wrap: break-word;
+    }
+    .board-tile-details-sub-container {
+      opacity: 0;
+      flex: 0 0 auto;
+      display: flex;
+      align-items: baseline;
+      justify-content: flex-end;
+    }
+    .board-tile-options {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+      margin-left: 4px;
+      overflow: hidden;
+      position: relative;
+      right: -4px;
+    }
+    .board-title-options-star-icon {
+      display: block;
+      line-height: 18px;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      color: #fff;
+      font-size: 14px;
+      width: 0;
+      height: 18px;
+      opacity: 0;
+      transition-duration: 0.15s;
+    }
+    .board-title-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #fff;
+      line-height: 20px;
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+    }
+    .board-new-tile-div {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+    .board-new-tile {
+      font-weight: 300;
+      text-align: center;
+    }
+  }
+}
