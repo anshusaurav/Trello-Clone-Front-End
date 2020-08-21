@@ -36,9 +36,11 @@ class TeamMembers extends Component {
     }
     handleDelete(event) {
         // event.preventDefault();
-        console.log(event.target.getAttribute('data-email'))
-        const email = event.target.closest('div').getAttribute('data-email');
-        console.log(email);
+        const email = event.target.getAttribute('data-email');
+        if (email) {
+            this.removeMember(email);
+        }
+
     }
     async saveTeam() {
         console.log("fetching team")
@@ -100,15 +102,14 @@ class TeamMembers extends Component {
         }
 
     }
-    async removeMember() {
-        const { email } = this.state;
+    async removeMember(email) {
         const { teamSlug } = this.props;
-        const user = { user: { email } }
+        const user = { user: { email: email } }
         const url = `http://localhost:4000/api/teams/${teamSlug}/add`
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {
-                method: 'POST',
+                method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Token ${jwttoken}`
@@ -117,11 +118,9 @@ class TeamMembers extends Component {
             })
 
             let data = await response.json();
-            console.log('ADD', data);
             if (!data.errors) {
-                this.setState({ email: '' }, () => {
-                    this.toggleUpdate();
-                })
+                this.toggleUpdate();
+
 
             } else {
                 const errors = []
@@ -237,8 +236,7 @@ class TeamMembers extends Component {
                                                         <p className="name-line"><span>{member.fullname}</span></p>
                                                         <p className="user-line"><span>{member.username}</span></p>
                                                     </div>
-                                                    <div className="options"
-                                                        data-email={member.email + ''}>
+                                                    <div className="options">
                                                         <Button icon='remove user'
                                                             content='Remove'
                                                             data-email={member.email + ''}
