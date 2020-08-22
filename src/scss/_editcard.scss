@@ -54,6 +54,7 @@
     white-space: nowrap;
   }
   .list-card-edit-title {
+    font-family: inherit;
     overflow: hidden;
     overflow-wrap: break-word;
     resize: none;
@@ -77,6 +78,14 @@
       box-shadow: none;
       outline: none;
     }
+  }
+  .list-card-edit-title::-moz-selection {
+    background-color: #3189bd;
+    text-shadow: none;
+  }
+  .list-card-edit-title::selection {
+    background-color: #3189bd;
+    text-shadow: none;
   }
   .badges {
     float: left;
@@ -167,6 +176,8 @@
     z-index: 1;
   }
   .pop-over-header-close {
+    user-select: none;
+    cursor: pointer;
     color: #6b778c;
     padding: 10px 12px 10px 8px;
     position: absolute;
@@ -179,7 +190,7 @@
     width: 20px;
   }
   .pop-over-content {
-    max-height: 278px;
+    // max-height: 278px;
     overflow-x: hidden;
     overflow-y: auto;
     padding: 0 12px 12px;
@@ -214,6 +225,8 @@
         position: relative;
       }
       .edit-label-pop-close {
+        user-select: none;
+        cursor: pointer;
         border-radius: 3px;
         padding: 6px;
         position: absolute;

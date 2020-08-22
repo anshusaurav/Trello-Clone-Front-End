@@ -46,6 +46,7 @@ class PlayGroundMain extends Component {
         arr = arr.map(elem => [elem, false]);
         const isEditCard = new Map(arr);
         this.setState({ isEditCard });
+        this.toggleUpdate();
 
     }
 
@@ -174,7 +175,8 @@ class PlayGroundMain extends Component {
     render() {
         const { lists, board, isOpen, isOpenList, isEditCard } = this.state;
         const { boardSlug } = this.props;
-        const labels = ['Website', 'Android', 'iOS', 'Protoype']
+
+        // const labels = ['Website', 'Android', 'iOS', 'Protoype']
         return (
             <div className='playground-board-canvas'
                 style={{ backgroundImage: board ? `url(${board.image})` : '' }}>
@@ -241,13 +243,14 @@ class PlayGroundMain extends Component {
                                                                         </span>
                                                                         <div className='list-card-details'>
                                                                             <div className='list-card-labels'>
+
                                                                                 {
-                                                                                    labels.map((elem, i) => {
+                                                                                    issue.labels && issue.labels.map((label, index) => {
                                                                                         return (
                                                                                             <span className='card-label'
-                                                                                                key={i}
-                                                                                                style={{ backgroundColor: stc(labels[i].toUpperCase()) }}>
-                                                                                                {labels[i]}
+                                                                                                key={index}
+                                                                                                style={{ backgroundColor: stc(label.toUpperCase()) }}>
+                                                                                                {label.charAt(0).toUpperCase() + label.slice(1)}
                                                                                             </span>
                                                                                         )
                                                                                     })
@@ -257,16 +260,24 @@ class PlayGroundMain extends Component {
                                                                                 {issue.title}
                                                                             </span>
                                                                             <div className='badges'>
-                                                                                <span className='js-badges'>
-                                                                                    <div className='due-date-badge'>
-                                                                                        <span className='badge-icon'>
-                                                                                            <Icon name="clock outline" />
+                                                                                {
+                                                                                    issue.duedate !== null && issue.dueDate !== undefined && (
+                                                                                        <span className='js-badges'>
+
+                                                                                            <div className='due-date-badge'>
+                                                                                                <span className='badge-icon'>
+                                                                                                    <Icon name="clock outline" />
+                                                                                                </span>
+                                                                                                <span className='badge-text'>
+                                                                                                    {issue.dueDate}
+                                                                                                </span>
+                                                                                            </div>
+
+
+
                                                                                         </span>
-                                                                                        <span className='badge-text'>
-                                                                                            Aug 28
-                                                                                        </span>
-                                                                                    </div>
-                                                                                </span>
+                                                                                    )
+                                                                                }
                                                                             </div>
                                                                         </div>
                                                                     </div>}
