@@ -79,6 +79,7 @@ class EditDueDateForCard extends Component {
             });
             const data = await response.json();
             if (!data.errors) {
+                this.props.toggleUpdate();
                 this.props.handleClose();
             }
         } catch (error) {
@@ -104,6 +105,7 @@ class EditDueDateForCard extends Component {
             });
             const data = await response.json();
             if (!data.errors) {
+                this.props.toggleUpdate();
                 this.props.handleClose();
             }
         } catch (error) {

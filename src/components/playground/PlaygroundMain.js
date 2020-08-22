@@ -182,7 +182,6 @@ class PlayGroundMain extends Component {
         const { lists, board, isOpen, isOpenList, isEditCard } = this.state;
         const { boardSlug } = this.props;
 
-        // const labels = ['Website', 'Android', 'iOS', 'Protoype']
         return (
             <div className='playground-board-canvas'
                 style={{ backgroundImage: board ? `url(${board.image})` : '' }}>
@@ -267,7 +266,7 @@ class PlayGroundMain extends Component {
                                                                             </span>
                                                                             <div className='badges'>
                                                                                 {
-                                                                                    issue.dueDate ? (
+                                                                                    issue.dueDate && (
                                                                                         <span className='js-badges'>
 
                                                                                             <div className='due-date-badge' style={{ backgroundColor: `${Date.now() > new Date(issue.dueDate) ? '#EC9488' : '#fff'}` }}>
@@ -278,11 +277,8 @@ class PlayGroundMain extends Component {
                                                                                                     {this.timeAgo(new Date(issue.dueDate))}
                                                                                                 </span>
                                                                                             </div>
-
-
-
                                                                                         </span>
-                                                                                    ) : ''
+                                                                                    )
                                                                                 }
                                                                             </div>
                                                                         </div>

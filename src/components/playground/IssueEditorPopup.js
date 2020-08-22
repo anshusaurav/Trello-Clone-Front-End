@@ -2,6 +2,8 @@ import React, { Component, createRef } from 'react'
 import { Icon, Button, Popup } from 'semantic-ui-react'
 import EditLabelForCard from './EditLabelForCard'
 import EditDueDateForCard from './EditDueDateForCard'
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en";
 import stc from 'string-to-color'
 class IssueEditPopup extends Component {
     constructor(props) {
@@ -20,6 +22,7 @@ class IssueEditPopup extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.toggleUpdate = this.toggleUpdate.bind(this);
+        this.handleArchive = this.handleArchive.bind(this);
 
         this.handleCloseDuedatePopup = this.handleCloseDuedatePopup.bind(this);
         this.handleOpenDuedatePopup = this.handleOpenDuedatePopup.bind(this);
@@ -43,6 +46,10 @@ class IssueEditPopup extends Component {
     toggleUpdate() {
         this.setState({ isUpdated: !this.state.isUpdated });
         // this.props.toggleUpdate();
+    }
+    handleArchive(event) {
+        event.preventDefault();
+        this.deleteIssue();
     }
     handleSubmit(event) {
         event.preventDefault()
@@ -131,6 +138,35 @@ class IssueEditPopup extends Component {
             console.error("Error: " + error);
         }
     }
+    async deleteIssue() {
+        console.log("Deleting Issue")
+        const { issueId } = this.props;
+        const url = `http://localhost:4000/api/issues/single/${issueId}`;
+
+        const { jwttoken } = localStorage;
+        try {
+            const response = await fetch(url, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/JSON",
+                    Authorization: `Token ${jwttoken}`,
+                }
+            });
+            const data = await response.json();
+            // console.log(data);
+            if (!data.errors) {
+                this.props.toggleUpdate();
+                this.props.handleClose();
+            }
+        } catch (error) {
+            console.error("Error: " + error);
+        }
+    }
+    timeAgo(date) {
+        TimeAgo.addLocale(en);
+        const timeAgo = new TimeAgo("en-US");
+        return timeAgo.format(date);
+    }
     componentDidMount() {
         this.saveIssue();
         document.addEventListener("keydown", this.escFunction, false);
@@ -179,16 +215,22 @@ class IssueEditPopup extends Component {
                                 >
                                 </textarea>
                                 <div className="badges">
-                                    <span className='js-badges'>
-                                        <div className='due-date-badge'>
-                                            <span className='badge-icon'>
-                                                <Icon name="clock" />
+                                    {
+                                        issue.dueDate && (
+                                            <span className='js-badges'>
+
+                                                <div className='due-date-badge' style={{ backgroundColor: `${Date.now() > new Date(issue.dueDate) ? '#EC9488' : '#fff'}` }}>
+                                                    <span className='badge-icon'>
+                                                        <Icon name="clock outline" />
+                                                    </span>
+                                                    <span className='badge-text'>
+                                                        {this.timeAgo(new Date(issue.dueDate))}
+                                                    </span>
+                                                </div>
                                             </span>
-                                            <span className='badge-text'>
-                                                Aug 29
-                                            </span>
-                                        </div>
-                                    </span>
+                                        )
+                                    }
+
                                 </div>
                             </div>
                         </div>
@@ -237,7 +279,9 @@ class IssueEditPopup extends Component {
                             <Button
                                 icon='box'
                                 content="Archive"
-                                className="edit-card-btn" />
+                                className="edit-card-btn"
+                                onClick={this.handleArchive}
+                            />
 
                         </div>
                     </div>)
