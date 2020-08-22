@@ -3,6 +3,7 @@ import { Button, Popup, Icon } from 'semantic-ui-react'
 import AddIssueForm from './AddIssueForm'
 import AddListForm from './AddListForm'
 import IssueEditorPopUp from './IssueEditorPopup'
+import CardCommentPopup from './CardCommentPopup'
 import stc from 'string-to-color'
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
@@ -264,12 +265,16 @@ class PlayGroundMain extends Component {
                                                                             <span className='list-card-title'>
                                                                                 {issue.title}
                                                                             </span>
+
                                                                             <div className='badges'>
                                                                                 {
                                                                                     issue.dueDate && (
                                                                                         <span className='js-badges'>
 
-                                                                                            <div className='due-date-badge' style={{ backgroundColor: `${Date.now() > new Date(issue.dueDate) ? '#EC9488' : '#fff'}` }}>
+                                                                                            <div className='due-date-badge'
+                                                                                                style={{
+                                                                                                    backgroundColor: `${Date.now() > new Date(issue.dueDate) ? '#EC9488' : '#fff'}`
+                                                                                                }}>
                                                                                                 <span className='badge-icon'>
                                                                                                     <Icon name="clock outline" />
                                                                                                 </span>
@@ -280,6 +285,43 @@ class PlayGroundMain extends Component {
                                                                                         </span>
                                                                                     )
                                                                                 }
+                                                                                <Popup
+                                                                                    on="click"
+
+                                                                                    basic
+                                                                                    trigger={
+                                                                                        issue.comments.length !== 0 ? (
+                                                                                            <span className='js-badges'>
+
+                                                                                                <div className='due-date-badge'>
+                                                                                                    <span className='badge-icon'>
+                                                                                                        <Icon name="comments outline" />
+                                                                                                    </span>
+                                                                                                    <span className='badge-text'>
+                                                                                                        {issue.comments.length}
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </span>
+                                                                                        ) : (
+                                                                                                <span className='js-badges'>
+
+                                                                                                    <div className='due-date-badge'>
+                                                                                                        <span className='badge-icon'>
+                                                                                                            <Icon name="comments outline" />
+                                                                                                        </span>
+
+                                                                                                    </div>
+                                                                                                </span>
+                                                                                            )
+                                                                                    }>
+                                                                                    <CardCommentPopup
+                                                                                        issueId={issue._id}
+                                                                                        toggleUpdate={this.toggleUpdate}
+                                                                                        handleClose={this.handleCloseEditCard}
+
+                                                                                    />
+                                                                                </Popup>
+
                                                                             </div>
                                                                         </div>
                                                                     </div>}
