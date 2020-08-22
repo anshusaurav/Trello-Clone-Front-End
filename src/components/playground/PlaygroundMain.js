@@ -4,7 +4,8 @@ import AddIssueForm from './AddIssueForm'
 import AddListForm from './AddListForm'
 import IssueEditorPopUp from './IssueEditorPopup'
 import stc from 'string-to-color'
-
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 class PlayGroundMain extends Component {
@@ -162,6 +163,11 @@ class PlayGroundMain extends Component {
         const isOpenList = new Map(arr);
         this.setState({ isOpenList });
     }
+    timeAgo(date) {
+        TimeAgo.addLocale(en);
+        const timeAgo = new TimeAgo("en-US");
+        return timeAgo.format(date);
+    }
     componentDidMount() {
         this.saveLists();
         this.saveBoard();
@@ -261,22 +267,22 @@ class PlayGroundMain extends Component {
                                                                             </span>
                                                                             <div className='badges'>
                                                                                 {
-                                                                                    issue.duedate !== null && issue.dueDate !== undefined && (
+                                                                                    issue.dueDate ? (
                                                                                         <span className='js-badges'>
 
-                                                                                            <div className='due-date-badge'>
+                                                                                            <div className='due-date-badge' style={{ backgroundColor: `${Date.now() > new Date(issue.dueDate) ? '#EC9488' : '#fff'}` }}>
                                                                                                 <span className='badge-icon'>
                                                                                                     <Icon name="clock outline" />
                                                                                                 </span>
                                                                                                 <span className='badge-text'>
-                                                                                                    {issue.dueDate}
+                                                                                                    {this.timeAgo(new Date(issue.dueDate))}
                                                                                                 </span>
                                                                                             </div>
 
 
 
                                                                                         </span>
-                                                                                    )
+                                                                                    ) : ''
                                                                                 }
                                                                             </div>
                                                                         </div>
