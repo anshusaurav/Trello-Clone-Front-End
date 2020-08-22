@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, Form, Input } from 'semantic-ui-react'
 import stc from 'string-to-color'
 class EditLabelForCard extends Component {
+
     render() {
         const labels = ['Website', 'Android', 'iOS', 'Protoype']
         return (
@@ -32,7 +33,7 @@ class EditLabelForCard extends Component {
                                                         <li>
                                                             <span className="edit-label-pop-close">X</span>
                                                             <span className="card-label" key={index}
-                                                                style={{ backgroundColor: stc(labels[index].toLowerCase()) }}>
+                                                                style={{ backgroundColor: stc(labels[index].toUpperCase()) }}>
                                                                 {labels[index]}
                                                             </span>
                                                         </li>

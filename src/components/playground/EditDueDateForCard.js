@@ -38,6 +38,7 @@ class EditDueDateForCard extends Component {
                                             selected={this.state.startDate}
                                             onChange={this.handleChange}
                                             autoFocus
+
                                         />
 
                                     </div>

@@ -15,7 +15,8 @@ class PlayGroundMain extends Component {
             isUpdated: false,
             board: null,
             isOpen: false,
-            isOpenList: null
+            isOpenList: null,
+            isEditCard: null,
         }
         this.handleOpenAddList = this.handleOpenAddList.bind(this);
         this.handleCloseAddList = this.handleCloseAddList.bind(this);
@@ -23,13 +24,31 @@ class PlayGroundMain extends Component {
         this.handleOpenAddCard = this.handleOpenAddCard.bind(this);
         this.handleCloseAddCard = this.handleCloseAddCard.bind(this);
 
-        this.handleAddListClick = this.handleAddListClick.bind(this);
+        this.handleOpenEditCard = this.handleOpenEditCard.bind(this);
+        this.handleCloseEditCard = this.handleCloseEditCard.bind(this);
+
         this.onDragEnd = this.onDragEnd.bind(this);
         this.toggleUpdate = this.toggleUpdate.bind(this);
     }
-    handleAddListClick(e) {
-        e.preventDefault();
+    // handleAddListClick(e) {
+    //     e.preventDefault();
+    // }
+    handleOpenEditCard(event) {
+        const id = event.target.dataset.issueId;
+        const newMap = new Map(this.state.isEditCard);
+        newMap.set(id, true);
+        this.setState({ isEditCard: newMap });
+
     }
+    handleCloseEditCard() {
+        const newMap = new Map(this.state.isEditCard);
+        let arr = Array.from(newMap.keys());
+        arr = arr.map(elem => [elem, false]);
+        const isEditCard = new Map(arr);
+        this.setState({ isEditCard });
+
+    }
+
     toggleUpdate() {
         this.setState({ isUpdated: !this.state.isUpdated })
     }
@@ -84,7 +103,15 @@ class PlayGroundMain extends Component {
                     lists.forEach(list => {
                         map.set(list._id, false);
                     })
-                    this.setState({ isOpenList: map })
+                    this.setState({ isOpenList: map }, () => {
+                        const issueMap = new Map();
+                        lists.forEach(list => {
+                            list.issues.forEach(issue => {
+                                issueMap.set(issue._id, false);
+                            })
+                        })
+                        this.setState({ isEditCard: issueMap })
+                    })
                 });
             }
         } catch (error) {
@@ -145,7 +172,7 @@ class PlayGroundMain extends Component {
     }
 
     render() {
-        const { lists, board, isOpen, isOpenList } = this.state;
+        const { lists, board, isOpen, isOpenList, isEditCard } = this.state;
         const { boardSlug } = this.props;
         const labels = ['Website', 'Android', 'iOS', 'Protoype']
         return (
@@ -154,8 +181,11 @@ class PlayGroundMain extends Component {
                 <DragDropContext onDragEnd={this.onDragEnd} >
                     <div className='playground-board-wrapper' >
                         {
-                            lists && isOpenList && lists.map((list, ind) => (
-                                <Droppable droppableId={list._id + ''} key={list._id} style={{ overflowY: 'scroll' }}>
+                            lists && isOpenList && isEditCard && lists.map((list, ind) => (
+                                <Droppable
+                                    droppableId={list._id + ''}
+                                    key={list._id}
+                                    style={{ overflowY: 'scroll' }}>
                                     {(provided, snapshot) => (
                                         <div className='playground-board-list-wrapper'>
                                             <div className='playground-board-list-content'>
@@ -192,9 +222,21 @@ class PlayGroundMain extends Component {
 
                                                                             <Popup
                                                                                 on="click"
+                                                                                open={isEditCard.get(issue._id)}
+                                                                                onOpen={this.handleOpenEditCard}
                                                                                 basic
-                                                                                trigger={<Icon name="edit outline" />}>
-                                                                                <IssueEditorPopUp />
+                                                                                trigger={
+                                                                                    <Icon
+                                                                                        name="edit outline"
+                                                                                        data-issue-id={issue._id}
+
+                                                                                    />}>
+                                                                                <IssueEditorPopUp
+                                                                                    issueId={issue._id}
+                                                                                    toggleUpdate={this.toggleUpdate}
+                                                                                    handleClose={this.handleCloseEditCard}
+
+                                                                                />
                                                                             </Popup>
                                                                         </span>
                                                                         <div className='list-card-details'>
@@ -204,7 +246,7 @@ class PlayGroundMain extends Component {
                                                                                         return (
                                                                                             <span className='card-label'
                                                                                                 key={i}
-                                                                                                style={{ backgroundColor: stc(labels[i].toLowerCase()) }}>
+                                                                                                style={{ backgroundColor: stc(labels[i].toUpperCase()) }}>
                                                                                                 {labels[i]}
                                                                                             </span>
                                                                                         )
@@ -241,7 +283,6 @@ class PlayGroundMain extends Component {
                                                         on="click"
                                                         open={isOpenList.get(list._id)}
                                                         onOpen={this.handleOpenAddCard}
-                                                        closeOnTriggerBlur
                                                         trigger={
                                                             <Button
                                                                 fluid
