@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { TextArea } from 'semantic-ui-react'
 class CardCommentPopup extends Component {
     constructor(props) {
         super(props);
@@ -10,7 +11,7 @@ class CardCommentPopup extends Component {
             isUpdated: false,
         }
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
         this.escFunction = this.escFunction.bind(this);
         this.toggleUpdate = this.toggleUpdate.bind(this);
@@ -20,17 +21,8 @@ class CardCommentPopup extends Component {
         this.setState({ isUpdated: !this.state.isUpdated })
     }
     handleChange(event) {
+        console.log(event.target);
         if (event.target.name === 'body') {
-            console.log(event.keyCode)
-            if (event.keyCode === 13) {
-                event.preventDefault();
-                if (this.state.isSubmitable) {
-                    event.preventDefault();
-                    this.handleSubmit();
-
-                }
-                return;
-            }
             this.setState({ body: event.target.value }, () => {
                 if (this.checkValidComment().result) {
                     this.setState({ isSubmitable: true })
@@ -38,12 +30,15 @@ class CardCommentPopup extends Component {
                     this.setState({ isSubmitable: false })
                 }
             })
-
         }
     }
-    handleSubmit(event) {
-        if (this.state.isSubmitable)
-            this.addComment();
+    handleKeyDown(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            if (this.state.isSubmitable) {
+                this.addComment();
+            }
+        }
     }
     handleRemove(event) {
         event.preventDefault();
@@ -112,7 +107,6 @@ class CardCommentPopup extends Component {
             if (!data.errors) {
                 this.setState({ body: '' }, () => {
                     this.toggleUpdate();
-                    this.props.toggleUpdate();
                 })
 
             }
@@ -123,10 +117,7 @@ class CardCommentPopup extends Component {
     async removeComment(commentTobeRemoved) {
         console.log(this.props);
         console.log("Deleting Comments")
-        // const { issueId } = this.props;
-        // const { body } = this.state;
         const url = `http://localhost:4000/api/comments/single/${commentTobeRemoved}`;
-        // const comment = { comment: { body } };
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {
@@ -140,7 +131,6 @@ class CardCommentPopup extends Component {
             if (!data.errors) {
                 this.setState({ body: '' }, () => {
                     this.toggleUpdate();
-                    this.props.toggleUpdate();
                 })
 
             }
@@ -183,13 +173,15 @@ class CardCommentPopup extends Component {
                                         <form>
                                             <div className="comment-frame">
                                                 <div className="comment-box">
-                                                    <textarea
+                                                    <TextArea
                                                         className="comment-box-input"
                                                         name="body"
-                                                        defaultValue={body}
-                                                        onKeyDown={this.handleChange}
+                                                        value={body}
+                                                        onChange={this.handleChange}
+                                                        onKeyDown={this.handleKeyDown}
+                                                        placeholder="Add a comment..."
                                                         required>
-                                                    </textarea>
+                                                    </TextArea>
                                                 </div>
                                             </div>
                                         </form>
@@ -233,7 +225,7 @@ class CardCommentPopup extends Component {
                                                                 <span className="js-actions-span">
                                                                     {
                                                                         loggedInUser.email && (
-                                                                            <span data-comment-id={comment._id}>
+                                                                            <span data-comment-id={comment._id} onClick={this.handleRemove}>
                                                                                 Delete
                                                                             </span>
                                                                         )
