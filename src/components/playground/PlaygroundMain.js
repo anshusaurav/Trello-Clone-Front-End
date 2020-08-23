@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Popup, Icon } from 'semantic-ui-react'
+import { Button, Popup, Icon, Dropdown } from 'semantic-ui-react'
 import AddIssueForm from './AddIssueForm'
 import AddListForm from './AddListForm'
 import IssueEditorPopUp from './IssueEditorPopup'
@@ -8,7 +8,10 @@ import stc from 'string-to-color'
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
+const options = [
+    { key: 'deletelist', text: 'Archive List', icon: 'trash', value: 'deletelist' },
+    { key: 'deletecards', text: 'Archive All Cards', icon: 'trash alternate', value: 'deletecards' },
+]
 class PlayGroundMain extends Component {
     constructor(props) {
         super(props);
@@ -20,6 +23,7 @@ class PlayGroundMain extends Component {
             isOpenList: null,
             isEditCard: null,
             isCommentCard: null,
+            defaultListDropDown: ""
         }
         this.handleOpenAddList = this.handleOpenAddList.bind(this);
         this.handleCloseAddList = this.handleCloseAddList.bind(this);
@@ -32,12 +36,26 @@ class PlayGroundMain extends Component {
 
         this.handleOpenCommentCard = this.handleOpenCommentCard.bind(this);
         this.handleCloseCommentCard = this.handleCloseCommentCard.bind(this);
+
+        this.handleChangeListDropDown = this.handleChangeListDropDown.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
         this.toggleUpdate = this.toggleUpdate.bind(this);
     }
     // handleAddListClick(e) {
     //     e.preventDefault();
     // }
+    handleChangeListDropDown(e, { value }) {
+        const listSlug = e.target.parentNode.parentNode.parentNode.dataset.listSlug;
+        this.setState({ default: value }, () => {
+            if (this.state.default === 'deletelist') {
+                this.deleteList(listSlug);
+            }
+            else if (this.state.default === 'deletecards') {
+                console.log('Deleting all cards' + listSlug);
+            }
+        })
+
+    }
 
     handleOpenCommentCard(event) {
         const id = event.target.closest('.js-badges').dataset.issueId;
@@ -92,6 +110,25 @@ class PlayGroundMain extends Component {
         try {
             const response = await fetch(url, {
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/JSON",
+                    Authorization: `Token ${jwttoken}`,
+                },
+            });
+            const data = await response.json();
+            if (!data.errors) {
+                this.setState({ isUpdated: !this.state.isUpdated });
+            }
+        } catch (error) {
+            console.error("Error: " + error);
+        }
+    }
+    async deleteList(listSlug) {
+        const url = `http://localhost:4000/api/lists/single/${listSlug}`;
+        const { jwttoken } = localStorage;
+        try {
+            const response = await fetch(url, {
+                method: "DELETE",
                 headers: {
                     "Content-Type": "application/JSON",
                     Authorization: `Token ${jwttoken}`,
@@ -231,8 +268,21 @@ class PlayGroundMain extends Component {
                                                         {list.name}
                                                     </h2>
                                                     <span className='playground-board-list-header-extra'>
-                                                        <Icon name="ellipsis horizontal"
-                                                            className="more-list-icon" />
+                                                        <Dropdown trigger=
+                                                            {
+                                                                <Icon name="ellipsis horizontal"
+                                                                    className="more-list-icon"
+                                                                    data-list-slug={list.slug} />
+
+                                                            }
+                                                            data-list-slug={list.slug}
+                                                            onChange={this.handleChangeListDropDown}
+                                                            options={options}
+                                                            pointing='top left'
+                                                            icon={null}
+
+                                                        />
+
                                                     </span>
                                                 </div>
                                                 <div className='playground-list-cards'

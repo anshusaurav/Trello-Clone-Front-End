@@ -1,7 +1,11 @@
 import React from 'react'
 import { Menu, Icon, Input, Dropdown } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom'
-
+const options = [
+    { key: 'user', text: 'Account', icon: 'user', value: 'user' },
+    { key: 'settings', text: 'Settings', icon: 'settings', value: 'settings' },
+    { key: 'sign-out', text: 'Sign Out', icon: 'sign out', value: 'sign-out' },
+]
 class HeaderNav extends React.Component {
     constructor(props) {
         super(props)
@@ -46,11 +50,7 @@ class HeaderNav extends React.Component {
         })
     }
     render() {
-        const options = [
-            { key: 'user', text: 'Account', icon: 'user', value: 'user' },
-            { key: 'settings', text: 'Settings', icon: 'settings', value: 'settings' },
-            { key: 'sign-out', text: 'Sign Out', icon: 'sign out', value: 'sign-out' },
-        ]
+
         return <div>
             {this.props.isLoggedIn &&
                 <Menu inverted style={{
@@ -83,25 +83,47 @@ class HeaderNav extends React.Component {
                         <Icon bordered size='large' name='plus' inverted color='blue' style={{ borderRadius: 2, padding: 2, }} />
                         <Icon bordered size='large' name='info' inverted color='blue' style={{ borderRadius: 2, padding: 2 }} />
                         <Icon bordered size='large' name='bell outline' content='Boards' inverted color='blue' />
-                        <Dropdown trigger=
-                            {
-                                <p style={{
-                                    borderRadius: '50%',
-                                    height: 42,
-                                    width: 42,
-                                    userSelect: 'none'
-                                }}>
-                                    <Icon name="user" size="large" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: 4 }} />
-                                </p>
+                        {
+                            this.state.profile ? (<Dropdown trigger=
+                                {
+                                    <p style={{
+                                        borderRadius: '50%',
+                                        height: 42,
+                                        width: 42,
+                                        userSelect: 'none'
+                                    }}>
+                                        {this.state.profile.fullname.split(' ').map(elem => elem[0]).join('').slice(0, 2)}
+                                    </p>
 
-                            }
-                            onChange={this.handleChange}
-                            options={options}
-                            pointing='top right'
-                            icon={null}
-                        >
+                                }
+                                onChange={this.handleChange}
+                                options={options}
+                                pointing='top right'
+                                icon={null}
+                            />
+                            ) : (
+                                    <Dropdown trigger=
+                                        {
+                                            <p style={{
+                                                borderRadius: '50%',
+                                                height: 42,
+                                                width: 42,
+                                                userSelect: 'none'
+                                            }}>
+                                                <Icon name="user" size="large" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: 4 }} />
+                                            </p>
 
-                        </Dropdown>
+                                        }
+                                        onChange={this.handleChange}
+                                        options={options}
+                                        pointing='top right'
+                                        icon={null}
+                                    />
+                                )
+                        }
+
+
+
                     </div>
                 </Menu>
             }
