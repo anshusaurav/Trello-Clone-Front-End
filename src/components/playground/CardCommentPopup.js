@@ -1,11 +1,176 @@
 import React, { Component } from 'react'
 class CardCommentPopup extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            comments: null,
+            body: '',
+            errorMsgs: null,
+            isSubmitable: false,
+            isUpdated: false,
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
+        this.escFunction = this.escFunction.bind(this);
+        this.toggleUpdate = this.toggleUpdate.bind(this);
+
+    }
+    toggleUpdate() {
+        this.setState({ isUpdated: !this.state.isUpdated })
+    }
+    handleChange(event) {
+        if (event.target.name === 'body') {
+            console.log(event.keyCode)
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                if (this.state.isSubmitable) {
+                    event.preventDefault();
+                    this.handleSubmit();
+
+                }
+                return;
+            }
+            this.setState({ body: event.target.value }, () => {
+                if (this.checkValidComment().result) {
+                    this.setState({ isSubmitable: true })
+                } else {
+                    this.setState({ isSubmitable: false })
+                }
+            })
+
+        }
+    }
+    handleSubmit(event) {
+        if (this.state.isSubmitable)
+            this.addComment();
+    }
+    handleRemove(event) {
+        event.preventDefault();
+        if (event.target.dataset.commentId) {
+            this.removeComment(event.target.dataset.commentId)
+        }
+    }
+    escFunction(event) {
+        if (event.keyCode === 27) {
+            this.props.handleClose();
+        }
+    }
+    checkValidComment() {
+        const { body } = this.state
+        let data = []
+        let res = true
+        if (body.trim().length === 0) {
+            res = false
+            data.push('body')
+        }
+        if (res) return { result: true, data }
+
+        return { result: false, data }
+    }
+    async saveComments() {
+        console.log(this.props);
+        console.log("fetching comments")
+        const { issueId } = this.props;
+        const url = `http://localhost:4000/api/comments/${issueId}`;
+        const { jwttoken } = localStorage;
+        try {
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/JSON",
+                    Authorization: `Token ${jwttoken}`,
+                },
+            });
+            const data = await response.json();
+            console.log('Comment', data);
+            if (!data.errors) {
+                this.setState({ comments: data.comments });
+            }
+        } catch (error) {
+            console.error("Error: " + error);
+        }
+    }
+    async addComment() {
+        console.log(this.props);
+        console.log("Updating Comments")
+        const { issueId } = this.props;
+        const { body } = this.state;
+        const url = `http://localhost:4000/api/comments/${issueId}`;
+        const comment = { comment: { body } };
+        const { jwttoken } = localStorage;
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/JSON",
+                    Authorization: `Token ${jwttoken}`,
+                },
+                body: JSON.stringify(comment)
+            });
+            const data = await response.json();
+            if (!data.errors) {
+                this.setState({ body: '' }, () => {
+                    this.toggleUpdate();
+                    this.props.toggleUpdate();
+                })
+
+            }
+        } catch (error) {
+            console.error("Error: " + error);
+        }
+    }
+    async removeComment(commentTobeRemoved) {
+        console.log(this.props);
+        console.log("Deleting Comments")
+        // const { issueId } = this.props;
+        // const { body } = this.state;
+        const url = `http://localhost:4000/api/comments/single/${commentTobeRemoved}`;
+        // const comment = { comment: { body } };
+        const { jwttoken } = localStorage;
+        try {
+            const response = await fetch(url, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/JSON",
+                    Authorization: `Token ${jwttoken}`,
+                }
+            });
+            const data = await response.json();
+            if (!data.errors) {
+                this.setState({ body: '' }, () => {
+                    this.toggleUpdate();
+                    this.props.toggleUpdate();
+                })
+
+            }
+        } catch (error) {
+            console.error("Error: " + error);
+        }
+    }
+    componentDidMount() {
+        this.saveComments();
+        document.addEventListener("keydown", this.escFunction, false);
+
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.isUpdated !== this.state.isUpdated) {
+            this.saveComments();
+        }
+    }
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.escFunction, false);
+    }
     render() {
+        const { comments, body } = this.state;
+        let loggedInUser = localStorage.getItem('loggedInUser');
+        if (loggedInUser)
+            loggedInUser = JSON.parse(loggedInUser);
         return (
             <div className="window-overlay">
                 <div className="window">
                     <div className="window-wrapper">
-                        <span className="dialog-close-button">X</span>
+                        <span className="dialog-close-button" onClick={this.props.handleClose}>X</span>
                         <div className="card-detail-window">
                             <div className="window-main-col">
                                 <div className="window-module">
@@ -18,58 +183,77 @@ class CardCommentPopup extends Component {
                                         <form>
                                             <div className="comment-frame">
                                                 <div className="comment-box">
-                                                    <textarea className="comment-box-input"></textarea>
+                                                    <textarea
+                                                        className="comment-box-input"
+                                                        name="body"
+                                                        defaultValue={body}
+                                                        onKeyDown={this.handleChange}
+                                                        required>
+                                                    </textarea>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
-                                    <div className="js-list-actions">
-                                        <div className="mod-comment-type">
-                                            <div className="phenom-creator">
-                                                <div className="js-show-mem-menu">
-                                                    <span className="member-initials">
-                                                        AS
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div className="phenom-desc">
-                                                <span className="inline-member">
-                                                    <span className="u-font-weight-bold">
-                                                        anshu saurabh
-                                                    </span>
-                                                </span>
-                                                <span className="inline-spacer">
-                                                </span>
-                                                <span className="phenom-date">
-                                                    yesterday at 11:16 PM
-                                                </span>
-                                                <div className="comment-container">
 
-                                                    <div className="action-comment ">
-                                                        <div className="current-comment">
-                                                            <p>Great</p>
+                                    {
+                                        comments && comments.map((comment) => {
+                                            return (
+                                                <div className="js-list-actions" key={comment._id}>
+                                                    <div className="mod-comment-type" >
+                                                        <div className="phenom-creator">
+                                                            <div className="js-show-mem-menu">
+                                                                <span className="member-initials">
+                                                                    {comment.author.fullname.slice(0, 2).toUpperCase()}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div className="phenom-desc">
+                                                            <span className="inline-member">
+                                                                <span className="u-font-weight-bold">
+                                                                    {comment.author.fullname}
+                                                                </span>
+                                                            </span>
+                                                            <span className="inline-spacer">
+                                                            </span>
+                                                            <span className="phenom-date">
+                                                                {comment.createdAt}
+                                                            </span>
+                                                            <div className="comment-container">
+
+                                                                <div className="action-comment ">
+                                                                    <div className="current-comment">
+                                                                        <p>{comment.body}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="phenom-reactions">
+                                                            <div className="phenom-meta">
+                                                                <span className="js-actions-span">
+                                                                    {
+                                                                        loggedInUser.email && (
+                                                                            <span data-comment-id={comment._id}>
+                                                                                Delete
+                                                                            </span>
+                                                                        )
+                                                                    }
+
+                                                                </span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            )
+                                        })
+                                    }
 
-                                            <div className="phenom-reactions">
-                                                <div className="phenom-meta">
-                                                    <span className="js-actions-span">
-                                                        <span>
-                                                            Delete
-                                                        </span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div >
+            </div>
         )
     }
 }

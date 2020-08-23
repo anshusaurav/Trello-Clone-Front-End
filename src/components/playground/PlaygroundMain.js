@@ -19,6 +19,7 @@ class PlayGroundMain extends Component {
             isOpen: false,
             isOpenList: null,
             isEditCard: null,
+            isCommentCard: null,
         }
         this.handleOpenAddList = this.handleOpenAddList.bind(this);
         this.handleCloseAddList = this.handleCloseAddList.bind(this);
@@ -29,12 +30,32 @@ class PlayGroundMain extends Component {
         this.handleOpenEditCard = this.handleOpenEditCard.bind(this);
         this.handleCloseEditCard = this.handleCloseEditCard.bind(this);
 
+        this.handleOpenCommentCard = this.handleOpenCommentCard.bind(this);
+        this.handleCloseCommentCard = this.handleCloseCommentCard.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
         this.toggleUpdate = this.toggleUpdate.bind(this);
     }
     // handleAddListClick(e) {
     //     e.preventDefault();
     // }
+
+    handleOpenCommentCard(event) {
+        const id = event.target.closest('.js-badges').dataset.issueId;
+
+        const newMap = new Map(this.state.isCommentCard);
+        newMap.set(id, true);
+        this.setState({ isCommentCard: newMap });
+
+    }
+    handleCloseCommentCard() {
+        const newMap = new Map(this.state.isCommentCard);
+        let arr = Array.from(newMap.keys());
+        arr = arr.map(elem => [elem, false]);
+        const isCommentCard = new Map(arr);
+        this.setState({ isCommentCard });
+        this.toggleUpdate();
+
+    }
     handleOpenEditCard(event) {
         const id = event.target.dataset.issueId;
         const newMap = new Map(this.state.isEditCard);
@@ -113,7 +134,15 @@ class PlayGroundMain extends Component {
                                 issueMap.set(issue._id, false);
                             })
                         })
-                        this.setState({ isEditCard: issueMap })
+                        this.setState({ isEditCard: issueMap }, () => {
+                            const commentMap = new Map();
+                            lists.forEach(list => {
+                                list.issues.forEach(issue => {
+                                    commentMap.set(issue._id, false);
+                                })
+                            })
+                            this.setState({ isCommentCard: commentMap })
+                        })
                     })
                 });
             }
@@ -180,7 +209,7 @@ class PlayGroundMain extends Component {
     }
 
     render() {
-        const { lists, board, isOpen, isOpenList, isEditCard } = this.state;
+        const { lists, board, isOpen, isOpenList, isEditCard, isCommentCard } = this.state;
         const { boardSlug } = this.props;
 
         return (
@@ -189,7 +218,7 @@ class PlayGroundMain extends Component {
                 <DragDropContext onDragEnd={this.onDragEnd} >
                     <div className='playground-board-wrapper' >
                         {
-                            lists && isOpenList && isEditCard && lists.map((list, ind) => (
+                            lists && isOpenList && isEditCard && isCommentCard && lists.map((list, ind) => (
                                 <Droppable
                                     droppableId={list._id + ''}
                                     key={list._id}
@@ -269,7 +298,7 @@ class PlayGroundMain extends Component {
                                                                             <div className='badges'>
                                                                                 {
                                                                                     issue.dueDate && (
-                                                                                        <span className='js-badges'>
+                                                                                        <span className='js-badges' >
 
                                                                                             <div className='due-date-badge'
                                                                                                 style={{
@@ -287,11 +316,24 @@ class PlayGroundMain extends Component {
                                                                                 }
                                                                                 <Popup
                                                                                     on="click"
-
+                                                                                    open={isCommentCard.get(issue._id)}
+                                                                                    onOpen={this.handleOpenCommentCard}
                                                                                     basic
+                                                                                    style={{
+                                                                                        position: "fixed",
+                                                                                        minWidth: "100vw",
+                                                                                        minHeight: "100vh",
+                                                                                        top: -2,
+                                                                                        left: -2,
+                                                                                        bottom: -2,
+                                                                                        right: -2,
+                                                                                        transform: "none",
+                                                                                        marginTop: 0,
+                                                                                        backgroundColor: "rgba(0,0,0,0.5)",
+                                                                                    }}
                                                                                     trigger={
                                                                                         issue.comments.length !== 0 ? (
-                                                                                            <span className='js-badges'>
+                                                                                            <span className='js-badges' data-issue-id={issue._id} >
 
                                                                                                 <div className='due-date-badge'>
                                                                                                     <span className='badge-icon'>
@@ -303,7 +345,7 @@ class PlayGroundMain extends Component {
                                                                                                 </div>
                                                                                             </span>
                                                                                         ) : (
-                                                                                                <span className='js-badges'>
+                                                                                                <span className='js-badges' data-issue-id={issue._id}>
 
                                                                                                     <div className='due-date-badge'>
                                                                                                         <span className='badge-icon'>
@@ -317,7 +359,7 @@ class PlayGroundMain extends Component {
                                                                                     <CardCommentPopup
                                                                                         issueId={issue._id}
                                                                                         toggleUpdate={this.toggleUpdate}
-                                                                                        handleClose={this.handleCloseEditCard}
+                                                                                        handleClose={this.handleCloseCommentCard}
 
                                                                                     />
                                                                                 </Popup>
@@ -389,7 +431,7 @@ class PlayGroundMain extends Component {
 
                     </div>
                 </DragDropContext>
-            </div>
+            </div >
         )
     }
 }

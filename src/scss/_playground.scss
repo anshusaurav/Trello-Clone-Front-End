@@ -782,6 +782,8 @@
     position: relative;
     width: 768px;
     z-index: 25;
+    max-height: 600px;
+    overflow-y: auto;
   }
   .dialog-close-button {
     color: #42526e;
@@ -798,6 +800,9 @@
     transition: background-color 85ms, color 85ms;
     font-size: 20px;
     line-height: 32px;
+    cursor: pointer;
+    font-family: "Orbitron", sans-serif;
+
     &::after {
       clear: both;
       content: "";
@@ -818,6 +823,7 @@
   .window-module {
     clear: both;
     margin-bottom: 24px;
+
     position: relative;
   }
   .js-new-comment {
