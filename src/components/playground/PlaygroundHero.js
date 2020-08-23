@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import { Icon } from 'semantic-ui-react'
+import { withRouter } from 'react-router-dom'
+
 class PlayGroundHero extends Component {
     constructor(props) {
         super(props);
-        this.state = { board: null, isUpdated: null }
-
+        this.state = { board: null, isUpdated: null };
+        this.deleteBoard = this.deleteBoard.bind(this);
+        // this.handleChange = this.handleChange.bind(this);
     }
+
     async saveBoard() {
         console.log("fetching board")
         const { boardSlug } = this.props;
@@ -28,11 +32,31 @@ class PlayGroundHero extends Component {
             console.error("Error: " + error);
         }
     }
+    async deleteBoard() {
+        const { boardSlug } = this.props;
+        const url = `http://localhost:4000/api/boards/${boardSlug}`;
+        const { jwttoken } = localStorage;
+        try {
+            const response = await fetch(url, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/JSON",
+                    Authorization: `Token ${jwttoken}`,
+                },
+            });
+            const data = await response.json();
+            // console.log(data);
+            if (!data.errors) {
+                this.props.history.push('/boards');
+            }
+        } catch (error) {
+            console.error("Error: " + error);
+        }
+    }
     componentDidMount() {
         this.saveBoard();
     }
     render() {
-        const arr = ['Anshu Saurabh', 'Tera Patrick', 'Jesse Jane', 'Stoya'];
         const { board } = this.state;
         console.log(board);
         return (
@@ -78,7 +102,7 @@ class PlayGroundHero extends Component {
                                         <span
                                             key={member.email}
                                             className="board-member-elem"
-                                            style={{ zIndex: '' + arr.length - index }} >
+                                            style={{ zIndex: '' + board.team.members.length - index }} >
                                             <span className="board-member-name">
                                                 {member.fullname.split(' ').map(elem => elem[0]).join('').slice(0, 2)}
                                             </span>
@@ -91,13 +115,14 @@ class PlayGroundHero extends Component {
                     </div>
                 </div>
                 <div className="board-header-right-grp">
-                    <span className="board-right-settings">
+                    <span className="board-right-settings" onClick={this.deleteBoard}>
                         <Icon
-                            name='settings'
+                            name='trash'
                             className="board-right-icon">
                         </Icon>
-                        <span className="board-right-btn">Settings</span>
+                        <span className="board-right-btn">Archive Board</span>
                     </span>
+
 
                 </div>
             </div >
@@ -105,4 +130,4 @@ class PlayGroundHero extends Component {
     }
 }
 
-export default PlayGroundHero
+export default withRouter(PlayGroundHero)

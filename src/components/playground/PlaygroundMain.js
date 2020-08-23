@@ -51,7 +51,7 @@ class PlayGroundMain extends Component {
                 this.deleteList(listSlug);
             }
             else if (this.state.default === 'deletecards') {
-                console.log('Deleting all cards' + listSlug);
+                this.deleteCards(listSlug);
             }
         })
 
@@ -125,6 +125,25 @@ class PlayGroundMain extends Component {
     }
     async deleteList(listSlug) {
         const url = `http://localhost:4000/api/lists/single/${listSlug}`;
+        const { jwttoken } = localStorage;
+        try {
+            const response = await fetch(url, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/JSON",
+                    Authorization: `Token ${jwttoken}`,
+                },
+            });
+            const data = await response.json();
+            if (!data.errors) {
+                this.setState({ isUpdated: !this.state.isUpdated });
+            }
+        } catch (error) {
+            console.error("Error: " + error);
+        }
+    }
+    async deleteCards(listSlug) {
+        const url = `http://localhost:4000/api/lists/deleteCards/${listSlug}`;
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {

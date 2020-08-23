@@ -34,7 +34,6 @@ class EditDueDateForCard extends Component {
         });
     };
     async saveIssue() {
-        console.log(this.props);
         console.log("fetching Issue")
         const { issueId } = this.props;
         const url = `http://localhost:4000/api/issues/single/${issueId}`;
@@ -61,7 +60,6 @@ class EditDueDateForCard extends Component {
         }
     }
     async updateIssue() {
-        console.log(this.props);
         console.log("Updating Issue")
         const { issueId } = this.props;
         const { dueDate } = this.state;
@@ -87,7 +85,6 @@ class EditDueDateForCard extends Component {
         }
     }
     async removeDueDate() {
-        console.log(this.props);
         console.log("Updating Issue")
         const { issueId } = this.props;
         const dueDate = null;
@@ -122,11 +119,11 @@ class EditDueDateForCard extends Component {
         document.removeEventListener("keydown", this.escFunction, false);
     }
     render() {
-        const { dueDate, issue } = this.state;
+        const { dueDate } = this.state;
         return (
             <>
                 {
-                    issue && (
+                    (
                         <div className="pop-over-label">
                             <div className="no-back">
                                 <div className="pop-over-header">

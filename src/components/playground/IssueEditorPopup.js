@@ -186,7 +186,7 @@ class IssueEditorPopup extends Component {
         const { issue, title, isSubmitable, isOpenDuedate, isOpenLabel } = this.state;
         return (
             <>
-                {issue && (
+                {(
                     <div className="quick-card-editor-card">
                         <div className="list-card-quick-edit">
                             <div className='list-card-details'>
@@ -196,7 +196,7 @@ class IssueEditorPopup extends Component {
                                 </span>
                                 <div className="list-card-labels">
                                     {
-                                        issue.labels && issue.labels.map((label, index) => {
+                                        issue && issue.labels && issue.labels.map((label, index) => {
                                             return (
                                                 <span className="mod-card-front" key={index}
                                                     style={{ backgroundColor: `${stc(label.toUpperCase())}` }}>
@@ -217,7 +217,7 @@ class IssueEditorPopup extends Component {
                                 </textarea>
                                 <div className="badges">
                                     {
-                                        issue.dueDate && (
+                                        issue && issue.dueDate && (
                                             <span className='js-badges'>
 
                                                 <div className='due-date-badge' style={{ backgroundColor: `${Date.now() > new Date(issue.dueDate) ? '#EC9488' : '#fff'}` }}>

@@ -153,7 +153,7 @@ class EditLabelForCard extends Component {
         return (
             <>
                 {
-                    issue && (
+                    (
                         <div className="pop-over-label" >
                             <div className="no-back">
                                 <div className="pop-over-header">
@@ -185,7 +185,7 @@ class EditLabelForCard extends Component {
                                                     <ul className="edit-labels-pop-over">
 
                                                         {
-                                                            issue.labels && issue.labels.map((label, index) => {
+                                                            issue && issue.labels && issue.labels.map((label, index) => {
                                                                 return (
                                                                     <li key={index}>
                                                                         <span
