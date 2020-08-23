@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { TextArea } from 'semantic-ui-react'
+
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en";
 class CardCommentPopup extends Component {
     constructor(props) {
         super(props);
@@ -138,6 +141,11 @@ class CardCommentPopup extends Component {
             console.error("Error: " + error);
         }
     }
+    timeAgo(date) {
+        TimeAgo.addLocale(en);
+        const timeAgo = new TimeAgo("en-US");
+        return timeAgo.format(date);
+    }
     componentDidMount() {
         this.saveComments();
         document.addEventListener("keydown", this.escFunction, false);
@@ -195,7 +203,7 @@ class CardCommentPopup extends Component {
                                                         <div className="phenom-creator">
                                                             <div className="js-show-mem-menu">
                                                                 <span className="member-initials">
-                                                                    {comment.author.fullname.slice(0, 2).toUpperCase()}
+                                                                    {comment.author.fullname.toUpperCase().split(' ').map(elem => elem[0]).join('').slice(0, 2)}
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -208,7 +216,7 @@ class CardCommentPopup extends Component {
                                                             <span className="inline-spacer">
                                                             </span>
                                                             <span className="phenom-date">
-                                                                {comment.createdAt}
+                                                                {this.timeAgo(new Date(comment.createdAt))}
                                                             </span>
                                                             <div className="comment-container">
 
@@ -224,7 +232,7 @@ class CardCommentPopup extends Component {
                                                             <div className="phenom-meta">
                                                                 <span className="js-actions-span">
                                                                     {
-                                                                        loggedInUser.email && (
+                                                                        loggedInUser.email === comment.author.email && (
                                                                             <span data-comment-id={comment._id} onClick={this.handleRemove}>
                                                                                 Delete
                                                                             </span>

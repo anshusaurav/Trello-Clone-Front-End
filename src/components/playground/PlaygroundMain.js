@@ -8,7 +8,7 @@ import stc from 'string-to-color'
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
+import { getItemStyle } from './DragNDropStyles'
 class PlayGroundMain extends Component {
     constructor(props) {
         super(props);
@@ -236,7 +236,8 @@ class PlayGroundMain extends Component {
                                                     </span>
                                                 </div>
                                                 <div className='playground-list-cards'
-                                                    ref={provided.innerRef}>
+                                                    ref={provided.innerRef}
+                                                >
 
                                                     {list.issues.map((issue, index) => (
                                                         <Draggable
@@ -249,7 +250,10 @@ class PlayGroundMain extends Component {
                                                                     ref={provided.innerRef}
                                                                     {...provided.draggableProps}
                                                                     {...provided.dragHandleProps}
-
+                                                                    style={getItemStyle(
+                                                                        snapshot.isDragging,
+                                                                        provided.draggableProps.style
+                                                                    )}
                                                                 >
                                                                     {<div className='list-card'>
                                                                         <div className='list-card-cover'>
@@ -333,7 +337,7 @@ class PlayGroundMain extends Component {
                                                                                     }}
                                                                                     trigger={
                                                                                         issue.comments.length !== 0 ? (
-                                                                                            <span className='js-badges' data-issue-id={issue._id} >
+                                                                                            <span className='js-badges comment-badge' data-issue-id={issue._id} >
 
                                                                                                 <div className='due-date-badge'>
                                                                                                     <span className='badge-icon'>
@@ -345,7 +349,7 @@ class PlayGroundMain extends Component {
                                                                                                 </div>
                                                                                             </span>
                                                                                         ) : (
-                                                                                                <span className='js-badges' data-issue-id={issue._id}>
+                                                                                                <span className='js-badges comment-badge' data-issue-id={issue._id}>
 
                                                                                                     <div className='due-date-badge'>
                                                                                                         <span className='badge-icon'>

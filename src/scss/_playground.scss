@@ -306,6 +306,9 @@
   padding: 0 4px;
   z-index: 1;
   min-height: 24px;
+  .comment-badge {
+    visibility: hidden;
+  }
   .list-card {
     background-color: #fff;
     border-radius: 3px;
@@ -321,6 +324,9 @@
     z-index: 0;
     color: #172b4d;
     &:hover .list-card-edit-icon {
+      visibility: visible;
+    }
+    &:hover .comment-badge {
       visibility: visible;
     }
     .list-card-cover {
@@ -360,6 +366,7 @@
       padding: 6px 8px 2px;
       position: relative;
       z-index: 10;
+
       cursor: pointer;
       .list-card-labels {
         overflow: auto;
