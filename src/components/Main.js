@@ -39,34 +39,34 @@ class Main extends React.Component {
                         }
                     </Route>
                     <Route exact path='/signup'>
-                        {!jwttoken ? <SignUpForm toggleLoggedIn={this.toggleLoggedIn} />
+                        {!jwttoken ? <SignUpForm />
                             : <Redirect to='/' />
                         }
                     </Route>
                     <Route exact path='/forgot'>
-                        {!jwttoken ? <ForgotPasswordForm toggleLoggedIn={this.toggleLoggedIn} />
+                        {!jwttoken ? <ForgotPasswordForm />
                             : <Redirect to='/' />
                         }
                     </Route>
                     <Route exact path='/'>
                         {!jwttoken ? <HomePage />
-                            : <Home toggleLoggedIn={this.toggleLoggedIn} />
+                            : <Home toggleLoggedIn={this.toggleLoggedIn} isLoggedIn={this.state.isLoggedIn} />
                         }
                     </Route>
                     <Route exact path='/boards'>
                         {!jwttoken ? <Redirect to='/' />
-                            : <BoardsPage toggleLoggedIn={this.toggleLoggedIn} />
+                            : <BoardsPage toggleLoggedIn={this.toggleLoggedIn} isLoggedIn={this.state.isLoggedIn} />
                         }
                     </Route>
 
                     <Route path='/teams/:slug'>
                         {!jwttoken ? <Redirect to='/' />
-                            : <SingleTeamPage toggleLoggedIn={this.toggleLoggedIn} />
+                            : <SingleTeamPage toggleLoggedIn={this.toggleLoggedIn} isLoggedIn={this.state.isLoggedIn} />
                         }
                     </Route>
                     <Route path='/b/:slug' >
                         {!jwttoken ? <Redirect to='/' />
-                            : <SingleBoardPage toggleLoggedIn={this.toggleLoggedIn} />
+                            : <SingleBoardPage toggleLoggedIn={this.toggleLoggedIn} isLoggedIn={this.state.isLoggedIn} />
                         }
                     </Route>
                 </Switch>

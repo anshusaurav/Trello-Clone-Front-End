@@ -17,8 +17,6 @@ class TeamMain extends Component {
     async saveTeam() {
         console.log("fetching team")
         const { teamSlug } = this.props;
-        // const teamSlug = this.props.match.params.slug;
-        console.log(teamSlug);
         const url = `http://localhost:4000/api/teams/${teamSlug}`;
         const { jwttoken } = localStorage;
         try {
@@ -30,7 +28,6 @@ class TeamMain extends Component {
                 },
             });
             const data = await response.json();
-            console.log(data);
             if (!data.errors) {
                 this.setState({ team: data.team });
             }
@@ -56,7 +53,6 @@ class TeamMain extends Component {
                                 <div className="tabbed-pane-header-content">
                                     <div className="org-profile-avatar">
                                         <Icon
-                                            fluid
                                             size="massive"
                                             name="users"
                                             className="profile-icon" />

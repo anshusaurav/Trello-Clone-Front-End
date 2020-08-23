@@ -102,7 +102,6 @@ class PopUpAddBoard extends React.Component {
                 }
             })
             const data = await response.json();
-            console.log(data.teams);
             if (!data.errors) {
                 let teams = [{ key: "No Team", text: "No Team", value: "No Team" }]
 

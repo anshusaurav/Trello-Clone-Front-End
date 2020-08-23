@@ -52,7 +52,7 @@ class HeaderNav extends React.Component {
             { key: 'sign-out', text: 'Sign Out', icon: 'sign out', value: 'sign-out' },
         ]
         return <div>
-            {this.state.profile && this.state.profile.image &&
+            {this.props.isLoggedIn &&
                 <Menu inverted style={{
                     padding: '0.5rem', backgroundColor: '#026AA7', display: 'flex',
                     height: 54,
@@ -91,7 +91,7 @@ class HeaderNav extends React.Component {
                                     width: 42,
                                     userSelect: 'none'
                                 }}>
-                                    {this.state.profile.fullname.split(' ').map(elem => elem[0]).join('').slice(0, 2)}
+                                    <Icon name="user" size="large" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: 4 }} />
                                 </p>
 
                             }

@@ -5,7 +5,7 @@ import BoardsMainContainer from './boards/BoardsMainContainer'
 class BoardsPage extends React.Component {
     render() {
         return (<>
-            <HeaderNav toggleLoggedIn={this.props.toggleLoggedIn} />
+            <HeaderNav toggleLoggedIn={this.props.toggleLoggedIn} isLoggedIn={this.props.isLoggedIn} />
             <BoardsMainContainer />
         </>)
     }

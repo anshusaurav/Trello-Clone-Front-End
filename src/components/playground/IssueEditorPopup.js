@@ -5,7 +5,7 @@ import EditDueDateForCard from './EditDueDateForCard'
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import stc from 'string-to-color'
-class IssueEditPopup extends Component {
+class IssueEditorPopup extends Component {
     constructor(props) {
         super(props);
 
@@ -171,6 +171,7 @@ class IssueEditPopup extends Component {
         this.saveIssue();
         document.addEventListener("keydown", this.escFunction, false);
 
+
     }
     componentDidUpdate(prevProps, prevState) {
         if (prevState.isUpdated !== this.state.isUpdated) {
@@ -291,4 +292,4 @@ class IssueEditPopup extends Component {
 
     }
 }
-export default IssueEditPopup;
+export default IssueEditorPopup;
