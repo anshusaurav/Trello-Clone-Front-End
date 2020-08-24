@@ -568,6 +568,7 @@
     .card-control-section {
       float: left;
       .card-add-input-btn {
+        font-family: inherit;
         background-color: #5aac44;
         box-shadow: none;
         border: none;
@@ -696,6 +697,7 @@
     .list-control-section {
       float: left;
       .list-add-input-btn {
+        font-family: inherit;
         background-color: #5aac44;
         box-shadow: none;
         border: none;
@@ -804,11 +806,18 @@
     overflow: hidden;
     padding: 4px;
     margin: 4px;
+    margin-right: 0;
+    margin-top: 0;
+    padding-right: 0;
+    padding-top: 0;
     width: 32px;
     z-index: 2;
     transition: background-color 85ms, color 85ms;
     font-size: 20px;
     line-height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     font-family: "Orbitron", sans-serif;
 

@@ -124,6 +124,7 @@
       }
 
       .add-board-private-btn {
+        font-family: inherit;
         position: relative;
         left: -8px;
         padding: 2px 8px;
@@ -212,6 +213,7 @@
     .action-items {
       display: flex;
       .add-board-submit-btn {
+        font-family: inherit;
         background-color: #5aac44;
         box-shadow: none;
         border: none;
