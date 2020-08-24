@@ -11,6 +11,7 @@ class SignInForm extends React.Component {
             email: '',
             password: '',
             isSubmitable: false,
+            isBtnLoading: false,
             errorMsgs: null
         }
         this.handleChange = this.handleChange.bind(this)
@@ -27,7 +28,8 @@ class SignInForm extends React.Component {
         }
     }
     handleSubmit(event) {
-        event.preventDefault()
+        event.preventDefault();
+        this.setState({ isBtnLoading: true });
         this.submitLogin()
     }
 
@@ -46,6 +48,7 @@ class SignInForm extends React.Component {
             let data = await response.json()
             // console.log(data)
             if (!data.errors) {
+
                 localStorage.setItem('jwttoken', data.user.token)
                 localStorage.setItem('loggedInUser', JSON.stringify(data.user))
                 toggleLoggedIn()
@@ -68,6 +71,8 @@ class SignInForm extends React.Component {
                     });
                 }, 5000)
             })
+        } finally {
+            this.setState({ isBtnLoading: false })
         }
     }
     checkValidUser() {
@@ -123,7 +128,8 @@ class SignInForm extends React.Component {
                                     fluid
                                     size='large'
                                     onClick={this.handleSubmit}
-                                    disabled={!this.state.isSubmitable}>
+                                    disabled={!this.state.isSubmitable}
+                                    loading={this.state.isBtnLoading}>
                                     Login
                                 </Button>
 

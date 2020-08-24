@@ -1,5 +1,5 @@
 import React, { createRef } from 'react'
-import { Dropdown, Icon } from 'semantic-ui-react'
+import { Dropdown, Icon, Button } from 'semantic-ui-react'
 class PopUpAddBoard extends React.Component {
     constructor(props) {
         super(props);
@@ -10,6 +10,7 @@ class PopUpAddBoard extends React.Component {
             team: this.props.teamId ? `${this.props.teamId}` : 'No Team',
             isPrivate: this.props.teamId ? false : true,
             isSubmitable: false,
+            isBtnLoading: false,
             bgArr: ['https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg',
                 'https://images.pexels.com/photos/870711/pexels-photo-870711.jpeg',
                 'https://images.pexels.com/photos/196667/pexels-photo-196667.jpeg',
@@ -148,10 +149,12 @@ class PopUpAddBoard extends React.Component {
             const errors = []
             errors.push(error.toString());
             this.setState({ errorMsgs: errors })
+        } finally {
+            this.setState({ isBtnLoading: false })
         }
     }
     handleSubmit(event) {
-        this.setState({ isSubmitable: false })
+        this.setState({ isBtnLoading: true })
         event.preventDefault();
         this.submitBoard();
     }
@@ -245,12 +248,13 @@ class PopUpAddBoard extends React.Component {
                                 </ul>
                             </div>
                             <div className="action-items">
-                                <button
+                                <Button
                                     className='add-board-submit-btn'
                                     disabled={!isSubmitable}
-                                    onClick={this.handleSubmit}>
+                                    onClick={this.handleSubmit}
+                                    loading={this.state.isBtnLoading}>
                                     Create Board
-                                </button>
+                                </Button>
                             </div>
                         </form>
                     </div>

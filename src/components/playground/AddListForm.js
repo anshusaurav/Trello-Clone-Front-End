@@ -1,11 +1,12 @@
 import React, { Component, createRef } from 'react'
-// import { Icon } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 class AddListForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             name: '',
             isSubmitable: false,
+            isBtnLoading: false,
             errorMsgs: null
         }
         // this.escFunction = this.escFunction.bind(this);
@@ -31,7 +32,7 @@ class AddListForm extends Component {
         this.props.handleClose();
     }
     handleSubmit(event) {
-        this.setState({ isSubmitable: false })
+        this.setState({ isBtnLoading: true })
         event.preventDefault()
         this.submitList()
     }
@@ -66,6 +67,8 @@ class AddListForm extends Component {
             const errors = []
             errors.push(error.toString())
             this.setState({ errorMsgs: errors })
+        } finally {
+            this.setState({ isBtnLoading: false })
         }
     }
     checkValidList() {
@@ -109,10 +112,19 @@ class AddListForm extends Component {
                 </div>
                 <div className='list-controllers'>
                     <div className='list-control-section'>
-                        <input type='submit' className='list-add-input-btn' value='Add List' disabled={!isSubmitable} onClick={this.handleSubmit} />
+                        <Button
+                            className='list-add-input-btn'
+
+                            disabled={!isSubmitable}
+                            onClick={this.handleSubmit}
+                            loading={this.state.isBtnLoading}
+
+                        >Add List</Button>
 
                     </div>
-                    <span className='list-control-close-btn' onClick={this.handleCloseThis}>X</span>
+                    <span
+                        className='list-control-close-btn'
+                        onClick={this.handleCloseThis}>X</span>
                 </div>
             </form>
         )

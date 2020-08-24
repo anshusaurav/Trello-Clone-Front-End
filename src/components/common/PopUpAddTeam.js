@@ -1,5 +1,5 @@
 import React, { createRef } from 'react'
-import { Message } from 'semantic-ui-react'
+import { Message, Button } from 'semantic-ui-react'
 import imgSrc from './../../images/add-team-one.svg'
 class PopUpAddTeam extends React.Component {
     constructor(props) {
@@ -8,6 +8,7 @@ class PopUpAddTeam extends React.Component {
             name: '',
             description: '',
             isSubmitable: false,
+            isBtnLoading: false,
             errorMsgs: null
         }
         this.escFunction = this.escFunction.bind(this);
@@ -41,8 +42,8 @@ class PopUpAddTeam extends React.Component {
 
     }
     handleSubmit(event) {
-        this.setState({ isSubmitable: false })
         event.preventDefault()
+        this.setState({ isBtnLoading: true })
         this.submitTeam()
     }
     async submitTeam() {
@@ -74,6 +75,8 @@ class PopUpAddTeam extends React.Component {
             const errors = []
             errors.push(error.toString())
             this.setState({ errorMsgs: errors })
+        } finally {
+            this.setState({ isBtnLoading: false })
         }
     }
     checkValidTeam() {
@@ -134,12 +137,14 @@ class PopUpAddTeam extends React.Component {
                                         ></textarea>
                                         <span className='form-add-team-input-help'>Get your members on board with a few words about your team.</span>
                                         <div className='form-add-team-btn-div'>
-                                            <button
+                                            <Button
                                                 className='form-add-team-btn'
                                                 onClick={this.handleSubmit}
-                                                disabled={!isSubmitable}>
+                                                disabled={!isSubmitable}
+                                                loading={this.state.isBtnLoading}
+                                            >
                                                 Continue
-                                            </button>
+                                            </Button>
                                         </div>
                                     </form>
                                 </div>

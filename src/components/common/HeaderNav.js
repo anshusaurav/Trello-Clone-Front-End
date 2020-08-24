@@ -130,7 +130,7 @@ class HeaderNav extends React.Component {
                         <Link to='/' className="top-nav-links">
                             <Icon
                                 bordered
-                                size='fitted'
+                                fitted
                                 name='plus'
                                 inverted
                                 color='blue'
@@ -148,7 +148,7 @@ class HeaderNav extends React.Component {
                         <Link to='/' className="top-nav-links">
                             <Icon
                                 bordered
-                                size='fitted'
+                                fitted
                                 name='info'
                                 inverted
                                 color='blue'
@@ -165,7 +165,7 @@ class HeaderNav extends React.Component {
                         <Link to='/' className="top-nav-links">
                             <Icon
                                 bordered
-                                size='fitted'
+                                fitted
                                 name='bell outline'
                                 content='Boards'
                                 inverted color='blue'

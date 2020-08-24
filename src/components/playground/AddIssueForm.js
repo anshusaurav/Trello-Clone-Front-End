@@ -1,12 +1,13 @@
 import React, { Component, createRef } from 'react'
 
-// import { Icon } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 class AddIssueForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             title: '',
             isSubmitable: false,
+            isBtnLoading: false,
             errorMsgs: null
         }
         this.handleChange = this.handleChange.bind(this);
@@ -33,7 +34,7 @@ class AddIssueForm extends Component {
     }
     handleSubmit(event) {
 
-        this.setState({ isSubmitable: false })
+        this.setState({ isBtnLoading: true })
         event.preventDefault()
         this.submitIssue()
     }
@@ -72,6 +73,9 @@ class AddIssueForm extends Component {
             const errors = []
             errors.push(error.toString())
             this.setState({ errorMsgs: errors })
+        }
+        finally {
+            this.setState({ isBtnLoading: false })
         }
     }
     checkValidList() {
@@ -116,10 +120,17 @@ class AddIssueForm extends Component {
                 </div>
                 <div className='card-controllers'>
                     <div className='card-control-section'>
-                        <input type='submit' className='card-add-input-btn' value='Add Card' disabled={!isSubmitable} onClick={this.handleSubmit} />
+                        <Button
+                            className='card-add-input-btn'
+                            disabled={!isSubmitable}
+                            onClick={this.handleSubmit}
+                            loading={this.state.isBtnLoading}>
+                            Add Card</Button>
                     </div>
 
-                    <span className='card-control-close-btn' onClick={this.handleCloseThis}>X</span>
+                    <span
+                        className='card-control-close-btn'
+                        onClick={this.handleCloseThis}>X</span>
                 </div>
             </form>
         )

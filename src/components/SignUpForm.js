@@ -14,6 +14,7 @@ class SignUpForm extends React.Component {
             fullname: '',
             password: '',
             isSubmitable: false,
+            isBtnLoading: false,
             errorMsgs: null
         }
         this.handleChange = this.handleChange.bind(this)
@@ -30,6 +31,7 @@ class SignUpForm extends React.Component {
     }
     handleSubmit(event) {
         event.preventDefault()
+        this.setState({ isBtnLoading: true })
         this.submitUser()
     }
 
@@ -61,6 +63,8 @@ class SignUpForm extends React.Component {
             const errors = []
             errors.push(error.toString());
             this.setState({ errorMsgs: errors })
+        } finally {
+            this.setState({ isBtnLoading: false })
         }
     }
     checkValidUser() {
@@ -140,6 +144,7 @@ class SignUpForm extends React.Component {
                                     fluid
                                     size='large'
                                     onClick={this.handleSubmit}
+                                    loading={this.state.isBtnLoading}
                                     disabled={!this.state.isSubmitable}>
                                     Sign up
                                 </Button>
