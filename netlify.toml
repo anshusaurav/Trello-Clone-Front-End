@@ -1,7 +1,3 @@
-
-# Role-based redirects does not have a 'to' property.
-[[redirects]]
-  from = "/gated-path"
-  status = 200
-  conditions = {Role = ["admin"]}
-  force = true
+[build]
+  command = "npm run build"
+  publish = "build/"
