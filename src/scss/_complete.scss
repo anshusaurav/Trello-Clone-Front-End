@@ -39,6 +39,7 @@ section {
 }
 body {
   line-height: 1;
+  font-family: "Fira Sans", sans-serif;
 }
 ol,
 ul {
@@ -467,6 +468,9 @@ table {
   display: flex;
   justify-content: flex-start;
   flex-grow: 1;
+  .top-nav-links {
+    margin-right: 4px;
+  }
   .input {
     height: 42px;
   }
@@ -476,6 +480,9 @@ table {
   justify-content: flex-end;
   flex-grow: 1;
   overflow: visible;
+  .top-nav-links {
+    margin-right: 4px;
+  }
   p {
     align-items: center;
     background-color: #dfe1e6;

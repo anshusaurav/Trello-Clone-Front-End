@@ -60,17 +60,57 @@ class HeaderNav extends React.Component {
                     borderRadius: 0,
                 }}>
                     <div className='top-nav-left'>
-                        <Link to='/'>
-                            <Icon bordered size='large' name='th' inverted color='blue' style={{ borderRadius: 2, padding: 2, }} />
+                        <Link to='/' className="top-nav-links">
+                            <Icon
+                                bordered
+                                fitted
+                                name='th'
+                                inverted
+                                color='blue'
+                                style={{
+                                    borderRadius: 2,
+                                    margin: 2,
+                                    height: 38, width: 38,
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center'
+                                }} />
                         </Link>
-                        <Link to='/'>
-                            <Icon bordered size='large' name='home' inverted color='blue' style={{ borderRadius: 2, padding: 2 }} />
+                        <Link to='/' className="top-nav-links">
+                            <Icon
+                                bordered
+                                fitted
+                                name='home'
+                                inverted
+                                color='blue'
+                                style={{
+                                    borderRadius: 2,
+                                    margin: 2,
+                                    height: 38, width: 38,
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center'
+                                }} />
                         </Link>
-                        <Link to='/boards'>
-                            <Icon bordered size='large' name='trello' content='Boards' inverted color='blue' />
+                        <Link to='/boards' className="top-nav-links">
+                            <Icon
+                                bordered
+                                fitted
+                                name='trello'
+                                content='Boards'
+                                inverted color='blue'
+                                style={{
+                                    borderRadius: 2,
+                                    margin: 2,
+                                    height: 38, width: 38,
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center'
+                                }}
+                            />
                         </Link>
-                        <Input inverted color='blue' size='large'
-                            icon={{ name: 'search', circular: true, link: true, inverted: true, color: 'blue' }}
+                        <Input inverted color='blue' fitted
+                            icon={{ name: 'search', circular: true, link: true, inverted: true, color: 'blue', fitted: 'true' }}
                         />
                     </div>
                     <Link to={'/'} className='home-link'>
@@ -80,9 +120,58 @@ class HeaderNav extends React.Component {
                         </div>
                     </Link>
                     <div className='top-nav-right'>
-                        <Icon bordered size='large' name='plus' inverted color='blue' style={{ borderRadius: 2, padding: 2, }} />
-                        <Icon bordered size='large' name='info' inverted color='blue' style={{ borderRadius: 2, padding: 2 }} />
-                        <Icon bordered size='large' name='bell outline' content='Boards' inverted color='blue' />
+                        <Link to='/' className="top-nav-links">
+                            <Icon
+                                bordered
+                                size='fitted'
+                                name='plus'
+                                inverted
+                                color='blue'
+                                style={{
+                                    borderRadius: 2,
+                                    // margin: 2,
+                                    height: 38,
+                                    width: 38,
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    marginLeft: 4
+                                }} />
+                        </Link>
+                        <Link to='/' className="top-nav-links">
+                            <Icon
+                                bordered
+                                size='fitted'
+                                name='info'
+                                inverted
+                                color='blue'
+                                style={{
+                                    borderRadius: 2,
+                                    // margin: 2,
+                                    height: 38, width: 38,
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    marginLeft: 4
+                                }} />
+                        </Link>
+                        <Link to='/' className="top-nav-links">
+                            <Icon
+                                bordered
+                                size='fitted'
+                                name='bell outline'
+                                content='Boards'
+                                inverted color='blue'
+                                style={{
+                                    borderRadius: 2,
+                                    // margin: 2,
+                                    height: 38, width: 38,
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    marginLeft: 4
+                                }} />
+                        </Link>
                         {
                             this.state.profile ? (<Dropdown trigger=
                                 {
@@ -110,7 +199,15 @@ class HeaderNav extends React.Component {
                                                 width: 42,
                                                 userSelect: 'none'
                                             }}>
-                                                <Icon name="user" size="large" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: 4 }} />
+                                                <Icon
+                                                    name="user"
+                                                    size="large"
+                                                    style={{
+                                                        display: 'flex',
+                                                        justifyContent: 'center',
+                                                        alignItems: 'center',
+                                                        paddingLeft: 4
+                                                    }} />
                                             </p>
 
                                         }
