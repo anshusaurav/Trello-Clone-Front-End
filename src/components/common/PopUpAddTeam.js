@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createRef } from 'react'
 import { Message } from 'semantic-ui-react'
 import imgSrc from './../../images/add-team-one.svg'
 class PopUpAddTeam extends React.Component {
@@ -15,6 +15,7 @@ class PopUpAddTeam extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handlePopUpClick = this.handlePopUpClick.bind(this);
         this.handleOutsidePopUpClick = this.handleOutsidePopUpClick.bind(this);
+        this.teamNameRef = createRef();
     }
     handlePopUpClick(event) {
         event.stopPropagation();
@@ -95,6 +96,7 @@ class PopUpAddTeam extends React.Component {
 
     componentDidMount() {
         document.addEventListener("keydown", this.escFunction, false);
+        this.teamNameRef.current.focus();
     }
     componentWillUnmount() {
         document.removeEventListener("keydown", this.escFunction, false);
@@ -119,6 +121,7 @@ class PopUpAddTeam extends React.Component {
                                             value={name}
                                             onChange={this.handleChange}
                                             className='form-add-team-input'
+                                            ref={this.teamNameRef}
                                         >
 
                                         </input>

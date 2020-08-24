@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 // import { Icon } from 'semantic-ui-react';
 class AddListForm extends Component {
     constructor(props) {
@@ -13,6 +13,7 @@ class AddListForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCloseThis = this.handleCloseThis.bind(this);
         this.escFunction = this.escFunction.bind(this);
+        this.listNameRef = createRef();
     }
     handleChange(event) {
         if (event.target.name === 'name') {
@@ -86,6 +87,7 @@ class AddListForm extends Component {
     }
     componentDidMount() {
         document.addEventListener("keydown", this.escFunction, false);
+        this.listNameRef.current.focus();
     }
 
     componentWillUnmount() {
@@ -100,7 +102,8 @@ class AddListForm extends Component {
                         placeholder='Enter a name for this List...'
                         name="name"
                         onChange={this.handleChange}
-                        value={name}>
+                        value={name}
+                        ref={this.listNameRef}>
 
                     </textarea>
                 </div>

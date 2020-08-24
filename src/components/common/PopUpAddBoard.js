@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createRef } from 'react'
 import { Dropdown, Icon } from 'semantic-ui-react'
 class PopUpAddBoard extends React.Component {
     constructor(props) {
@@ -30,6 +30,7 @@ class PopUpAddBoard extends React.Component {
         this.handlePopUpClick = this.handlePopUpClick.bind(this);
         this.handleOutsidePopUpClick = this.handleOutsidePopUpClick.bind(this);
         this.handleCloseClick = this.handleCloseClick.bind(this);
+        this.boardNameRef = createRef();
     }
     handleCloseClick(event) {
         event.preventDefault();
@@ -157,6 +158,7 @@ class PopUpAddBoard extends React.Component {
     componentDidMount() {
         document.addEventListener("keydown", this.escFunction, false);
         this.saveTeams();
+        this.boardNameRef.current.focus();
     }
 
     componentWillUnmount() {
@@ -186,7 +188,8 @@ class PopUpAddBoard extends React.Component {
                                             placeholder="Add board title"
                                             value={name}
                                             onChange={this.handleChangeName}
-                                            className="board-pop-up-input">
+                                            className="board-pop-up-input"
+                                            ref={this.boardNameRef}>
                                         </input>
                                     </div>
                                     <div>

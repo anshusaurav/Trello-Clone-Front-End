@@ -9,9 +9,7 @@ const actions = {
   removeUser: function () {
     return { type: types.REMOVE_USER };
   },
-  fetchTags: function (payload) {
-    return { type: types.FETCH_TAGS, payload };
-  },
+
 };
 
 export default actions;

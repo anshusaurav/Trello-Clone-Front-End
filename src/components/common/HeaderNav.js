@@ -70,7 +70,7 @@ class HeaderNav extends React.Component {
                                 style={{
                                     borderRadius: 2,
                                     margin: 2,
-                                    height: 38, width: 38,
+                                    height: 42, width: 42,
                                     display: 'flex',
                                     justifyContent: 'center',
                                     alignItems: 'center'
@@ -86,7 +86,7 @@ class HeaderNav extends React.Component {
                                 style={{
                                     borderRadius: 2,
                                     margin: 2,
-                                    height: 38, width: 38,
+                                    height: 42, width: 42,
                                     display: 'flex',
                                     justifyContent: 'center',
                                     alignItems: 'center'
@@ -102,7 +102,7 @@ class HeaderNav extends React.Component {
                                 style={{
                                     borderRadius: 2,
                                     margin: 2,
-                                    height: 38, width: 38,
+                                    height: 42, width: 42,
                                     display: 'flex',
                                     justifyContent: 'center',
                                     alignItems: 'center'
@@ -137,8 +137,8 @@ class HeaderNav extends React.Component {
                                 style={{
                                     borderRadius: 2,
                                     // margin: 2,
-                                    height: 38,
-                                    width: 38,
+                                    height: 42,
+                                    width: 42,
                                     display: 'flex',
                                     justifyContent: 'center',
                                     alignItems: 'center',
@@ -155,7 +155,7 @@ class HeaderNav extends React.Component {
                                 style={{
                                     borderRadius: 2,
                                     // margin: 2,
-                                    height: 38, width: 38,
+                                    height: 42, width: 42,
                                     display: 'flex',
                                     justifyContent: 'center',
                                     alignItems: 'center',
@@ -172,7 +172,7 @@ class HeaderNav extends React.Component {
                                 style={{
                                     borderRadius: 2,
                                     // margin: 2,
-                                    height: 38, width: 38,
+                                    height: 42, width: 42,
                                     display: 'flex',
                                     justifyContent: 'center',
                                     alignItems: 'center',

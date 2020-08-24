@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 
 // import { Icon } from 'semantic-ui-react';
 class AddIssueForm extends Component {
@@ -13,6 +13,7 @@ class AddIssueForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCloseThis = this.handleCloseThis.bind(this);
         this.escFunction = this.escFunction.bind(this);
+        this.issueTitleRef = createRef();
     }
     handleChange(event) {
         if (event.target.name === 'title') {
@@ -91,7 +92,9 @@ class AddIssueForm extends Component {
         }
     }
     componentDidMount() {
+
         document.addEventListener("keydown", this.escFunction, false);
+        this.issueTitleRef.current.focus();
     }
 
     componentWillUnmount() {
@@ -106,7 +109,8 @@ class AddIssueForm extends Component {
                         placeholder='Enter a title for this card...'
                         name="title"
                         onChange={this.handleChange}
-                        value={title}>
+                        value={title}
+                        ref={this.issueTitleRef}>
 
                     </textarea>
                 </div>
