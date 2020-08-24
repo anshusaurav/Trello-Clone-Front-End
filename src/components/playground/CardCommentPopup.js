@@ -19,9 +19,19 @@ class CardCommentPopup extends Component {
         this.escFunction = this.escFunction.bind(this);
         this.toggleUpdate = this.toggleUpdate.bind(this);
 
+        this.handlePopUpClick = this.handlePopUpClick.bind(this);
+        this.handleOutsidePopUpClick = this.handleOutsidePopUpClick.bind(this);
+
     }
     toggleUpdate() {
         this.setState({ isUpdated: !this.state.isUpdated })
+    }
+    handlePopUpClick(event) {
+        event.stopPropagation();
+    }
+    handleOutsidePopUpClick(event) {
+        event.preventDefault();
+        this.props.handleClose();
     }
     handleChange(event) {
         console.log(event.target);
@@ -165,8 +175,8 @@ class CardCommentPopup extends Component {
         if (loggedInUser)
             loggedInUser = JSON.parse(loggedInUser);
         return (
-            <div className="window-overlay">
-                <div className="window">
+            <div className="window-overlay" onClick={this.handleOutsidePopUpClick}>
+                <div className="window" onClick={this.handlePopUpClick}>
                     <div className="window-wrapper">
                         <span className="dialog-close-button" onClick={this.props.handleClose}>X</span>
                         <div className="card-detail-window">
