@@ -37,7 +37,7 @@ class SignUpForm extends React.Component {
         // console.log(this.contextRef.current);
         const { email, password, username, fullname } = this.state
         const user = { user: { email, password, username, fullname } }
-        const url = 'http://localhost:4000/api/user/'
+        const url = 'https://trello-clone-mern.herokuapp.com/api/user/'
 
         try {
             const response = await fetch(url, {

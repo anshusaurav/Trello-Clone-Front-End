@@ -89,7 +89,7 @@ class IssueEditorPopup extends Component {
         console.log(this.props);
         console.log("fetching Issue")
         const { issueId } = this.props;
-        const url = `http://localhost:4000/api/issues/single/${issueId}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/issues/single/${issueId}`;
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {
@@ -116,7 +116,7 @@ class IssueEditorPopup extends Component {
         console.log("Updating Issue")
         const { issueId } = this.props;
         const { title } = this.state;
-        const url = `http://localhost:4000/api/issues/single/${issueId}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/issues/single/${issueId}`;
         const issue = { issue: { title } };
         const { jwttoken } = localStorage;
         try {
@@ -141,7 +141,7 @@ class IssueEditorPopup extends Component {
     async deleteIssue() {
         console.log("Deleting Issue")
         const { issueId } = this.props;
-        const url = `http://localhost:4000/api/issues/single/${issueId}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/issues/single/${issueId}`;
 
         const { jwttoken } = localStorage;
         try {

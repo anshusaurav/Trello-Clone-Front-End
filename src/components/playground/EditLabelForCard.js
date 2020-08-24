@@ -62,7 +62,7 @@ class EditLabelForCard extends Component {
         console.log(this.props);
         console.log("fetching Issue")
         const { issueId } = this.props;
-        const url = `http://localhost:4000/api/issues/single/${issueId}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/issues/single/${issueId}`;
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {
@@ -86,7 +86,7 @@ class EditLabelForCard extends Component {
         console.log("Updating Issue")
         const { issueId } = this.props;
         const { label } = this.state;
-        const url = `http://localhost:4000/api/issues/labels/${issueId}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/issues/labels/${issueId}`;
         const issue = { issue: { label } };
         const { jwttoken } = localStorage;
         try {
@@ -113,7 +113,7 @@ class EditLabelForCard extends Component {
         console.log(this.props);
         console.log("Updating Issue")
         const { issueId } = this.props;
-        const url = `http://localhost:4000/api/issues/labels/${issueId}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/issues/labels/${issueId}`;
         const issue = { issue: { label: labelTobeRemoved } };
         const { jwttoken } = localStorage;
         try {

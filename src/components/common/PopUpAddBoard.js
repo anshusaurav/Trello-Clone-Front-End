@@ -91,7 +91,7 @@ class PopUpAddBoard extends React.Component {
         return { result: false, data };
     }
     async saveTeams() {
-        const url = 'http://localhost:4000/api/teams'
+        const url = 'https://trello-clone-mern.herokuapp.com/api/teams'
         const { jwttoken } = localStorage
         try {
             const response = await fetch(url, {
@@ -118,7 +118,7 @@ class PopUpAddBoard extends React.Component {
     async submitBoard() {
         const { name, isPrivate, team, bgIndex, bgArr } = this.state
         const board = { board: { name, isPrivate, team, image: bgArr[bgIndex] } };
-        const url = 'http://localhost:4000/api/boards/'
+        const url = 'https://trello-clone-mern.herokuapp.com/api/boards/'
         const { jwttoken } = localStorage
         try {
             const response = await fetch(url, {

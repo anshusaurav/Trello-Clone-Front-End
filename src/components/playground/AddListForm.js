@@ -37,7 +37,7 @@ class AddListForm extends Component {
         const { name } = this.state;
         const { boardSlug } = this.props;
         const list = { list: { name } }
-        const url = `http://localhost:4000/api/lists/${boardSlug}`
+        const url = `https://trello-clone-mern.herokuapp.com/api/lists/${boardSlug}`
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {

@@ -39,7 +39,7 @@ class AddIssueForm extends Component {
         const { title } = this.state;
         const { listId } = this.props;
         const issue = { issue: { title } }
-        const url = `http://localhost:4000/api/issues/${listId}`
+        const url = `https://trello-clone-mern.herokuapp.com/api/issues/${listId}`
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {

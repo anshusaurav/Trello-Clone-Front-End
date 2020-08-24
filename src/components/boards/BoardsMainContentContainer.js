@@ -22,7 +22,7 @@ class BoardsMainContentContainer extends Component {
         this.setState({ isUpdated: !this.state.isUpdated })
     }
     async saveTeams() {
-        const url = 'http://localhost:4000/api/teams'
+        const url = 'https://trello-clone-mern.herokuapp.com/api/teams'
         const { jwttoken } = localStorage
         try {
             const response = await fetch(url, {
@@ -48,7 +48,7 @@ class BoardsMainContentContainer extends Component {
         }
     }
     async savePrivateBoards() {
-        const url = 'http://localhost:4000/api/boards/private'
+        const url = 'https://trello-clone-mern.herokuapp.com/api/boards/private'
         const { jwttoken } = localStorage
         try {
             const response = await fetch(url, {

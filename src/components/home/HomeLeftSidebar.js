@@ -24,7 +24,7 @@ class HomeLeftSidebar extends React.Component {
         this.setState({ isOpen: false });
     }
     async saveTeams() {
-        const url = 'http://localhost:4000/api/teams'
+        const url = 'https://trello-clone-mern.herokuapp.com/api/teams'
         const { jwttoken } = localStorage
         try {
             const response = await fetch(url, {

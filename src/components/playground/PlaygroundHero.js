@@ -13,7 +13,7 @@ class PlayGroundHero extends Component {
     async saveBoard() {
         console.log("fetching board")
         const { boardSlug } = this.props;
-        const url = `http://localhost:4000/api/boards/${boardSlug}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/boards/${boardSlug}`;
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {
@@ -34,7 +34,7 @@ class PlayGroundHero extends Component {
     }
     async deleteBoard() {
         const { boardSlug } = this.props;
-        const url = `http://localhost:4000/api/boards/${boardSlug}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/boards/${boardSlug}`;
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {

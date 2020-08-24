@@ -17,7 +17,7 @@ class TeamMain extends Component {
     async saveTeam() {
         console.log("fetching team")
         const { teamSlug } = this.props;
-        const url = `http://localhost:4000/api/teams/${teamSlug}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/teams/${teamSlug}`;
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {

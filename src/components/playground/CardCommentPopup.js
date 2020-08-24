@@ -70,7 +70,7 @@ class CardCommentPopup extends Component {
         console.log(this.props);
         console.log("fetching comments")
         const { issueId } = this.props;
-        const url = `http://localhost:4000/api/comments/${issueId}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/comments/${issueId}`;
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {
@@ -94,7 +94,7 @@ class CardCommentPopup extends Component {
         console.log("Updating Comments")
         const { issueId } = this.props;
         const { body } = this.state;
-        const url = `http://localhost:4000/api/comments/${issueId}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/comments/${issueId}`;
         const comment = { comment: { body } };
         const { jwttoken } = localStorage;
         try {
@@ -120,7 +120,7 @@ class CardCommentPopup extends Component {
     async removeComment(commentTobeRemoved) {
         console.log(this.props);
         console.log("Deleting Comments")
-        const url = `http://localhost:4000/api/comments/single/${commentTobeRemoved}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/comments/single/${commentTobeRemoved}`;
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {

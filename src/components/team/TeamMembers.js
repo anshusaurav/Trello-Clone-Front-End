@@ -46,7 +46,7 @@ class TeamMembers extends Component {
         console.log("fetching team")
         const { teamSlug } = this.props;
         // const teamSlug = this.props.match.params.slug;
-        const url = `http://localhost:4000/api/teams/${teamSlug}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/teams/${teamSlug}`;
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {
@@ -69,7 +69,7 @@ class TeamMembers extends Component {
         const { email } = this.state;
         const { teamSlug } = this.props;
         const user = { user: { email } }
-        const url = `http://localhost:4000/api/teams/${teamSlug}/add`
+        const url = `https://trello-clone-mern.herokuapp.com/api/teams/${teamSlug}/add`
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {
@@ -105,7 +105,7 @@ class TeamMembers extends Component {
     async removeMember(email) {
         const { teamSlug } = this.props;
         const user = { user: { email: email } }
-        const url = `http://localhost:4000/api/teams/${teamSlug}/add`
+        const url = `https://trello-clone-mern.herokuapp.com/api/teams/${teamSlug}/add`
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {

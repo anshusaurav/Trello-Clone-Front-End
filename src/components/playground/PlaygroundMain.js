@@ -105,7 +105,7 @@ class PlayGroundMain extends Component {
             destination.index)
     }
     async saveSwap(srcListId, destListId, srcPos, destPos) {
-        const url = `http://localhost:4000/api/swaps?srcListId=${srcListId}&destListId=${destListId}&srcPos=${srcPos}&destPos=${destPos}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/swaps?srcListId=${srcListId}&destListId=${destListId}&srcPos=${srcPos}&destPos=${destPos}`;
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {
@@ -124,7 +124,7 @@ class PlayGroundMain extends Component {
         }
     }
     async deleteList(listSlug) {
-        const url = `http://localhost:4000/api/lists/single/${listSlug}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/lists/single/${listSlug}`;
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {
@@ -143,7 +143,7 @@ class PlayGroundMain extends Component {
         }
     }
     async deleteCards(listSlug) {
-        const url = `http://localhost:4000/api/lists/deleteCards/${listSlug}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/lists/deleteCards/${listSlug}`;
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {
@@ -164,7 +164,7 @@ class PlayGroundMain extends Component {
     async saveLists() {
         console.log("fetching list of this board")
         const { boardSlug } = this.props;
-        const url = `http://localhost:4000/api/lists/${boardSlug}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/lists/${boardSlug}`;
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {
@@ -209,7 +209,7 @@ class PlayGroundMain extends Component {
     async saveBoard() {
         console.log("fetching board")
         const { boardSlug } = this.props;
-        const url = `http://localhost:4000/api/boards/${boardSlug}`;
+        const url = `https://trello-clone-mern.herokuapp.com/api/boards/${boardSlug}`;
         const { jwttoken } = localStorage;
         try {
             const response = await fetch(url, {

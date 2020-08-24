@@ -17,7 +17,7 @@ class HeaderNav extends React.Component {
     }
 
     async saveProfile() {
-        const url = 'http://localhost:4000/api/user'
+        const url = 'https://trello-clone-mern.herokuapp.com/api/user'
         const { jwttoken } = localStorage
         try {
             const response = await fetch(url, {
