@@ -167,7 +167,7 @@
     text-decoration: none;
     box-shadow: none;
     border: none;
-    color: #a5adba;
+    color: hsl(0, 0%, 96%);
     background-color: #49852e;
     font-size: 14px;
     font-weight: 400;
@@ -183,11 +183,11 @@
     &:hover &:enabled {
       box-shadow: none;
       border: none;
-      color: #4e525a;
+      color: #f1f1f1;
       background-color: #5eac3b;
     }
     &:disabled {
-      background-color: #f4f5f7;
+      background-color: #a8a8a8;
       cursor: not-allowed;
     }
   }

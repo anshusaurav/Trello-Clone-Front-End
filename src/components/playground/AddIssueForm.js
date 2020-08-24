@@ -31,6 +31,8 @@ class AddIssueForm extends Component {
         this.props.handleClose();
     }
     handleSubmit(event) {
+
+        this.setState({ isSubmitable: false })
         event.preventDefault()
         this.submitIssue()
     }

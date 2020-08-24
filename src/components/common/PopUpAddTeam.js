@@ -40,6 +40,7 @@ class PopUpAddTeam extends React.Component {
 
     }
     handleSubmit(event) {
+        this.setState({ isSubmitable: false })
         event.preventDefault()
         this.submitTeam()
     }

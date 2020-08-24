@@ -150,6 +150,7 @@ class PopUpAddBoard extends React.Component {
         }
     }
     handleSubmit(event) {
+        this.setState({ isSubmitable: false })
         event.preventDefault();
         this.submitBoard();
     }
