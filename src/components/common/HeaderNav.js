@@ -110,7 +110,14 @@ class HeaderNav extends React.Component {
                             />
                         </Link>
                         <Input inverted color='blue' fitted
-                            icon={{ name: 'search', circular: true, link: true, inverted: true, color: 'blue', fitted: 'true' }}
+                            icon={{
+                                name: 'search',
+                                circular: true,
+                                link: true,
+                                inverted: true,
+                                color: 'blue',
+                                fitted: true
+                            }}
                         />
                     </div>
                     <Link to={'/'} className='home-link'>

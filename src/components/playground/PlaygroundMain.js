@@ -12,6 +12,16 @@ const options = [
     { key: 'deletelist', text: 'Archive List', icon: 'trash', value: 'deletelist' },
     { key: 'deletecards', text: 'Archive All Cards', icon: 'trash alternate', value: 'deletecards' },
 ]
+function array_move(arr, old_index, new_index) {
+    if (new_index >= arr.length) {
+        var k = new_index - arr.length + 1;
+        while (k--) {
+            arr.push(undefined);
+        }
+    }
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+    return arr; // for testing
+}
 class PlayGroundMain extends Component {
     constructor(props) {
         super(props);
@@ -104,7 +114,31 @@ class PlayGroundMain extends Component {
             source.index,
             destination.index)
     }
+
     async saveSwap(srcListId, destListId, srcPos, destPos) {
+        const { lists } = this.state;
+        console.log(lists)
+        let srcList = lists.find(list => list._id === srcListId);
+        let destList = lists.find(list => list._id === destListId);
+        console.log(srcList, destList)
+        if (srcListId === destListId) {
+            if (srcPos > srcList.issues.length || destPos > srcList.issues.length || srcPos < 0 || destPos < 0) {
+                return;
+            }
+            array_move(srcList.issues, srcPos, destPos);
+        }
+        else {
+            if (srcPos < 0 || srcPos > srcList.issues.length) {
+                return;
+            }
+            const issue = srcList.issues[srcPos];
+            srcList.issues.splice(srcPos, 1);
+            if (destPos < 0 || destPos > destList.issues.length) {
+                return;
+            }
+            destList.issues.splice(destPos, 0, issue);
+        }
+
         const url = `https://trello-clone-mern.herokuapp.com/api/swaps?srcListId=${srcListId}&destListId=${destListId}&srcPos=${srcPos}&destPos=${destPos}`;
         const { jwttoken } = localStorage;
         try {
@@ -455,7 +489,11 @@ class PlayGroundMain extends Component {
                                                                 labelPosition='left'
                                                                 icon='plus'
                                                                 content={!list.issues.length ? 'Add card' : 'Add another card'}
-                                                                data-list-id={list._id}>
+                                                                data-list-id={list._id}
+                                                                style={{
+                                                                    lineHeight: '28px', fontSize: 16, fontWeight: 300
+                                                                }}
+                                                            >
                                                             </Button>
                                                         }
                                                         style={{ left: -4, backgroundColor: '#EBECF0' }}
@@ -499,7 +537,7 @@ class PlayGroundMain extends Component {
                         </div>
 
                     </div>
-                </DragDropContext>
+                </DragDropContext >
             </div >
         )
     }
