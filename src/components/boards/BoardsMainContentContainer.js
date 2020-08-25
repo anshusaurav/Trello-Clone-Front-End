@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Icon, Popup } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import PopUpAddBoard from './../common/PopUpAddBoard'
+import { PlaceholderImageRectangular } from './../loaders/'
 class BoardsMainContentContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            privateBoards: [],
+            privateBoards: null,
             teams: null,
             isOpenPrivate: false,
             isOpenTeam: null,
@@ -105,7 +106,8 @@ class BoardsMainContentContainer extends Component {
             <div className="content-all-boards">
 
                 {
-                    privateBoards && (
+
+                    privateBoards ? (
                         <div className="boards-page-board-section">
                             <div className="boards-page-board-section-header">
                                 <Icon name='lock' size='large'>
@@ -201,10 +203,10 @@ class BoardsMainContentContainer extends Component {
                                 </ul>
                             </div>
                         </div>
-                    )
+                    ) : (PlaceholderImageRectangular(2))
                 }
                 {
-                    teams && isOpenTeam && teams.map(team => {
+                    teams ? (isOpenTeam && teams.map(team => {
                         return (
                             <div className="boards-page-board-section" key={team.slug}>
                                 <div className="boards-page-board-section-header">
@@ -307,7 +309,7 @@ class BoardsMainContentContainer extends Component {
                                 </div>
                             </div>
                         )
-                    })
+                    })) : (PlaceholderImageRectangular(3))
                 }
 
             </div >)
