@@ -2,6 +2,7 @@ import React from 'react';
 import { List, Button, Popup } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom'
 import PopUpAddTeam from './../common/PopUpAddTeam'
+import { PlaceholderSingleSmallRectangular } from './../loaders'
 class HomeLeftSidebar extends React.Component {
     constructor(props) {
         super(props);
@@ -99,7 +100,7 @@ class HomeLeftSidebar extends React.Component {
                 </Popup>
                 <List link className='left-sidebar-team-list'>
                     {
-                        teams && teams.map(team => {
+                        teams ? (teams.map(team => {
                             return (
                                 <List.Item as={Link} to={`/teams/${team.slug}`} key={team.slug}>
                                     <List.Icon name='users' />
@@ -108,7 +109,7 @@ class HomeLeftSidebar extends React.Component {
                                     </List.Content>
                                 </List.Item>
                             )
-                        })
+                        })) : (PlaceholderSingleSmallRectangular(5))
                     }
                 </List>
             </>
