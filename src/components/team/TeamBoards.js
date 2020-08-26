@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Icon, Popup } from 'semantic-ui-react'
 import PopUpAddBoard from './../common/PopUpAddBoard'
+import { PlaceholderImageRectangular } from './../loaders'
 class TeamBoards extends Component {
 
     constructor(props) {
@@ -58,13 +59,13 @@ class TeamBoards extends Component {
         return (
             <>
                 {
-                    team &&
+
                     <div className="org-member-wrapper">
                         <div className="org-members-page-layout">
 
                             <div className="team-page-board-layout-list">
                                 <ul className="boards-page-board-section-list">
-                                    {team && team.boards && team.boards.map(board => {
+                                    {team ? (team.boards && team.boards.map(board => {
                                         return (
                                             <li className="boards-page-board-section-list-item" key={board.slug}>
                                                 <Link
@@ -100,55 +101,56 @@ class TeamBoards extends Component {
                                                 </Link>
                                             </li>
                                         )
-                                    })}
-                                    <li className="boards-page-board-section-list-item">
-                                        <div
-                                            style={{
-                                                backgroundColor: '#F0F2F4',
+                                    })) : (PlaceholderImageRectangular(1))}
+                                    {team && (
+                                        <li className="boards-page-board-section-list-item">
+                                            <div
+                                                style={{
+                                                    backgroundColor: '#F0F2F4',
 
-                                            }}
-                                            className='board-tile'>
-                                            <div className='board-tile-details'>
+                                                }}
+                                                className='board-tile'>
+                                                <div className='board-tile-details'>
 
-                                                <Popup
-                                                    basic
-                                                    on="click"
-                                                    open={isOpen}
-                                                    onOpen={this.handleOpen}
-                                                    style={{
-                                                        position: "fixed",
-                                                        minWidth: "100vw",
-                                                        minHeight: "100vh",
-                                                        top: -2,
-                                                        left: -2,
-                                                        bottom: -2,
-                                                        right: -2,
-                                                        transform: "none",
-                                                        marginTop: 0,
-                                                        backgroundColor: "rgba(0,0,0,0.5)",
-                                                    }}
-                                                    trigger={
-                                                        <div title="Create new team board"
-                                                            className="board-new-tile-div" data-team-id={team._id}>
-                                                            <p className='board-new-tile' >
-                                                                Create New Board
+                                                    <Popup
+                                                        basic
+                                                        on="click"
+                                                        open={isOpen}
+                                                        onOpen={this.handleOpen}
+                                                        style={{
+                                                            position: "fixed",
+                                                            minWidth: "100vw",
+                                                            minHeight: "100vh",
+                                                            top: -2,
+                                                            left: -2,
+                                                            bottom: -2,
+                                                            right: -2,
+                                                            transform: "none",
+                                                            marginTop: 0,
+                                                            backgroundColor: "rgba(0,0,0,0.5)",
+                                                        }}
+                                                        trigger={
+                                                            <div title="Create new team board"
+                                                                className="board-new-tile-div" data-team-id={team._id}>
+                                                                <p className='board-new-tile' >
+                                                                    Create New Board
                                                                 </p>
 
-                                                        </div>
-                                                    }>
-                                                    <PopUpAddBoard
+                                                            </div>
+                                                        }>
+                                                        <PopUpAddBoard
 
-                                                        handleClose={this.handleClose}
-                                                        toggleUpdate={this.toggleUpdate}
-                                                        teamId={team._id}
-                                                    />
-                                                </Popup>
+                                                            handleClose={this.handleClose}
+                                                            toggleUpdate={this.toggleUpdate}
+                                                            teamId={team._id}
+                                                        />
+                                                    </Popup>
+                                                </div>
+
                                             </div>
-
-                                        </div>
-                                    </li>
-
-
+                                        </li>
+                                    )
+                                    }
                                 </ul>
                             </div>
                         </div>
