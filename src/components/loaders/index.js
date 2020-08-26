@@ -6,7 +6,7 @@ export const PlaceholderImageRectangular = (num) => (
         {
             Array(num).fill(null).map(() => {
                 return (
-                    <div style={{ display: 'flex', flexWrap: 'wrap', maxHeight: 96, marginBottom: 48 }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', maxHeight: 96, marginBottom: 48, }}>
                         <Placeholder style={{ maxHeight: 96, marginTop: 0, width: '28%', marginRight: 16 }}>
                             <Placeholder.Image />
                         </Placeholder>
@@ -26,6 +26,36 @@ export const PlaceholderImageRectangular = (num) => (
 
     </>
 )
+
+
+export const PlaceholderImageRectangularTeamBoards = (num) => (
+    <>
+        {
+            Array(num).fill(null).map(() => {
+                return (
+                    <div>
+                        <div style={{ maxWidth: 1400, display: 'flex', flexWrap: 'wrap', height: 144, justifyContent: 'spaceBetween', margin: '0 auto', marginBottom: 48 }}>
+                            <Placeholder style={{ height: 144, marginTop: 0, width: '28%', marginRight: 16 }}>
+                                <Placeholder.Image />
+                            </Placeholder>
+                            <Placeholder style={{ height: 144, marginTop: 0, width: '28%', marginRight: 16 }}>
+                                <Placeholder.Image />
+                            </Placeholder>
+                            <Placeholder style={{ height: 144, marginTop: 0, width: '28%' }}>
+                                <Placeholder.Image />
+                            </Placeholder>
+                        </div>
+
+                    </div>
+                )
+            })
+        }
+
+
+
+    </>
+)
+
 
 export const PlaceholderSingleSmallRectangular = (num) => (
     <>
