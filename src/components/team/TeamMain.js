@@ -3,6 +3,7 @@ import { Icon, Button, Menu } from 'semantic-ui-react'
 import TeamMembers from './TeamMembers';
 import TeamBoards from './TeamBoards';
 import TeamSettings from './TeamSettings'
+import { FullPageImageLoader } from './../loaders'
 class TeamMain extends Component {
 
 
@@ -47,7 +48,7 @@ class TeamMain extends Component {
         return (
             <>
                 {
-                    team && <div className='complete-div-team' >
+                    team ? (<div className='complete-div-team' >
                         <div className="tabbed-pane-header" >
                             <div className="tabbed-pane-header-wrapper">
                                 <div className="tabbed-pane-header-content">
@@ -122,6 +123,7 @@ class TeamMain extends Component {
                             ) : null}
                         </div>
                     </div>
+                    ) : (FullPageImageLoader())
                 }
             </>
 
