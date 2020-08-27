@@ -1,6 +1,7 @@
 import React, { Component, createRef } from 'react'
 import { Button, Form, Input } from 'semantic-ui-react'
 import stc from 'string-to-color'
+import { EditCardMainLoader } from './../loaders'
 class EditLabelForCard extends Component {
     constructor(props) {
         super(props);
@@ -188,24 +189,26 @@ class EditLabelForCard extends Component {
                                                     <ul className="edit-labels-pop-over">
 
                                                         {
-                                                            issue && issue.labels && issue.labels.map((label, index) => {
-                                                                return (
-                                                                    <li key={index}>
-                                                                        <span
-                                                                            className="edit-label-pop-close"
-                                                                            data-label={label}
-                                                                            onClick={this.handleRemove}>
-                                                                            X
+                                                            issue && issue.labels ? (
+                                                                issue.labels.map((label, index) => {
+                                                                    return (
+                                                                        <li key={index}>
+                                                                            <span
+                                                                                className="edit-label-pop-close"
+                                                                                data-label={label}
+                                                                                onClick={this.handleRemove}>
+                                                                                X
                                                                         </span>
-                                                                        <span
-                                                                            className="card-label"
-                                                                            key={index}
-                                                                            style={{ backgroundColor: stc(label.toUpperCase()) }}>
-                                                                            {label.charAt(0).toUpperCase() + label.slice(1)}
-                                                                        </span>
-                                                                    </li>
-                                                                )
-                                                            })
+                                                                            <span
+                                                                                className="card-label"
+                                                                                key={index}
+                                                                                style={{ backgroundColor: stc(label.toUpperCase()) }}>
+                                                                                {label.charAt(0).toUpperCase() + label.slice(1)}
+                                                                            </span>
+                                                                        </li>
+                                                                    )
+                                                                })
+                                                            ) : (EditCardMainLoader)
                                                         }
 
                                                     </ul>

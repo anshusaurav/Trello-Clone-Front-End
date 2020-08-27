@@ -104,7 +104,8 @@ class IssueEditorPopup extends Component {
             // console.log(data);
             if (!data.errors) {
                 this.setState({ issue: data.issue }, () => {
-                    this.textAreaRef.current.select();
+                    if (!this.state.isOpenDuedate && !this.state.isOpenLabel)
+                        this.textAreaRef.current.select();
                     this.setState({ title: data.issue.title })
                 });
             }
