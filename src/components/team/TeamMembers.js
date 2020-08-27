@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Form, Message, Transition } from 'semantic-ui-react'
+import { TeamMembersLoader } from './../loaders'
 class TeamMembers extends Component {
 
     constructor(props) {
@@ -162,8 +163,8 @@ class TeamMembers extends Component {
         return (
             <>
                 {
-                    team && team.owner && <div className="org-member-wrapper">
-                        <div className="org-members-page-layout">
+                    <div className="org-member-wrapper">
+                        {team ? (team.owner && <div className="org-members-page-layout">
                             <div className="org-members-page-layout-list">
 
                                 <div className="org-members-section">
@@ -260,6 +261,8 @@ class TeamMembers extends Component {
                                     ))}
                             </div>
                         </div>
+                        ) : (TeamMembersLoader())
+                        }
                     </div>
                 }
 

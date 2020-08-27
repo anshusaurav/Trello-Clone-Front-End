@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Form, Button } from 'semantic-ui-react'
+import { TeamMembersLoader } from './../loaders'
 class TeamSettings extends Component {
 
     constructor(props) {
@@ -121,45 +122,52 @@ class TeamSettings extends Component {
         return (
             <>
                 <div className="team-settings-wrapper">
+
+
                     <div className="team-settings-outer">
-                        <div className="team-settings-content">
-                            <div className="team-settings-details">
-                                <Form>
-                                    <Form.Field>
-                                        <label>Name</label>
-                                        <input placeholder='Team Name'
-                                            name='name'
-                                            value={name}
-                                            onChange={this.handleChange}
-                                            required
+                        {
+                            name ? (
+                                <div className="team-settings-content">
+                                    <div className="team-settings-details">
+                                        <Form>
+                                            <Form.Field>
+                                                <label>Name</label>
+                                                <input placeholder='Team Name'
+                                                    name='name'
+                                                    value={name}
+                                                    onChange={this.handleChange}
+                                                    required
 
-                                        />
-                                    </Form.Field>
-                                    <Form.Field>
-                                        <label>Description (optional)</label>
-                                        <input placeholder='Team Description'
-                                            name='description'
-                                            value={description}
-                                            onChange={this.handleChange}
-                                        />
-                                    </Form.Field>
+                                                />
+                                            </Form.Field>
+                                            <Form.Field>
+                                                <label>Description (optional)</label>
+                                                <input placeholder='Team Description'
+                                                    name='description'
+                                                    value={description}
+                                                    onChange={this.handleChange}
+                                                />
+                                            </Form.Field>
 
-                                    <Button type='submit'
-                                        color='linkedin'
-                                        onClick={this.handleSubmit}
-                                        disabled={!isSubmitable}>
-                                        Submit
+                                            <Button type='submit'
+                                                color='linkedin'
+                                                onClick={this.handleSubmit}
+                                                disabled={!isSubmitable}>
+                                                Submit
                                     </Button>
-                                    <Button type='submit'
-                                        onClick={this.handleClear}>
-                                        Cancel
+                                            <Button type='submit'
+                                                onClick={this.handleClear}>
+                                                Cancel
                                     </Button>
-                                </Form>
+                                        </Form>
 
-                            </div>
+                                    </div>
 
-                        </div>
+                                </div>
+                            ) : (TeamMembersLoader())
+                        }
                     </div>
+
                 </div>
             </>
         )

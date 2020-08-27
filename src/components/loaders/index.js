@@ -1,6 +1,7 @@
 import React from 'react'
 import { Placeholder } from 'semantic-ui-react'
-import LoaderFullPage from './../../images/loader-full.gif'
+import LoaderFull from './../../images/loader-full.gif'
+import LoaderFullPage from './../../images/loader-full-page.gif'
 
 export const PlaceholderImageRectangular = (num) => (
     <>
@@ -72,7 +73,7 @@ export const PlaceholderSingleSmallRectangular = (num) => (
                 return (
                     <div style={{ display: 'flex', jutifyContent: 'center', maxHeight: 30, marginBottom: 12 }}>
                         <Placeholder style={{ maxHeight: 30, marginTop: 0, width: '90%' }}>
-                            <Placeholder.Line />
+                            <Placeholder.Image style={{ height: 30 }} />
                         </Placeholder>
                     </div>
 
@@ -87,6 +88,12 @@ export const PlaceholderSingleSmallRectangular = (num) => (
 
 export const FullPageImageLoader = () => {
     return <div style={{ display: 'flex', height: 'calc(100vh - 54px)', justifyContent: 'center', alignItems: 'center', opacity: '0.125' }}>
+        <img src={LoaderFull} alt="logo-loader"></img>
+    </div>
+}
+
+export const TeamMembersLoader = () => {
+    return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', opacity: '0.125' }}>
         <img src={LoaderFullPage} alt="logo-loader"></img>
     </div>
 }
