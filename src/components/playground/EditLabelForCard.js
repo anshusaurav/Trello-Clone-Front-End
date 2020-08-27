@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import { Button, Form, Input } from 'semantic-ui-react'
 import stc from 'string-to-color'
 class EditLabelForCard extends Component {
@@ -16,6 +16,7 @@ class EditLabelForCard extends Component {
         this.handleRemove = this.handleRemove.bind(this);
         this.escFunction = this.escFunction.bind(this);
         this.toggleUpdate = this.toggleUpdate.bind(this);
+        this.labelInputRef = createRef();
     }
     toggleUpdate() {
         this.setState({ isUpdated: !this.state.isUpdated })
@@ -136,6 +137,7 @@ class EditLabelForCard extends Component {
     }
     componentDidMount() {
         this.saveIssue();
+        this.labelInputRef.current.focus();
         document.addEventListener("keydown", this.escFunction, false);
 
     }
@@ -174,6 +176,7 @@ class EditLabelForCard extends Component {
                                                         name='label'
                                                         value={label}
                                                         onChange={this.handleChange}
+                                                        ref={this.labelInputRef}
 
                                                     />
                                                     <Button icon="plus"

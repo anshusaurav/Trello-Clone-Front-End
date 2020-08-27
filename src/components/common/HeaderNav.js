@@ -109,7 +109,7 @@ class HeaderNav extends React.Component {
                                 }}
                             />
                         </Link>
-                        <Input inverted color='blue' fitted
+                        <Input inverted color='blue' fitted="true"
                             icon={{
                                 name: 'search',
                                 circular: true,

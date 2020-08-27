@@ -6,9 +6,9 @@ import LoaderFullPage from './../../images/loader-full-page.gif'
 export const PlaceholderImageRectangular = (num) => (
     <>
         {
-            Array(num).fill(null).map(() => {
+            Array(num).fill(null).map((elm, index) => {
                 return (
-                    <div style={{ display: 'flex', flexWrap: 'wrap', maxHeight: 96, marginBottom: 48, }}>
+                    <div key={index} style={{ display: 'flex', flexWrap: 'wrap', maxHeight: 96, marginBottom: 48, }}>
                         <Placeholder style={{ maxHeight: 96, marginTop: 0, width: '28%', marginRight: 16 }}>
                             <Placeholder.Image />
                         </Placeholder>
@@ -33,25 +33,27 @@ export const PlaceholderImageRectangular = (num) => (
 export const PlaceholderImageRectangularTeamBoards = (num) => (
     <>
         {
-            Array(num).fill(null).map(() => {
+            Array(num).fill(null).map((elm, index) => {
                 return (
-                    <div style={{
-                        maxWidth: 1400,
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(3, 1fr)',
-                        height: 144,
-                        justifyContent: 'spaceBetween',
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                        marginBottom: 48
-                    }}>
-                        <Placeholder style={{ height: 144, marginTop: 0, }}>
+                    <div
+                        key={index}
+                        style={{
+                            maxWidth: 1400,
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(3, 1fr)',
+                            height: 144,
+                            justifyContent: 'spaceBetween',
+                            marginLeft: 'auto',
+                            marginRight: 'auto',
+                            marginBottom: 48
+                        }}>
+                        <Placeholder style={{ height: 144, marginTop: 0, marginBottom: 48 }}>
                             <Placeholder.Image />
                         </Placeholder>
-                        <Placeholder style={{ height: 144, marginTop: 0 }}>
+                        <Placeholder style={{ height: 144, marginTop: 0, marginBottom: 48 }}>
                             <Placeholder.Image />
                         </Placeholder>
-                        <Placeholder style={{ height: 144, marginTop: 0 }}>
+                        <Placeholder style={{ height: 144, marginTop: 0, marginBottom: 48 }}>
                             <Placeholder.Image />
                         </Placeholder>
                     </div>
@@ -69,9 +71,9 @@ export const PlaceholderImageRectangularTeamBoards = (num) => (
 export const PlaceholderSingleSmallRectangular = (num) => (
     <>
         {
-            Array(num).fill(null).map(() => {
+            Array(num).fill(null).map((ele, index) => {
                 return (
-                    <div style={{ display: 'flex', jutifyContent: 'center', maxHeight: 30, marginBottom: 12 }}>
+                    <div key={index} style={{ display: 'flex', jutifyContent: 'center', maxHeight: 30, marginBottom: 12 }}>
                         <Placeholder style={{ maxHeight: 30, marginTop: 0, width: '90%' }}>
                             <Placeholder.Image style={{ height: 30 }} />
                         </Placeholder>
@@ -95,5 +97,11 @@ export const FullPageImageLoader = () => {
 export const TeamMembersLoader = () => {
     return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', opacity: '0.125' }}>
         <img src={LoaderFullPage} alt="logo-loader"></img>
+    </div>
+}
+
+export const EditCardMainLoader = () => {
+    return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', opacity: '0.125' }}>
+        <img src={LoaderFullPage} alt="logo-loader" style={{ width: '50%', height: '50%' }}></img>
     </div>
 }

@@ -5,6 +5,7 @@ import EditDueDateForCard from './EditDueDateForCard'
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import stc from 'string-to-color'
+import { EditCardMainLoader } from './../loaders'
 class IssueEditorPopup extends Component {
     constructor(props) {
         super(props);
@@ -194,45 +195,51 @@ class IssueEditorPopup extends Component {
                                     onClick={this.props.handleClose}>
                                     X
                                 </span>
-                                <div className="list-card-labels">
-                                    {
-                                        issue && issue.labels && issue.labels.map((label, index) => {
-                                            return (
-                                                <span className="mod-card-front" key={index}
-                                                    style={{ backgroundColor: `${stc(label.toUpperCase())}` }}>
-                                                    <span className="label-text">
-                                                        {label.charAt(0).toUpperCase() + label.slice(1)}
-                                                    </span>
-                                                </span>
-                                            )
-                                        })
-                                    }
-                                </div>
-                                <textarea className="list-card-edit-title"
-                                    name="title"
-                                    ref={this.textAreaRef}
-                                    onChange={this.handleChange}
-                                    value={title}
-                                >
-                                </textarea>
-                                <div className="badges">
-                                    {
-                                        issue && issue.dueDate && (
-                                            <span className='js-badges'>
+                                {
+                                    issue ? (
+                                        <>
+                                            <div className="list-card-labels">
+                                                {
+                                                    issue && issue.labels && issue.labels.map((label, index) => {
+                                                        return (
+                                                            <span className="mod-card-front" key={index}
+                                                                style={{ backgroundColor: `${stc(label.toUpperCase())}` }}>
+                                                                <span className="label-text">
+                                                                    {label.charAt(0).toUpperCase() + label.slice(1)}
+                                                                </span>
+                                                            </span>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                            <textarea className="list-card-edit-title"
+                                                name="title"
+                                                ref={this.textAreaRef}
+                                                onChange={this.handleChange}
+                                                value={title}
+                                            >
+                                            </textarea>
+                                            <div className="badges">
+                                                {
+                                                    issue && issue.dueDate && (
+                                                        <span className='js-badges'>
 
-                                                <div className='due-date-badge' style={{ backgroundColor: `${Date.now() > new Date(issue.dueDate) ? '#EC9488' : '#fff'}` }}>
-                                                    <span className='badge-icon'>
-                                                        <Icon name="clock outline" />
-                                                    </span>
-                                                    <span className='badge-text'>
-                                                        {this.timeAgo(new Date(issue.dueDate))}
-                                                    </span>
-                                                </div>
-                                            </span>
-                                        )
-                                    }
+                                                            <div className='due-date-badge' style={{ backgroundColor: `${Date.now() > new Date(issue.dueDate) ? '#EC9488' : '#fff'}` }}>
+                                                                <span className='badge-icon'>
+                                                                    <Icon name="clock outline" />
+                                                                </span>
+                                                                <span className='badge-text'>
+                                                                    {this.timeAgo(new Date(issue.dueDate))}
+                                                                </span>
+                                                            </div>
+                                                        </span>
+                                                    )
+                                                }
 
-                                </div>
+                                            </div>
+                                        </>
+                                    ) : (EditCardMainLoader())
+                                }
                             </div>
                         </div>
                         <Button className="js-save-edits-btn"

@@ -353,7 +353,7 @@ class PlayGroundMain extends Component {
                                                                     {...provided.draggableProps}
                                                                     {...provided.dragHandleProps}
 
-                                                                >
+                                                                > {provided.placeholder}
                                                                     {<div className='list-card'>
                                                                         <div className='list-card-cover'>
 
