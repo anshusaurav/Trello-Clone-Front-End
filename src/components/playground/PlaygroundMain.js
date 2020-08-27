@@ -8,6 +8,7 @@ import stc from 'string-to-color'
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { PlaygroundMainLoader } from './../loaders'
 const options = [
     { key: 'deletelist', text: 'Archive List', icon: 'trash', value: 'deletelist' },
     { key: 'deletecards', text: 'Archive All Cards', icon: 'trash alternate', value: 'deletecards' },
@@ -303,242 +304,248 @@ class PlayGroundMain extends Component {
         const { boardSlug } = this.props;
 
         return (
+
             <div className='playground-board-canvas'
                 style={{ backgroundImage: board ? `url(${board.image})` : '' }}>
-                <DragDropContext onDragEnd={this.onDragEnd} >
-                    <div className='playground-board-wrapper' >
-                        {
-                            lists && isOpenList && isEditCard && isCommentCard && lists.map((list, ind) => (
-                                <Droppable
-                                    droppableId={list._id + ''}
-                                    key={list._id}
-                                    style={{ overflowY: 'scroll' }}>
-                                    {(provided, snapshot) => (
-                                        <div className='playground-board-list-wrapper'>
-                                            <div className='playground-board-list-content'>
-                                                <div className='playground-board-list-header'>
-                                                    <h2 className='playground-board-list-name'>
-                                                        {list.name}
-                                                    </h2>
-                                                    <span className='playground-board-list-header-extra'>
-                                                        <Dropdown trigger=
-                                                            {
-                                                                <Icon name="ellipsis horizontal"
-                                                                    className="more-list-icon"
-                                                                    data-list-slug={list.slug} />
+                {
+                    lists ? (
+                        <DragDropContext onDragEnd={this.onDragEnd} >
+                            <div className='playground-board-wrapper' >
+                                {
+                                    lists && isOpenList && isEditCard && isCommentCard && lists.map((list, ind) => (
+                                        <Droppable
+                                            droppableId={list._id + ''}
+                                            key={list._id}
+                                            style={{ overflowY: 'scroll' }}>
+                                            {(provided, snapshot) => (
+                                                <div className='playground-board-list-wrapper'>
+                                                    <div className='playground-board-list-content'>
+                                                        <div className='playground-board-list-header'>
+                                                            <h2 className='playground-board-list-name'>
+                                                                {list.name}
+                                                            </h2>
+                                                            <span className='playground-board-list-header-extra'>
+                                                                <Dropdown trigger=
+                                                                    {
+                                                                        <Icon name="ellipsis horizontal"
+                                                                            className="more-list-icon"
+                                                                            data-list-slug={list.slug} />
 
-                                                            }
-                                                            data-list-slug={list.slug}
-                                                            onChange={this.handleChangeListDropDown}
-                                                            options={options}
-                                                            pointing='top left'
-                                                            icon={null}
+                                                                    }
+                                                                    data-list-slug={list.slug}
+                                                                    onChange={this.handleChangeListDropDown}
+                                                                    options={options}
+                                                                    pointing='top left'
+                                                                    icon={null}
 
-                                                        />
+                                                                />
 
-                                                    </span>
-                                                </div>
-                                                <div className='playground-list-cards'
-                                                    ref={provided.innerRef}>
+                                                            </span>
+                                                        </div>
+                                                        <div className='playground-list-cards'
+                                                            ref={provided.innerRef}>
 
-                                                    {list.issues.map((issue, index) => (
-                                                        <Draggable
-                                                            key={issue._id}
-                                                            draggableId={issue._id}
-                                                            index={index}>
+                                                            {list.issues.map((issue, index) => (
+                                                                <Draggable
+                                                                    key={issue._id}
+                                                                    draggableId={issue._id}
+                                                                    index={index}>
 
-                                                            {(provided, snapshot) => (
-                                                                <div
-                                                                    ref={provided.innerRef}
-                                                                    {...provided.draggableProps}
-                                                                    {...provided.dragHandleProps}
+                                                                    {(provided, snapshot) => (
+                                                                        <div
+                                                                            ref={provided.innerRef}
+                                                                            {...provided.draggableProps}
+                                                                            {...provided.dragHandleProps}
 
-                                                                > {provided.placeholder}
-                                                                    {<div className='list-card'>
-                                                                        <div className='list-card-cover'>
+                                                                        > {provided.placeholder}
+                                                                            {<div className='list-card'>
+                                                                                <div className='list-card-cover'>
 
-                                                                        </div>
-                                                                        <span className='list-card-edit-icon'>
+                                                                                </div>
+                                                                                <span className='list-card-edit-icon'>
 
-                                                                            <Popup
-                                                                                on="click"
-                                                                                open={isEditCard.get(issue._id)}
-                                                                                onOpen={this.handleOpenEditCard}
-                                                                                basic
-                                                                                trigger={
-                                                                                    <Icon
-                                                                                        name="edit outline"
-                                                                                        data-issue-id={issue._id}
+                                                                                    <Popup
+                                                                                        on="click"
+                                                                                        open={isEditCard.get(issue._id)}
+                                                                                        onOpen={this.handleOpenEditCard}
+                                                                                        basic
+                                                                                        trigger={
+                                                                                            <Icon
+                                                                                                name="edit outline"
+                                                                                                data-issue-id={issue._id}
 
-                                                                                    />}>
-                                                                                <IssueEditorPopUp
-                                                                                    issueId={issue._id}
-                                                                                    toggleUpdate={this.toggleUpdate}
-                                                                                    handleClose={this.handleCloseEditCard}
+                                                                                            />}>
+                                                                                        <IssueEditorPopUp
+                                                                                            issueId={issue._id}
+                                                                                            toggleUpdate={this.toggleUpdate}
+                                                                                            handleClose={this.handleCloseEditCard}
 
-                                                                                />
-                                                                            </Popup>
-                                                                        </span>
-                                                                        <div className='list-card-details'>
-                                                                            <div className='list-card-labels'>
+                                                                                        />
+                                                                                    </Popup>
+                                                                                </span>
+                                                                                <div className='list-card-details'>
+                                                                                    <div className='list-card-labels'>
 
-                                                                                {
-                                                                                    issue.labels && issue.labels.map((label, index) => {
-                                                                                        return (
-                                                                                            <span className='card-label'
-                                                                                                key={index}
-                                                                                                style={{ backgroundColor: stc(label.toUpperCase()) }}>
-                                                                                                {label.charAt(0).toUpperCase() + label.slice(1)}
-                                                                                            </span>
-                                                                                        )
-                                                                                    })
-                                                                                }
-                                                                            </div>
-                                                                            <span className='list-card-title'>
-                                                                                {issue.title}
-                                                                            </span>
-
-                                                                            <div className='badges'>
-                                                                                {
-                                                                                    issue.dueDate && (
-                                                                                        <span className='js-badges' >
-
-                                                                                            <div className='due-date-badge'
-                                                                                                style={{
-                                                                                                    backgroundColor: `${Date.now() > new Date(issue.dueDate) ? '#EC9488' : '#fff'}`
-                                                                                                }}>
-                                                                                                <span className='badge-icon'>
-                                                                                                    <Icon name="clock outline" />
-                                                                                                </span>
-                                                                                                <span className='badge-text'>
-                                                                                                    {this.timeAgo(new Date(issue.dueDate))}
-                                                                                                </span>
-                                                                                            </div>
-                                                                                        </span>
-                                                                                    )
-                                                                                }
-                                                                                <Popup
-                                                                                    on="click"
-                                                                                    open={isCommentCard.get(issue._id)}
-                                                                                    onOpen={this.handleOpenCommentCard}
-                                                                                    basic
-                                                                                    style={{
-                                                                                        position: "fixed",
-                                                                                        minWidth: "100vw",
-                                                                                        minHeight: "100vh",
-                                                                                        top: -2,
-                                                                                        left: -2,
-                                                                                        bottom: -2,
-                                                                                        right: -2,
-                                                                                        transform: "none",
-                                                                                        marginTop: 0,
-                                                                                        backgroundColor: "rgba(0,0,0,0.5)",
-                                                                                    }}
-                                                                                    trigger={
-                                                                                        issue.comments.length !== 0 ? (
-                                                                                            <span className='js-badges comment-badge ' data-issue-id={issue._id} >
-
-                                                                                                <div className='due-date-badge'>
-                                                                                                    <span className='badge-icon'>
-                                                                                                        <Icon name="comments outline" />
+                                                                                        {
+                                                                                            issue.labels && issue.labels.map((label, index) => {
+                                                                                                return (
+                                                                                                    <span className='card-label'
+                                                                                                        key={index}
+                                                                                                        style={{ backgroundColor: stc(label.toUpperCase()) }}>
+                                                                                                        {label.charAt(0).toUpperCase() + label.slice(1)}
                                                                                                     </span>
-                                                                                                    <span className='badge-text'>
-                                                                                                        {issue.comments.length}
-                                                                                                    </span>
-                                                                                                </div>
-                                                                                            </span>
-                                                                                        ) : (
-                                                                                                <span className='js-badges comment-badge ' data-issue-id={issue._id}>
+                                                                                                )
+                                                                                            })
+                                                                                        }
+                                                                                    </div>
+                                                                                    <span className='list-card-title'>
+                                                                                        {issue.title}
+                                                                                    </span>
 
-                                                                                                    <div className='due-date-badge'>
+                                                                                    <div className='badges'>
+                                                                                        {
+                                                                                            issue.dueDate && (
+                                                                                                <span className='js-badges' >
+
+                                                                                                    <div className='due-date-badge'
+                                                                                                        style={{
+                                                                                                            backgroundColor: `${Date.now() > new Date(issue.dueDate) ? '#EC9488' : '#fff'}`
+                                                                                                        }}>
                                                                                                         <span className='badge-icon'>
-                                                                                                            <Icon name="comments outline" />
+                                                                                                            <Icon name="clock outline" />
                                                                                                         </span>
-
+                                                                                                        <span className='badge-text'>
+                                                                                                            {this.timeAgo(new Date(issue.dueDate))}
+                                                                                                        </span>
                                                                                                     </div>
                                                                                                 </span>
                                                                                             )
-                                                                                    }>
-                                                                                    <CardCommentPopup
-                                                                                        issueId={issue._id}
-                                                                                        toggleUpdate={this.toggleUpdate}
-                                                                                        handleClose={this.handleCloseCommentCard}
+                                                                                        }
+                                                                                        <Popup
+                                                                                            on="click"
+                                                                                            open={isCommentCard.get(issue._id)}
+                                                                                            onOpen={this.handleOpenCommentCard}
+                                                                                            basic
+                                                                                            style={{
+                                                                                                position: "fixed",
+                                                                                                minWidth: "100vw",
+                                                                                                minHeight: "100vh",
+                                                                                                top: -2,
+                                                                                                left: -2,
+                                                                                                bottom: -2,
+                                                                                                right: -2,
+                                                                                                transform: "none",
+                                                                                                marginTop: 0,
+                                                                                                backgroundColor: "rgba(0,0,0,0.5)",
+                                                                                            }}
+                                                                                            trigger={
+                                                                                                issue.comments.length !== 0 ? (
+                                                                                                    <span className='js-badges comment-badge ' data-issue-id={issue._id} >
 
-                                                                                    />
-                                                                                </Popup>
+                                                                                                        <div className='due-date-badge'>
+                                                                                                            <span className='badge-icon'>
+                                                                                                                <Icon name="comments outline" />
+                                                                                                            </span>
+                                                                                                            <span className='badge-text'>
+                                                                                                                {issue.comments.length}
+                                                                                                            </span>
+                                                                                                        </div>
+                                                                                                    </span>
+                                                                                                ) : (
+                                                                                                        <span className='js-badges comment-badge ' data-issue-id={issue._id}>
 
-                                                                            </div>
+                                                                                                            <div className='due-date-badge'>
+                                                                                                                <span className='badge-icon'>
+                                                                                                                    <Icon name="comments outline" />
+                                                                                                                </span>
+
+                                                                                                            </div>
+                                                                                                        </span>
+                                                                                                    )
+                                                                                            }>
+                                                                                            <CardCommentPopup
+                                                                                                issueId={issue._id}
+                                                                                                toggleUpdate={this.toggleUpdate}
+                                                                                                handleClose={this.handleCloseCommentCard}
+
+                                                                                            />
+                                                                                        </Popup>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>}
                                                                         </div>
-                                                                    </div>}
-                                                                </div>
-                                                            )}
+                                                                    )}
 
-                                                        </Draggable>
-                                                    ))
+                                                                </Draggable>
+                                                            ))
 
-                                                    }
+                                                            }
+                                                        </div>
+                                                        <div className='card-compose-wrapper'>
+                                                            <Popup
+                                                                on="click"
+                                                                open={isOpenList.get(list._id)}
+                                                                onOpen={this.handleOpenAddCard}
+                                                                trigger={
+                                                                    <Button
+                                                                        fluid
+                                                                        labelPosition='left'
+                                                                        icon='plus'
+                                                                        content={!list.issues.length ? 'Add card' : 'Add another card'}
+                                                                        data-list-id={list._id}
+                                                                        style={{
+                                                                            lineHeight: '28px', fontSize: 16, fontWeight: 300
+                                                                        }}
+                                                                    >
+                                                                    </Button>
+                                                                }
+                                                                style={{ left: -4, backgroundColor: '#EBECF0' }}
+                                                                basic
+                                                                hideOnScroll>
+                                                                <AddIssueForm
+                                                                    listId={list._id}
+                                                                    toggleUpdate={this.toggleUpdate}
+                                                                    handleClose={this.handleCloseAddCard}
+                                                                /></Popup>
+
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div className='card-compose-wrapper'>
-                                                    <Popup
-                                                        on="click"
-                                                        open={isOpenList.get(list._id)}
-                                                        onOpen={this.handleOpenAddCard}
-                                                        trigger={
-                                                            <Button
-                                                                fluid
-                                                                labelPosition='left'
-                                                                icon='plus'
-                                                                content={!list.issues.length ? 'Add card' : 'Add another card'}
-                                                                data-list-id={list._id}
-                                                                style={{
-                                                                    lineHeight: '28px', fontSize: 16, fontWeight: 300
-                                                                }}
-                                                            >
-                                                            </Button>
-                                                        }
-                                                        style={{ left: -4, backgroundColor: '#EBECF0' }}
-                                                        basic
-                                                        hideOnScroll>
-                                                        <AddIssueForm
-                                                            listId={list._id}
-                                                            toggleUpdate={this.toggleUpdate}
-                                                            handleClose={this.handleCloseAddCard}
-                                                        /></Popup>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
-                                </Droppable>
-                            ))
-                        }
-                        <div className='add-list-wrapper'>
-                            <Popup
-                                on='click'
-                                open={isOpen}
-                                onOpen={this.handleOpenAddList}
-                                trigger={
-                                    <Button
-                                        labelPosition='left'
-                                        fluid
-                                        icon='plus'
-                                        content='Add list'
-                                        className='open-add-list-btn'
-                                        onClick={this.handleAddListClick} />
+                                            )}
+                                        </Droppable>
+                                    ))
                                 }
-                                style={{ top: -55, left: -4, padding: 14, backgroundColor: '#EBECF0' }}
-                                basic
-                                hideOnScroll>
-                                <AddListForm
-                                    boardSlug={boardSlug}
-                                    toggleUpdate={this.toggleUpdate}
-                                    handleClose={this.handleCloseAddList} />
-                            </Popup>
-                        </div>
+                                <div className='add-list-wrapper'>
+                                    <Popup
+                                        on='click'
+                                        open={isOpen}
+                                        onOpen={this.handleOpenAddList}
+                                        trigger={
+                                            <Button
+                                                labelPosition='left'
+                                                fluid
+                                                icon='plus'
+                                                content='Add list'
+                                                className='open-add-list-btn'
+                                                onClick={this.handleAddListClick} />
+                                        }
+                                        style={{ top: -55, left: -4, padding: 14, backgroundColor: '#EBECF0' }}
+                                        basic
+                                        hideOnScroll>
+                                        <AddListForm
+                                            boardSlug={boardSlug}
+                                            toggleUpdate={this.toggleUpdate}
+                                            handleClose={this.handleCloseAddList} />
+                                    </Popup>
+                                </div>
 
-                    </div>
-                </DragDropContext >
-            </div >
+                            </div>
+                        </DragDropContext>
+                    ) : (PlaygroundMainLoader())
+                }
+
+            </div>
         )
     }
 }

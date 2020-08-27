@@ -105,3 +105,33 @@ export const EditCardMainLoader = () => {
         <img src={LoaderFullPage} alt="logo-loader" style={{ width: '50%', height: '50%' }}></img>
     </div>
 }
+
+export const PlaygroundHeaderLoader = () => {
+    return (
+        <div style={{ display: 'flex', justifyContent: "space-between", backgroundColor: 'inherit' }}>
+            <div style={{ width: 400, display: 'grid', gridTemplateColumns: '2fr 1fr 2.5fr', gridGap: 12 }}>
+
+                <Placeholder style={{ height: 32, marginTop: 0, backgroundColor: '#5895d3' }}>
+                    <Placeholder.Image />
+                </Placeholder>
+                <Placeholder style={{ height: 32, marginTop: 0, backgroundColor: '#5895d3' }}>
+                    <Placeholder.Image />
+                </Placeholder>
+                <Placeholder style={{ height: 32, marginTop: 0, backgroundColor: '#5895d3' }}>
+                    <Placeholder.Image />
+                </Placeholder>
+            </div>
+            <div style={{ width: 100 }}>
+                <Placeholder style={{ height: 32, marginTop: 0, backgroundColor: '#5895d3' }}>
+                    <Placeholder.Image />
+                </Placeholder>
+            </div>
+        </div>
+    );
+}
+
+export const PlaygroundMainLoader = () => {
+    return <div style={{ display: 'flex', height: 'calc(100vh - 100px)', justifyContent: 'center', alignItems: 'center', opacity: '0.125' }}>
+        <img src={LoaderFullPage} alt="logo-loader"></img>
+    </div>
+}

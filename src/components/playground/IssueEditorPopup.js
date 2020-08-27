@@ -33,13 +33,14 @@ class IssueEditorPopup extends Component {
     }
 
     handleOpenLabelPopup() {
-        this.setState({ isOpenLabel: true });
+        this.setState({ isOpenLabel: true, isOpenDuedate: false });
     }
     handleCloseLabelPopup() {
         this.setState({ isOpenLabel: false });
     }
     handleOpenDuedatePopup() {
-        this.setState({ isOpenDuedate: true });
+        this.setState({ isOpenDuedate: true, isOpenLabel: false });
+
     }
     handleCloseDuedatePopup() {
         this.setState({ isOpenDuedate: false });
